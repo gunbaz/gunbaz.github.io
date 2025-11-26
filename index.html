@@ -1,0 +1,415 @@
+<!-- Chosen Palette: Calm Harmony -->
+<!-- Application Structure Plan: A single-page application using tabs for navigation. Each tab (Uninformed Search, Informed Search, Adversarial, ML) reveals a content area with interactive cards for each algorithm. This structure is user-friendly, mirrors the logical flow of the course topics, and allows easy exploration of concepts. JavaScript handles the tab switching and chart generation. -->
+<!-- Visualization & Content Choices: 1. Search Complexity (Bar Chart): Compares Space Complexity of BFS vs. DFS (Goal: Compare, Method: Bar Chart, Interaction: Static, Justification: Highlights the key trade-off, Library: Chart.js). 2. Linear Regression (Scatter+Line): Shows data points and a best-fit line (Goal: Inform/Relationships, Method: Scatter/Line, Interaction: Static, Justification: Visually explains linear regression's goal, Library: Chart.js). All other info is in text cards, as it's conceptual. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YK ve MÖ Temel Kavramları</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fdfbf8; /* Warm neutral background */
+        }
+        .tab-btn {
+            padding: 0.75rem 1rem;
+            margin-right: 0.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #57534e; /* Warm gray text */
+            border: 2px solid transparent;
+        }
+        .tab-btn.active {
+            color: #a56d3b; /* Subtle accent */
+            background-color: #fefcf9;
+            border-color: #f3eade;
+        }
+        .tab-btn:hover:not(.active) {
+            background-color: #f5f2ef;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .concept-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            border: 1px solid #f3eade;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+        }
+        .concept-card:hover {
+            box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+            transform: translateY(-2px);
+        }
+        .card-title {
+            color: #a56d3b;
+            font-weight: 600;
+            border-bottom: 1px solid #f3eade;
+        }
+        .card-subtitle {
+            font-weight: 500;
+            color: #78716c;
+        }
+        code {
+            background-color: #f5f2ef;
+            color: #a56d3b;
+            padding: 0.125rem 0.375rem;
+            border-radius: 0.25rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 600;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto px-4 py-8 md:py-12">
+        <!-- Header -->
+        <header class="text-center mb-8 md:mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800">Yapay Zeka ve Makine Öğrenmesi</h1>
+            <p class="text-lg text-gray-600 mt-2">Temel Kavramlar ve Algoritmalar</p>
+        </header>
+
+        <!-- Tab Navigation -->
+        <nav class="flex flex-wrap justify-center mb-8" id="tab-nav">
+            <button class="tab-btn active" data-tab="uninformed">Bilgisiz Arama</button>
+            <button class="tab-btn" data-tab="informed">Bilgili Arama</button>
+            <button class="tab-btn" data-tab="adversarial">Çekişmeli Arama</button>
+            <button class="tab-btn" data-tab="ml">Makine Öğrenmesi</button>
+        </nav>
+
+        <!-- Tab Content Area -->
+        <main>
+            <!-- Bölüm 1: Bilgisiz Arama -->
+            <section id="uninformed" class="tab-content active">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-6 text-center">Bölüm 1: Bilgisiz (Kör) Arama</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- BFS -->
+                    <div class="concept-card overflow-hidden">
+                        <div class="p-5 card-title">
+                            <h3>1. Breadth First Search (BFS)</h3>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <p class="card-subtitle">Temel Mantık:</p>
+                            <p>Seviye seviye, katman katman arar. Gölete atılan taşın dalgaları gibidir.</p>
+                            <p class="card-subtitle">Veri Yapısı:</p>
+                            <p><code>Kuyruk (Queue)</code> - FIFO (İlk Giren İlk Çıkar).</p>
+                            <p class="card-subtitle">Anahtar Fikir:</p>
+                            <p>En az *adımda* (en sığ) çözümü bulur. Maliyeti dikkate almaz.</p>
+                        </div>
+                    </div>
+
+                    <!-- DFS -->
+                    <div class="concept-card overflow-hidden">
+                        <div class="p-5 card-title">
+                            <h3>2. Depth First Search (DFS)</h3>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <p class="card-subtitle">Temel Mantık:</p>
+                            <p>Bir yola girer ve gidebildiği kadar derine gider. Tıkanırsa geri döner (backtrack).</p>
+                            <p class="card-subtitle">Veri Yapısı:</p>
+                            <p><code>Yığın (Stack)</code> - LIFO (Son Giren İlk Çıkar).</p>
+                            <p class="card-subtitle">Anahtar Fikir:</p>
+                            <p>Hafızada az yer kaplar ancak optimal çözümü veya en sığ olanı garanti etmez.</p>
+                        </div>
+                    </div>
+
+                    <!-- UCS -->
+                    <div class="concept-card overflow-hidden">
+                        <div class="p-5 card-title">
+                            <h3>3. Uniform Cost Search (UCS)</h3>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <p class="card-subtitle">Temel Mantık:</p>
+                            <p>"Akıllı" BFS. Körü körüne değil, en *ucuz* (düşük maliyetli) yoldan ilerler.</p>
+                            <p class="card-subtitle">Veri Yapısı:</p>
+                            <p><code>Öncelikli Kuyruk (Priority Queue)</code>.</p>
+                            <p class="card-subtitle">Anahtar Fikir:</p>
+                            <p>Her zaman en *optimal* (en düşük maliyetli) çözümü bulur. Sadece <code>g(n)</code> (geçmiş maliyet) değerine bakar.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Search Complexity Chart -->
+                <div class="concept-card mt-8 p-6">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4 text-center">BFS vs. DFS: Yer Karmaşıklığı</h3>
+                    <p class="text-center text-gray-600 mb-4">Aramalardaki en büyük farklardan biri hafıza kullanımıdır. DFS (<code>O(bm)</code>) genellikle BFS'den (<code>O(b^d)</code>) çok daha az yer kaplar.</p>
+                    <div class="chart-container" style="height: 250px;">
+                        <canvas id="complexityChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bölüm 2: Bilgili Arama -->
+            <section id="informed" class="tab-content">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-6 text-center">Bölüm 2: Bilgili (Sezgisel) Arama</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Heuristic -->
+                    <div class="concept-card overflow-hidden">
+                        <div class="p-5 card-title">
+                            <h3>Heuristic (Sezgisel) Fonksiyon: <code>h(n)</code></h3>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <p class="card-subtitle">Nedir?</p>
+                            <p>Aramanın "sihirli pusulası". <code>n</code> düğümünden hedefe olan *tahmini* maliyeti verir.</p>
+                            <p class="card-subtitle">Kabul Edilebilir (Admissible) Heuristic:</p>
+                            <p>En önemli kural. Tahmin, *asla* gerçek maliyetten fazla olamaz (iyimser olmalıdır).</p>
+                            <p><code>h(n) ≤ (n'den hedefe gerçek maliyet)</code></p>
+                        </div>
+                    </div>
+                    <!-- A* -->
+                    <div class="concept-card overflow-hidden">
+                        <div class="p-5 card-title">
+                            <h3>4. A* (A-Star) Algoritması</h3>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <p class="card-subtitle">Temel Mantık:</p>
+                            <p>UCS (geçmiş) ve Heuristic (gelecek) gücünü birleştirir. En akıllı yol bulma algoritmasıdır.</p>
+                            <p class="card-subtitle">Sihirli Formül: <code>f(n) = g(n) + h(n)</code></p>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li><code>g(n)</code>: Baştan <code>n</code>'ye kadar olan *gerçek* maliyet. (UCS'nin kullandığı)</li>
+                                <li><code>h(n)</code>: <code>n</code>'den hedefe olan *tahmini* maliyet. (Sezgisel)</li>
+                                <li><code>f(n)</code>: Toplam *tahmini* maliyet. A*, bu değere göre öncelik verir.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bölüm 3: Çekişmeli Arama -->
+            <section id="adversarial" class="tab-content">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-6 text-center">Bölüm 3: Çekişmeli Arama (Oyunlar)</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Minimax -->
+                    <div class="concept-card overflow-hidden">
+                        <div class="p-5 card-title">
+                            <h3>5. Minimax Algoritması</h3>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <p class="card-subtitle">Temel Mantık:</p>
+                            <p>"Rakibimin mümkün olan en akıllıca hamleyi yapacağını varsayarak, benim için en iyi hamle nedir?"</p>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li><strong>MAX Düğümü:</strong> Biz (skoru maksimize ederiz).</li>
+                                <li><strong>MIN Düğümü:</strong> Rakip (skorumuzu minimize eder).</li>
+                            </ul>
+                            <p>Skorlar en alttan yukarıya doğru hesaplanır.</p>
+                        </div>
+                    </div>
+                    <!-- Alpha-Beta -->
+                    <div class="concept-card overflow-hidden">
+                        <div class="p-5 card-title">
+                            <h3>6. Alpha-Beta Pruning (Budama)</h3>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <p class="card-subtitle">Temel Mantık:</p>
+                            <p>Minimax ile %100 aynı sonucu verir, ancak "Bu dalın daha iyi bir sonuç vermeyeceği kesinleşti" dediği an o dalı "budar" (bakmaz).</p>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li><code>α (Alpha)</code>: MAX'ın o ana kadar bulduğu en iyi (en yüksek) skor.</li>
+                                <li><code>β (Beta)</code>: MIN'in o ana kadar bulduğu en iyi (en düşük) skor.</li>
+                            </ul>
+                            <p>Budama Kuralı: <code>α ≥ β</code> olduğunda budama yapılır.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bölüm 4: Makine Öğrenmesi -->
+            <section id="ml" class="tab-content">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-6 text-center">Bölüm 4: Temel Makine Öğrenmesi</h2>
+                <div class="grid lg:grid-cols-2 gap-6">
+                    <!-- Linear Regression -->
+                    <div class="concept-card overflow-hidden">
+                        <div class="p-5 card-title">
+                            <h3>7. Lineer Regresyon</h3>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <p class="card-subtitle">Amaç:</p>
+                            <p>Veri noktalarına en uygun "düz bir çizgi" çizerek sürekli bir değeri (örn: not, fiyat) tahmin etmek.</p>
+                            <p class="card-subtitle">Hipotez (Model):</p>
+                            <p><code>h(x) = θ₀ + θ₁x</code></p>
+                            <p class="card-subtitle">Maliyet Fonksiyonu (MSE):</p>
+                            <p>Tahmin ile gerçek arasındaki hatanın (farkların karesi) ortalaması. Amaç bunu minimize etmektir.</p>
+                            <p><code>J(θ) = (1/2m) * Σ(h(x) - y)²</code></p>
+                        </div>
+                    </div>
+                    
+                    <!-- Logistic Regression -->
+                    <div class="concept-card overflow-hidden">
+                        <div class="p-5 card-title">
+                            <h3>8. Lojistik Regresyon</h3>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <p class="card-subtitle">Amaç:</p>
+                            <p>Bu bir *Sınıflandırma* algoritmasıdır. Sonucu 0 veya 1 (örn: Spam/Değil, Geçti/Kaldı) olarak tahmin eder.</p>
+                            <p class="card-subtitle">Hipotez (Model):</p>
+                            <p>Çıktıyı 0-1 arasına sıkıştıran <code>Sigmoid Fonksiyonu</code> kullanılır. Bu bir olasılık verir.</p>
+                            <p class="card-subtitle">Maliyet Fonksiyonu (Log Loss):</p>
+                            <p>Gerçek 1 iken 0 (veya tersi) tahmin edilmesini çok büyük cezalandıran özel bir maliyet fonksiyonudur.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- ML Chart -->
+                <div class="concept-card mt-8 p-6">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4 text-center">Lineer Regresyon Görselleştirme</h3>
+                    <p class="text-center text-gray-600 mb-4">Lineer Regresyon, (Saat, Not) gibi verilere en uygun çizgiyi bulmaya çalışır.</p>
+                    <div class="chart-container" style="height: 350px;">
+                        <canvas id="regressionChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.tab-btn');
+            const contents = document.querySelectorAll('.tab-content');
+            const tabNav = document.getElementById('tab-nav');
+
+            tabNav.addEventListener('click', (e) => {
+                if (e.target.classList.contains('tab-btn')) {
+                    const targetTab = e.target.dataset.tab;
+
+                    // Update Tab Buttons
+                    tabs.forEach(tab => {
+                        tab.classList.remove('active');
+                        if (tab.dataset.tab === targetTab) {
+                            tab.classList.add('active');
+                        }
+                    });
+
+                    // Update Tab Content
+                    contents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === targetTab) {
+                            content.classList.add('active');
+                        }
+                    });
+                }
+            });
+
+            // Chart: Search Complexity
+            const complexityCtx = document.getElementById('complexityChart')?.getContext('2d');
+            if (complexityCtx) {
+                new Chart(complexityCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['BFS (Genişlik)', 'DFS (Derinlik)'],
+                        datasets: [{
+                            label: 'Yer Karmaşıklığı (Soyut Gösterim)',
+                            data: [100, 20], // Soyut değerler
+                            backgroundColor: ['#f8cba6', '#a56d3b'],
+                            borderColor: ['#f3eade', '#78716c'],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        const label = context.label || '';
+                                        const val = context.raw;
+                                        const formula = label.includes('BFS') ? 'O(b^d) - Üstel' : 'O(bm) - Lineer';
+                                        return `${label}: ${formula} (Hafıza Kullanımı)`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        if (value === 100) return 'Çok Fazla (Üstel)';
+                                        if (value === 20) return 'Az (Lineer)';
+                                        return '';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Chart: Linear Regression
+            const regressionCtx = document.getElementById('regressionChart')?.getContext('2d');
+            if (regressionCtx) {
+                new Chart(regressionCtx, {
+                    type: 'scatter',
+                    data: {
+                        datasets: [
+                        {
+                            label: 'Gerçek Veriler (Öğrenci Notları)',
+                            data: [
+                                { x: 1, y: 20 },
+                                { x: 2, y: 50 },
+                                { x: 3, y: 70 },
+                                { x: 4, y: 80 }
+                            ],
+                            backgroundColor: '#a56d3b',
+                            radius: 6,
+                        },
+                        {
+                            label: 'Tahmin Çizgisi (h(x))',
+                            data: [
+                                { x: 0, y: 10 }, // hypothetical line
+                                { x: 5, y: 100 } // hypothetical line
+                            ],
+                            type: 'line',
+                            borderColor: '#f8cba6',
+                            borderWidth: 3,
+                            fill: false,
+                            tension: 0.1,
+                            pointRadius: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Çalışılan Saat (X)'
+                                },
+                                min: 0,
+                                max: 5
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Sınav Notu (Y)'
+                                },
+                                min: 0,
+                                max: 100
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

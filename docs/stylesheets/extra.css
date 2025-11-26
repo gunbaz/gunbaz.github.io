@@ -1,0 +1,73 @@
+:root {
+  /* --- Renk Paleti: Eski Defter / Latte --- */
+  
+  /* Ana Arka Plan: Yumuşak Krem */
+  --md-default-bg-color: #fdfbf7;
+  
+  /* Ana Yazı Rengi: Koyu Kahve / Toprak */
+  --md-default-fg-color: #433422;
+  
+  /* Link Rengi: Kiremit / Soft Gold */
+  --md-typeset-a-color: #b3541f;
+  
+  /* Başlıklar ve Vurgular */
+  --md-primary-fg-color: #fdfbf7; /* Header arka planı ile aynı olsun ki şeffaf gibi dursun */
+  --md-primary-fg-color--light: #e6e2d3;
+  --md-primary-fg-color--dark: #dcd8c8;
+  
+  /* Accent (Vurgu) Rengi */
+  --md-accent-fg-color: #b3541f;
+
+  /* Kod Blokları Arka Planı */
+  --md-code-bg-color: #f0ece0;
+}
+
+/* --- Header (Üst Menü) Özelleştirmesi --- */
+.md-header {
+  background-color: var(--md-default-bg-color) !important;
+  color: var(--md-default-fg-color) !important;
+  border-bottom: 2px solid #e6e2d3; /* Hafif bir çizgi */
+  box-shadow: none !important;
+}
+
+/* Header içindeki ikonlar ve yazılar */
+.md-header__title, .md-header__button, .md-header__topic {
+  color: var(--md-default-fg-color) !important;
+}
+
+/* Arama çubuğu özelleştirmesi */
+.md-search__input {
+  background-color: #f0ece0 !important;
+  color: #433422 !important;
+  border: 1px solid #dcd8c8;
+}
+
+/* --- Sol Menü (Sidebar) --- */
+.md-nav {
+  background-color: transparent;
+  font-family: 'Georgia', serif; /* Menüde de serif kullanımı */
+}
+
+.md-nav__item .md-nav__link--active {
+  color: #b3541f !important;
+  font-weight: bold;
+}
+
+/* --- Genel Yazı Tipi ve Atmosfer --- */
+body, input, .md-typeset {
+  font-family: 'Georgia', 'Times New Roman', serif; /* Defter havası için Serif font */
+}
+
+/* Başlıklar (H1, H2, H3...) */
+.md-typeset h1, .md-typeset h2, .md-typeset h3 {
+  color: #5d4a35;
+  font-weight: normal;
+  border-bottom-color: #e6e2d3;
+}
+
+/* Admonition (Uyarı Kutuları) */
+.md-typeset .admonition, 
+.md-typeset details {
+  background-color: #f5f0e6;
+  border-color: #dcd8c8;
+}

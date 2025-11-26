@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSP Konu Anlatım Rehberi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: Bu yapı, kullanıcının DSP vize konularını öğrenmesine odaklanır. "Hoş Geldiniz" sekmesi kaldırılmış, her ana konu (İşaretler, Sistemler, Konvolüsyon, Fark Denklemleri) için ayrı bir sekme (tab) oluşturulmuştur. Bu, "ayrı kısımlar yap" talebini karşılar. Her sekme içinde, ilgili alt konular interaktif bir akordeon yapısıyla (konu başlığına tıklayınca açılır) sunulur. Her alt konu, "konular daha detaylı olsun" talebine uygun olarak, genişletilmiş "Konsept" ve "Örnek" açıklamaları içerir. -->
+    <!-- Visualization & Content Choices: 
+        1. Rapor Bilgisi: "Vize Konuları". Amaç: Müfredatı organize etmek ve detaylıca açıklamak. Sunum Yöntemi: Ana konular için sekmeli navigasyon (HTML/Tailwind/JS). Alt konular için tek seviyeli interaktif akordeon (HTML/Tailwind/JS). Etkileşim: Kullanıcı ana konu sekmesine tıklar, o konunun alt başlıkları listelenir. Kullanıcı alt konu başlığına tıklar, o konunun detaylı açıklaması ve örneği gösterilir/gizlenir. Gerekçe: Bu yapı, yoğun müfredatı mantıksal olarak (ana konulara göre) ayırır ve her konunun detaylarını (alt konular) boğmadan, isteğe bağlı olarak keşfedilmesini sağlar.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .konu-content {
+            display: none;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #f8faff; /* Açılan içeriğin arka planını hafifçe renklendir */
+        }
+        .konu-button.open + .konu-content {
+            display: block;
+        }
+        .konu-button.open span:last-child {
+            transform: rotate(180deg);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8">
+        <header class="mb-6">
+            <h1 class="text-3xl font-bold text-indigo-700">Sayısal İşaret İşleme (DSP) Detaylı Konu Rehberi</h1>
+            <p class="mt-2 text-lg text-gray-600">Vize konularını, detaylı açıklamalar ve örneklerle keşfedin.</p>
+        </header>
+
+        <nav class="mb-6 bg-white rounded-lg shadow-sm p-2">
+            <div class="flex flex-wrap gap-2">
+                <button data-tab="isaretler" class="tab-button flex-1 py-2 px-4 rounded-lg font-medium bg-indigo-600 text-white transition-all duration-300 text-center">Ayrık Zamanlı İşaretler</button>
+                <button data-tab="sistemler" class="tab-button flex-1 py-2 px-4 rounded-lg font-medium bg-gray-200 text-gray-700 hover:bg-gray-300 transition-all duration-300 text-center">Ayrık Zamanlı Sistemler</button>
+                <button data-tab="konvolusyon" class="tab-button flex-1 py-2 px-4 rounded-lg font-medium bg-gray-200 text-gray-700 hover:bg-gray-300 transition-all duration-300 text-center">Konvolüsyon</button>
+                <button data-tab="farkdenk" class="tab-button flex-1 py-2 px-4 rounded-lg font-medium bg-gray-200 text-gray-700 hover:bg-gray-300 transition-all duration-300 text-center">Fark Denklemleri</button>
+            </div>
+        </nav>
+
+        <main>
+            <!-- Bölüm 1: Ayrık Zamanlı İşaretler -->
+            <section id="isaretler" class="tab-content active bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4 text-indigo-800">1. Ayrık Zamanlı İşaretler</h2>
+                <div class="space-y-3">
+                    
+                    <div>
+                        <button class="konu-button w-full text-left p-3 bg-indigo-50 hover:bg-indigo-100 rounded-lg font-medium text-indigo-900 flex justify-between items-center transition-all duration-300">
+                            <span>Temel Diziler (Birim örnek, Birim basamak, Üstel)</span>
+                            <span class="transform transition-transform duration-300">&#9662;</span>
+                        </button>
+                        <div class="konu-content p-4 mt-1 rounded-b-lg border border-indigo-100">
+                            <h3 class="font-semibold text-indigo-700">Konsept</h3>
+                            <ul class="list-disc list-inside text-gray-600 text-sm mt-2 space-y-2">
+                                <li><strong>Birim Örnek (δ[n]):</strong> "Darbe" veya "impulse" olarak da bilinir. Sadece n=0 anında 1 değerini alır, diğer tüm n (tamsayı) anlarında 0'dır. Herhangi bir x[n] işareti, x[n] = Σ x[k]δ[n-k] şeklinde birim örneklerin toplamı olarak ifade edilebilir. Bu, LSI sistem analizinde kritik öneme sahiptir.</li>
+                                <li><strong>Birim Basamak (u[n]):</strong> n=0 ve sonraki tüm pozitif n değerleri için 1, n'nin negatif değerleri için 0'dır. Bir olayın n=0'da "başladığını" veya bir sistemin n=0'da "açıldığını" göstermek için kullanılır. δ[n] = u[n] - u[n-1] ilişkisi vardır.</li>
+                                <li><strong>Üstel (a<sup>n</sup>):</strong> n arttıkça işaretin genliğinin a katı kadar değiştiği dizidir. Genellikle x[n] = aⁿ u[n] şeklinde kullanılır.
+                                    <ul>
+                                        <li>Eğer |a| > 1 ise, işaret zamanla büyür (kararsız).</li>
+                                        <li>Eğer |a| < 1 ise, işaret zamanla sönümlenir (kararlı).</li>
+                                        <li>Eğer a negatifse, işaret her adımda işaret değiştirir (salınım yapar).</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <h4 class="font-semibold text-indigo-700 mt-3">Örnek</h4>
+                            <p class="text-gray-600 text-sm mt-2">
+                                x[n] = 3δ[n+1] - δ[n-2]. Bu işaret n=-1 anında 3, n=2 anında -1 değerine sahiptir, diğer tüm noktalarda 0'dır.<br>
+                                y[n] = u[n-3]. Bu işaret n=3, 4, 5, ... için 1 değerini alır, n &lt; 3 için 0'dır. Bu, 3 birim gecikmiş bir birim basamaktır.<br>
+                                z[n] = (0.8)ⁿ u[n]. Bu işaret n=0, 1, 2, 3, ... için 1, 0.8, 0.64, 0.512, ... değerlerini alır. Zamanla sönümlenen (azalan) bir dizidir.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <button class="konu-button w-full text-left p-3 bg-indigo-50 hover:bg-indigo-100 rounded-lg font-medium text-indigo-900 flex justify-between items-center transition-all duration-300">
+                            <span>Periyodiklik</span>
+                            <span class="transform transition-transform duration-300">&#9662;</span>
+                        </button>
+                        <div class="konu-content p-4 mt-1 rounded-b-lg border border-indigo-100">
+                            <h3 class="font-semibold text-indigo-700">Konsept</h3>
+                            <p class="text-gray-600 text-sm mt-2">Ayrık zamanlı bir x[n] işaretinin periyodik olması için, x[n] = x[n+N] eşitliğini sağlayan pozitif bir N tamsayısı (periyot) olmalıdır. Bu koşulu sağlayan en küçük pozitif N tamsayısına "Temel Periyot" denir.<br>
+                            Sinüsoidal işaretler (x[n] = cos(ω₀n + φ)) için durum farklıdır. İşaretin periyodik olması için, ω₀ / (2π) oranının rasyonel bir sayı (k/N şeklinde, k ve N tamsayı) olması gerekir. Eğer oran rasyonelse, temel periyot N, N ⋅ ω₀ = k ⋅ 2π eşitliğini sağlayan en küçük N tamsayısıdır.</p>
+                            <h4 class="font-semibold text-indigo-700 mt-3">Örnek</h4>
+                            <p class="text-gray-600 text-sm mt-2">
+                                <strong>Örnek 1:</strong> x[n] = cos(πn / 4).<br>
+                                Burada ω₀ = π/4. Oranı kontrol edelim: ω₀ / (2π) = (π/4) / (2π) = 1/8.<br>
+                                Oran rasyoneldir (k=1, N=8). Bu nedenle işaret periyodiktir. Temel periyot N=8'dir. Gerçekten de x[n+8] = cos(π(n+8)/4) = cos(πn/4 + 2π) = cos(πn/4) = x[n].<br><br>
+                                <strong>Örnek 2:</strong> x[n] = cos(n).<br>
+                                Burada ω₀ = 1. Oranı kontrol edelim: ω₀ / (2π) = 1 / (2π).<br>
+                                Bu oran irrasyoneldir (π nedeniyle). Bu nedenle x[n] = cos(n) işareti periyodik DEĞİLDİR.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <button class="konu-button w-full text-left p-3 bg-indigo-50 hover:bg-indigo-100 rounded-lg font-medium text-indigo-900 flex justify-between items-center transition-all duration-300">
+                            <span>Bağımsız Değişken Dönüşümleri (Öteleme, Ters Çevirme)</span>
+                            <span class="transform transition-transform duration-300">&#9662;</span>
+                        </button>
+                        <div class="konu-content p-4 mt-1 rounded-b-lg border border-indigo-100">
+                            <h3 class="font-semibold text-indigo-700">Konsept</h3>
+                            <ul class="list-disc list-inside text-gray-600 text-sm mt-2 space-y-2">
+                                <li><strong>Öteleme (Time Shifting):</strong> y[n] = x[n-n₀] şeklinde ifade edilir.
+                                    <ul>
+                                        <li>Eğer n₀ > 0 (örn: x[n-2]), işaret n₀ birim sağa kayar (gecikir).</li>
+                                        <li>Eğer n₀ &lt; 0 (örn: x[n+1]), işaret |n₀| birim sola kayar (öne alınır).</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Ters Çevirme (Time Reversal):</strong> y[n] = x[-n] şeklinde ifade edilir. İşaretin n=0 eksenine göre yansıması (simetriği) alınır. n=1'deki değer n=-1'e, n=2'deki değer n=-2'ye gider. n=0'daki değer değişmez.</li>
+                                <li><strong>Bileşik Dönüşüm (Örn: x[-n+k]):</strong> Sıra önemlidir. y[n] = x[-n+2]'yi bulmak için önce x[n]'i ters çevirip x[-n]'i bulmak, sonra x[-n]'i 2 birim sola kaydırarak (geciktirme n → n-2 değil, öne alma n → n+2) x[-(n-2)] = x[-n+2]'yi bulmak gerekir. VEYA önce x[n]'i 2 birim sağa kaydırıp x[n-2]'yi bulmak, sonra n → -n yaparak x[-n-2]'yi bulmak gerekir. (Not: x[-n+2] ve x[-n-2] farklıdır, parantezlemeye dikkat edilmeli). En güvenli yol, y[n]'deki her n değeri için x'in hangi indisini istediğine bakmaktır.</li>
+                            </ul>
+                            <h4 class="font-semibold text-indigo-700 mt-3">Örnek</h4>
+                            <p class="text-gray-600 text-sm mt-2">
+                                x[n] = {..., 0, 1 (n=0'da), 2, 3, 0, ...} olsun (yani x[0]=1, x[1]=2, x[2]=3).<br>
+                                <strong>Öteleme:</strong> y[n] = x[n-2] (2 birim sağa kaydırma).<br>
+                                y[n]'nin n=2'de 1, n=3'te 2, n=4'te 3 olması gerekir. y[n] = {..., 0, 0 (n=0'da), 0, 1, 2, 3, 0, ...}.<br>
+                                <strong>Ters Çevirme:</strong> z[n] = x[-n].<br>
+                                z[0]=x[0]=1, z[-1]=x[1]=2, z[-2]=x[2]=3. z[n] = {..., 0, 3, 2, 1 (n=0'da), 0, 0, ...}.<br>
+                                <strong>Bileşik:</strong> w[n] = x[-n+1].<br>
+                                w[0]=x[1]=2. w[1]=x[0]=1. w[-1]=x[2]=3. w[n] = {..., 0, 3, 2 (n=0'da), 1, 0, ...}.
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <!-- Bölüm 2: Ayrık Zamanlı Sistemler -->
+            <section id="sistemler" class="tab-content bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4 text-indigo-800">2. Ayrık Zamanlı Sistemler</h2>
+                <div class="space-y-3">
+
+                    <div>
+                        <button class="konu-button w-full text-left p-3 bg-indigo-50 hover:bg-indigo-100 rounded-lg font-medium text-indigo-900 flex justify-between items-center transition-all duration-300">
+                            <span>Belleksiz</span>
+                            <span class="transform transition-transform duration-300">&#9662;</span>
+                        </button>
+                        <div class="konu-content p-4 mt-1 rounded-b-lg border border-indigo-100">
+                            <h3 class="font-semibold text-indigo-700">Konsept</h3>
+                            <p class="text-gray-600 text-sm mt-2">Bir sistemin belleksiz olması için, herhangi bir n anındaki çıkışın (y[n]), sadece aynı andaki girişe (x[n]) bağlı olması gerekir. Eğer çıkış, girişin geçmiş (x[n-1], x[n-2], ...) veya gelecek (x[n+1], ...) değerlerine bağlıysa, sistem "bellekli" olarak adlandırılır. Fark denklemlerinde y[n-k] terimlerinin (k>0) olması da sistemi bellekli yapar.</p>
+                            <h4 class="font-semibold text-indigo-700 mt-3">Örnek</h4>
+                            <p class="text-gray-600 text-sm mt-2">
+                                <strong>Belleksiz Sistem:</strong> y[n] = 5x[n] + (x[n])². n anındaki çıkış, sadece x[n]'e bağlıdır.<br>
+                                <strong>Bellekli Sistem (Giriş):</strong> y[n] = x[n] + x[n-1]. y[n]'i bulmak için x[n-1]'in (geçmiş giriş) değerini "hatırlamak" gerekir.<br>
+                                <strong>Bellekli Sistem (Çıkış):</strong> y[n] = 0.5y[n-1] + x[n]. y[n]'i bulmak için y[n-1]'in (geçmiş çıkış) değerini bilmek gerekir.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button class="konu-button w-full text-left p-3 bg-indigo-50 hover:bg-indigo-100 rounded-lg font-medium text-indigo-900 flex justify-between items-center transition-all duration-300">
+                            <span>Doğrusal (LİNEER)</span>
+                            <span class="transform transition-transform duration-300">&#9662;</span>
+                        </button>
+                        <div class="konu-content p-4 mt-1 rounded-b-lg border border-indigo-100">
+                            <h3 class="font-semibold text-indigo-700">Konsept</h3>
+                            <p class="text-gray-600 text-sm mt-2">Bir sistemin doğrusal (lineer) olması için iki özelliği de sağlaması gerekir:<br>
+                            1. <strong>Toplanırlık:</strong> Eğer x₁[n] → y₁[n] ve x₂[n] → y₂[n] ise, o zaman x₁[n] + x₂[n] → y₁[n] + y₂[n] olmalıdır. (Girişlerin toplamı, çıkışların toplamını üretmelidir).<br>
+                            2. <strong>Homojenlik (Ölçeklenme):</strong> Eğer x[n] → y[n] ise, o zaman a ⋅ x[n] → a ⋅ y[n] olmalıdır. (Girişi a ile çarpmak, çıkışı da a ile çarpmalıdır).<br>
+                            Bu ikisi "Süperpozisyon İlkesi" olarak birleştirilebilir: a ⋅ x₁[n] + b ⋅ x₂[n] → a ⋅ y₁[n] + b ⋅ y₂[n].</p>
+                            <h4 class="font-semibold text-indigo-700 mt-3">Örnek</h4>
+                            <p class="text-gray-600 text-sm mt-2">
+                                <strong>Doğrusal Sistem:</strong> y[n] = n ⋅ x[n].<br>
+                                Kontrol: a ⋅ x₁[n] + b ⋅ x₂[n] → n ⋅ (a ⋅ x₁[n] + b ⋅ x₂[n]) = a ⋅ (n ⋅ x₁[n]) + b ⋅ (n ⋅ x₂[n]) = a ⋅ y₁[n] + b ⋅ y₂[n]. Sağlıyor.<br><br>
+                                <strong>Doğrusal Olmayan Sistem 1:</strong> y[n] = (x[n])².<br>
+                                Homojenlik: a ⋅ x[n] → (a ⋅ x[n])² = a² ⋅ (x[n])² = a² ⋅ y[n]. Bu, a ⋅ y[n]'e eşit değil (eğer a² ≠ a ise). Doğrusal Değil.<br><br>
+                                <strong>Doğrusal Olmayan Sistem 2:</strong> y[n] = x[n] + 1.<br>
+                                Homojenlik: a ⋅ x[n] → (a ⋅ x[n]) + 1. Bu, a ⋅ y[n] = a ⋅ (x[n] + 1) = a ⋅ x[n] + a'ya eşit değil. Doğrusal Değil. (Bu tür sistemlere "Afin" denir).
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <button class="konu-button w-full text-left p-3 bg-indigo-50 hover:bg-indigo-100 rounded-lg font-medium text-indigo-900 flex justify-between items-center transition-all duration-300">
+                            <span>Ötelemeyle Değişmez (LTI)</span>
+                            <span class="transform transition-transform duration-300">&#9662;</span>
+                        </button>
+                        <div class="konu-content p-4 mt-1 rounded-b-lg border border-indigo-100">
+                            <h3 class="font-semibold text-indigo-700">Konsept</h3>
+                            <p class="text-gray-600 text-sm mt-2">Bir sistemin ötelemeyle değişmez (Time-Invariant) olması için, girişteki bir zaman ötelemesi (gecikme veya öne alma), çıkışta da aynı miktarda ötelemeye neden olmalıdır. Sistemin davranışı n (zaman) ilerledikçe değişmemelidir.<br>
+                            Formel olarak: Eğer x[n] → y[n] ise, o zaman x[n-n₀] → y[n-n₀] olmalıdır.<br>
+                            Eğer bir sistemin denkleminde n'e bağlı katsayılar (örn: n ⋅ x[n]) veya n ile değişen fonksiyonlar varsa, o sistem genellikle ötelemeyle değişmez değildir.</p>
+                            <h4 class="font-semibold text-indigo-700 mt-3">Örnek</h4>
+                            <p class="text-gray-600 text-sm mt-2">
+                                <strong>Ötelemeyle Değişmez Sistem:</strong> y[n] = (x[n])².<br>
+                                Gecikmiş giriş: x₁[n] = x[n-n₀]. Çıkış: y₁[n] = (x₁[n])² = (x[n-n₀])².<br>
+                                Gecikmiş çıkış: y[n-n₀] = (x[n-n₀])².<br>
+                                y₁[n] = y[n-n₀] olduğu için sistem Ötelemeyle Değişmezdir.<br><br>
+                                <strong>Ötelemeyle Değişmez Olmayan Sistem:</strong> y[n] = n ⋅ x[n].<br>
+                                Gecikmiş giriş: x₁[n] = x[n-n₀]. Çıkış: y₁[n] = n ⋅ x₁[n] = n ⋅ x[n-n₀].<br>
+                                Gecikmiş çıkış: y[n-n₀] = (n-n₀) ⋅ x[n-n₀].<br>
+                                y₁[n] ≠ y[n-n₀] olduğu için sistem Ötelemeyle Değişmez DEĞİLDİR.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <button class="konu-button w-full text-left p-3 bg-indigo-50 hover:bg-indigo-100 rounded-lg font-medium text-indigo-900 flex justify-between items-center transition-all duration-300">
+                            <span>Nedensellik</span>
+                            <span class="transform transition-transform duration-300">&#9662;</span>
+                        </button>
+                        <div class="konu-content p-4 mt-1 rounded-b-lg border border-indigo-100">
+                            <h3 class="font-semibold text-indigo-700">Konsept</h3>
+                            <p class="text-gray-600 text-sm mt-2">Nedensel (Causal) bir sistemde, herhangi bir n anındaki çıkış (y[n]), girişin sadece o anki (x[n]) ve/veya geçmiş (x[n-k], k>0) değerlerine bağlı olabilir. Çıkış, girişin gelecek değerlerine (x[n+k], k>0) bağlı olamaz. Gerçek zamanlı sistemler nedensel olmak zorundadır (geleceği göremezler).<br>
+                            Bir LSI sistemin nedensel olması için birim örnek yanıtı h[n] = 0 (tüm n &lt; 0 için) olmalıdır.</p>
+                            <h4 class="font-semibold text-indigo-700 mt-3">Örnek</h4>
+                            <p class="text-gray-600 text-sm mt-2">
+                                <strong>Nedensel Sistem:</strong> y[n] = x[n] + 3x[n-2]. Çıkış y[n], şu anki x[n] ve geçmiş x[n-2]'ye bağlıdır.<br>
+                                <strong>Nedensel Olmayan Sistem:</strong> y[n] = x[n] + x[n+1]. Çıkış y[n], gelecek x[n+1] değerine bağlıdır.<br>
+                                <strong>Nedensel LSI Sistem:</strong> h[n] = (0.5)ⁿ u[n]. u[n] sayesinde n &lt; 0 için h[n]=0'dır.<br>
+                                <strong>Nedensel Olmayan LSI Sistem:</strong> h[n] = (0.5)ⁿ u[-n]. Bu, n ≤ 0 için değer alır, n &lt; 0 için sıfır değildir.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button class="konu-button w-full text-left p-3 bg-indigo-50 hover:bg-indigo-100 rounded-lg font-medium text-indigo-900 flex justify-between items-center transition-all duration-300">
+                            <span>Kararlılık (BIBO)</span>
+                            <span class="transform transition-transform duration-300">&#9662;</span>
+                        </button>
+                        <div class="konu-content p-4 mt-1 rounded-b-lg border border-indigo-100">
+                            <h3 class="font-semibold text-indigo-700">Konsept</h3>
+                            <p class="text-gray-600 text-sm mt-2">BIBO (Bounded-Input, Bounded-Output) kararlılığı, bir sistemin temel bir özelliğidir. Eğer bir sisteme uygulanan giriş işareti sınırlı (genliği sonsuza gitmiyor) ise (|x[n]| ≤ Mₓ &lt; ∞), sistemin çıkışı da sınırlı kalıyorsa (|y[n]| ≤ Mₒ &lt; ∞), o sistem BIBO kararlıdır.<br>
+                            Eğer sistem aynı zamanda LSI ise, BIBO kararlılığı için gerekli ve yeterli bir koşul vardır: Sistemin birim örnek yanıtı h[n] mutlak toplanabilir olmalıdır. Yani, S = Σ |h[n]| (n=-∞'dan ∞'a) toplamı sonlu bir değer (S &lt; ∞) olmalıdır.</p>
+                            <h4 class="font-semibold text-indigo-700 mt-3">Örnek</h4>
+                            <p class="text-gray-600 text-sm mt-2">
+                                <strong>Kararlı LSI Sistem:</strong> h[n] = (0.5)ⁿ u[n].<br>
+                                Kontrol: S = Σ |(0.5)ⁿ| (n=0'dan ∞'a) = Σ (0.5)ⁿ (n=0'dan ∞'a) = 1 + 0.5 + 0.25 + ...<br>
+                                Bu bir geometrik seridir ve toplamı 1 / (1 - 0.5) = 2'dir. S=2 &lt; ∞ (sonlu) olduğu için sistem kararlıdır.<br><br>
+                                <strong>Kararsız LSI Sistem:</strong> h[n] = u[n] (Bu sisteme "toplayıcı" veya "accumulator" denir).<br>
+                                Kontrol: S = Σ |1| (n=0'dan ∞'a) = 1 + 1 + 1 + ... → ∞.<br>
+                                Toplam sonlu olmadığı için sistem kararsızdır. (Mantıklı, sınırlı bir giriş x[n]=δ[0] bile sonsuza kadar süren bir çıkış y[n]=u[n] üretir. x[n]=u[n] girişi y[n] = (n+1)u[n] gibi sonsuza giden bir çıkış üretir).
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+            
+            <!-- Bölüm 3: Konvolüsyon -->
+            <section id="konvolusyon" class="tab-content bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4 text-indigo-800">3. Konvolüsyon</h2>
+                <div class="space-y-3">
+                
+                    <div>
+                        <button class="konu-button w-full text-left p-3 bg-indigo-50 hover:bg-indigo-100 rounded-lg font-medium text-indigo-900 flex justify-between items-center transition-all duration-300">
+                            <span>Tanımı ve LSI Sistemler İçin Önemi</span>
+                            <span class="transform transition-transform duration-300">&#9662;</span>
+                        </button>
+                        <div class="konu-content p-4 mt-1 rounded-b-lg border border-indigo-100">
+                            <h3 class="font-semibold text-indigo-700">Konsept</h3>
+                            <p class="text-gray-600 text-sm mt-2">Konvolüsyon (*), iki ayrık zamanlı işareti birleştiren matematiksel bir işlemdir. LSI (Doğrusal ve Ötelemeyle Değişmez) sistemler için hayati öneme sahiptir: Bir LSI sistemin x[n] girişine verdiği çıkış y[n], girişin x[n] sistemin birim örnek yanıtı h[n] ile konvolüsyonu alınarak bulunur.<br>
+                            y[n] = x[n] * h[n] = Σ x[k]h[n-k] (k=-∞'dan ∞'a)<br>
+                            Bu formülün anlamı: Çıkışın n. değeri, giriş x[k] ile sistemin k anındaki darbeye verdiği yanıtın n-k anındaki değerinin (h[n-k], yani ters çevrilip n kadar ötelenmiş h) çarpımlarının toplamıdır.</p>
+                            <h4 class="font-semibold text-indigo-700 mt-3">Örnek</h4>
+                            <p class="text-gray-600 text-sm mt-2">
+                                <strong>Özdeşlik (Identity) Sistemi:</strong> h[n] = δ[n].<br>
+                                y[n] = x[n] * δ[n]. Formülde k üzerinden toplam alıyoruz. h[n-k] = δ[n-k] olur. δ[n-k] sadece k=n iken 1, diğer durumlarda 0'dır. O halde Σ içindeki tüm terimler sıfır olur, sadece k=n terimi kalır:<br>
+                                y[n] = ... + 0 + x[n]h[n-n] + 0 + ... = x[n]δ[0] = x[n].<br>
+                                Çıkış girişe eşittir. Bu mantıklıdır, birim örnek yanıtı δ[n] olan sistem girişi değiştirmez.<br><br>
+                                <strong>Geciktirici Sistem:</strong> h[n] = δ[n-n₀].<br>
+                                y[n] = x[n] * δ[n-n₀]. Formülde h[n-k] = δ[(n-k)-n₀] = δ[n-n₀-k]. Bu, sadece k=n-n₀ iken 1'dir.<br>
+                                Toplamda sadece k=n-n₀ terimi kalır: y[n] = x[n-n₀]h[n₀] = x[n-n₀]δ[0] = x[n-n₀].<br>
+                                Çıkış, girişin n₀ kadar gecikmiş halidir.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <button class="konu-button w-full text-left p-3 bg-indigo-50 hover:bg-indigo-100 rounded-lg font-medium text-indigo-900 flex justify-between items-center transition-all duration-300">
+                            <span>Gerçekleştirme Yöntemleri (Kaydırma Kuralı)</span>
+                            <span class="transform transition-transform duration-300">&#9662;</span>
+                        </button>
+                        <div class="konu-content p-4 mt-1 rounded-b-lg border border-indigo-100">
+                            <h3 class="font-semibold text-indigo-700">Konsept</h3>
+                            <p class="text-gray-600 text-sm mt-2">İki *sonlu* süreli dizinin konvolüsyonunu bulmak için "Kaydırma Kuralı" (veya tablo/çarpım yöntemi) kullanılabilir. x[n]'in Lₓ uzunluğu ve h[n]'in Lₕ uzunluğu varsa, çıkış y[n]'nin uzunluğu Lₒ = Lₓ + Lₕ - 1 olur.<br>
+                            Yöntem:
+                            1. Dizilerden birini (örn: x[n]) satırlara, diğerini (örn: h[n]) sütunlara yazın.
+                            2. Tablonun içini, satır ve sütundaki elemanların çarpımıyla doldurun.
+                            3. Tablodaki çapraz (sol alttan sağ üste giden) elemanları toplayın.
+                            4. İlk toplam y[0]'ı (eğer ikisi de n=0'da başlıyorsa), ikinci toplam y[1]'i verir.</p>
+                            <h4 class="font-semibold text-indigo-700 mt-3">Örnek</h4>
+                            <p class="text-gray-600 text-sm mt-2">
+                                x[n] = {1 (n=0'da), 2, 1} (Lₓ=3) ve h[n] = {1 (n=0'da), -1} (Lₕ=2). Çıkış uzunluğu Lₒ = 3+2-1 = 4 olacaktır.<br>
+<pre class="text-sm bg-gray-100 p-2 rounded mt-1">
+       |   1    -1   (h[n])
+    ---|---------------
+(x[n]) 1 |   1    -1
+       2 |   2    -2
+       1 |   1    -1
+</pre>
+                                Çapraz toplamlar (sol üstten başlayarak):<br>
+                                y[0] = 1<br>
+                                y[1] = 2 + (-1) = 1<br>
+                                y[2] = 1 + (-2) = -1<br>
+                                y[3] = -1<br>
+                                Sonuç: y[n] = {1 (n=0'da), 1, -1, -1}.
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+            
+            <!-- Bölüm 4: Fark Denklemleri -->
+            <section id="farkdenk" class="tab-content bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4 text-indigo-800">4. Fark Denklemleri</h2>
+                <div class="space-y-3">
+                
+                    <div>
+                        <button class="konu-button w-full text-left p-3 bg-indigo-50 hover:bg-indigo-100 rounded-lg font-medium text-indigo-900 flex justify-between items-center transition-all duration-300">
+                            <span>LCCDE Tanımı</span>
+                            <span class="transform transition-transform duration-300">&#9662;</span>
+                        </button>
+                        <div class="konu-content p-4 mt-1 rounded-b-lg border border-indigo-100">
+                            <h3 class="font-semibold text-indigo-700">Konsept</h3>
+                            <p class="text-gray-600 text-sm mt-2">Doğrusal Sabit Katsayılı Fark Denklemleri (LCCDE), bir LSI sistemin giriş x[n] ve çıkış y[n] arasındaki ilişkiyi tanımlar. Bu denklemler, ayrık zamanlı sistemlerin diferansiyel denklemler (sürekli zamanlı sistemler için) karşılığıdır.<br>
+                            Genel formu: Σ aₖy[n-k] (k=0'dan N'e) = Σ bₘx[n-m] (m=0'dan M'e)<br>
+                            Genellikle a₀ = 1 varsayılarak y[n] terimini yalnız bırakacak şekilde düzenlenirler:<br>
+                            y[n] = - Σ aₖy[n-k] (k=1'den N'e) + Σ bₘx[n-m] (m=0'dan M'e)<br>
+                            Bu form, n. anındaki çıkışın, geçmiş çıkışlara ve şu anki/geçmiş girişlere nasıl bağlı olduğunu açıkça gösterir.</p>
+                            <h4 class="font-semibold text-indigo-700 mt-3">Örnek</h4>
+                            <p class="text-gray-600 text-sm mt-2">
+                                <strong>Denklem:</strong> y[n] - 0.5y[n-1] = x[n] + 2x[n-1]<br>
+                                Bu bir LCCDE'dir. Katsayılar: a₀=1, a₁=-0.5, b₀=1, b₁=2.<br>
+                                y[n] için yeniden düzenlenmiş hali: y[n] = 0.5y[n-1] + x[n] + 2x[n-1].<br>
+                                Bu denklem, n. adımdaki çıkışı hesaplamak için bir önceki çıkışa (y[n-1]), şu anki girişe (x[n]) ve bir önceki girişe (x[n-1]) ihtiyacımız olduğunu söyler.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <button class="konu-button w-full text-left p-3 bg-indigo-50 hover:bg-indigo-100 rounded-lg font-medium text-indigo-900 flex justify-between items-center transition-all duration-300">
+                            <span>Yinelemeli (IIR) vs Yinelemeli Olmayan (FIR)</span>
+                            <span class="transform transition-transform duration-300">&#9662;</span>
+                        </button>
+                        <div class="konu-content p-4 mt-1 rounded-b-lg border border-indigo-100">
+                            <h3 class="font-semibold text-indigo-700">Konsept</h3>
+                            <p class="text-gray-600 text-sm mt-2">LCCDE'ler, sistemin yapısına göre iki ana kategoriye ayrılır:</p>
+                            <ul class="list-disc list-inside text-gray-600 text-sm mt-2 space-y-2">
+                                <li><strong>Yinelemeli Olmayan (Non-recursive / FIR - Finite Impulse Response):</strong><br>
+                                Çıkış y[n], sadece şu anki ve/veya geçmiş giriş x[n-m] değerlerine bağlıdır. LCCDE formülünde, tüm k>0 için aₖ = 0'dır (yani y[n-k] terimleri yoktur).<br>
+                                Form: y[n] = Σ bₘx[n-m] (m=0'dan M'e)<br>
+                                Bu sistemlerin birim örnek yanıtı h[n] sonlu sürelidir (sadece M+1 adet sıfırdan farklı terim içerir). Bu sistemler her zaman kararlıdır.</li>
+                                
+                                <li><strong>Yinelemeli (Recursive / IIR - Infinite Impulse Response):</strong><br>
+                                Çıkış y[n], en az bir geçmiş çıkış y[n-k] (k>0) değerine bağlıdır. LCCDE formülünde, en az bir k>0 için aₖ ≠ 0'dır.<br>
+                                Form: y[n] = - Σ aₖy[n-k] (k=1'den N'e) + Σ bₘx[n-m] (m=0'dan M'e)<br>
+                                Bu sistemlerde "geri besleme" (feedback) vardır. Birim örnek yanıtları h[n] (genellikle) sonsuz sürelidir. Kararlılıkları garanti değildir, aₖ katsayılarına bağlıdır.</li>
+                            </ul>
+                            <h4 class="font-semibold text-indigo-700 mt-3">Örnek</h4>
+                            <p class="text-gray-600 text-sm mt-2">
+                                <strong>FIR (Yinelemeli Olmayan):</strong> y[n] = 0.5x[n] + 0.5x[n-1].<br>
+                                Bu bir "hareketli ortalama" (moving average) filtresidir. y[n-k] terimi yoktur. h[n] = {0.5, 0.5}. Sonludur.<br><br>
+                                <strong>IIR (Yinelemeli):</strong> y[n] = 0.8y[n-1] + x[n].<br>
+                                y[n-1] terimi olduğu için yinelemelidir. h[n] = (0.8)ⁿ u[n] olur, bu da sonsuz sürelidir.
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+            
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Tüm sekmelerin aktifliğini kaldır
+                    tabs.forEach(item => {
+                        item.classList.remove('bg-indigo-600', 'text-white');
+                        item.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                    });
+                    // Tüm içeriklerin aktifliğini kaldır
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Tıklanan sekmeyi ve içeriği aktif et
+                    tab.classList.add('bg-indigo-600', 'text-white');
+                    tab.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                    document.getElementById(tab.dataset.tab).classList.add('active');
+                });
+            });
+
+            const konuButtons = document.querySelectorAll('.konu-button');
+            konuButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Tıklanan butonun içinde bulunduğu sekmedeki diğer açık konuları kapat
+                    const parentTabContent = button.closest('.tab-content');
+                    if (parentTabContent) {
+                        parentTabContent.querySelectorAll('.konu-button').forEach(btn => {
+                             if (btn !== button && btn.classList.contains('open')) {
+                                btn.classList.remove('open');
+                            }
+                        });
+                    }
+                    
+                    // Tıklanan konuyu aç/kapat
+                    button.classList.toggle('open');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

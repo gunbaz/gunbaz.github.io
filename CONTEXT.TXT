@@ -1,0 +1,29 @@
+PROJE ANAYASASI: "VERİ DEFTERİ"
+=========================================
+
+1. PROJE TANIMI
+   - İsim: Veri Defteri
+   - Konu: Yapay Zeka ve Veri Mühendisliği Ders Notları
+   - Amaç: Öğrenciler için vize/final odaklı, okuması kolay not arşivi.
+   - Kullanıcı Profili: "Vibe Coding" yapıyorum. Kod bilgim YOK. Sadece kopyala-yapıştır yaparım. Bana asla karmaşık teknik terimlerle gelme.
+
+2. TEKNOLOJİ YIĞINI (TECH STACK)
+   - Altyapı: MkDocs
+   - Tema: Material for MkDocs
+   - Dil: Türkçe
+   - İçerik Formatı: Markdown (.md)
+   - Formül Desteği: MathJax / LaTeX (Mühendislik notları için zorunlu)
+   - Yapı: Klasör tabanlı (Navigasyon, klasörlere göre otomatik oluşmalı)
+
+3. TASARIM VE RENKLER (DEĞİŞTİRİLEMEZ)
+   - Konsept: Eski Defter / Sepya / Latte / Nostaljik
+   - Arka Plan Rengi: #fdfbf7 (Yumuşak Krem)
+   - Yazı Rengi: #433422 (Koyu Kahve / Toprak)
+   - Vurgu/Link Rengi: #c06c30 (Kiremit / Soft Gold)
+   - Stil Dosyası: docs/stylesheets/extra.css
+
+4. ÇALIŞMA KURALLARI (YAPAY ZEKA İÇİN)
+   - Bir kod vereceğin zaman, HANGİ DOSYAYA yapıştıracağımı en başta dosya yoluyla (Örn: `mkdocs.yml`) belirt.
+   - Bana "bunu terminalden yap" deme, tam komutu ver kopyalayayım.
+   - Tasarımın dışına çıkma (Mavi, beyaz standart renkleri kullanma).
+   - Markdown notları oluştururken bol bol tablo, madde işareti ve emoji kullan.
