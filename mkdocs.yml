@@ -6,17 +6,15 @@ theme:
   palette:
     scheme: default
   features:
-    - navigation.instant
     - navigation.tracking
     - navigation.expand
     - navigation.indexes
+    # navigation.instant bilerek kapalı, MathJax ile bazen sorun çıkarıyor
 
 markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
-  - pymdownx.arithmatex:
-      generic: true
 
 extra_css:
   - stylesheets/extra.css

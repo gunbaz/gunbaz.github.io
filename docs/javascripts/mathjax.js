@@ -1,17 +1,17 @@
 window.MathJax = {
     tex: {
-        inlineMath: [["\\(", "\\)"]],
-        displayMath: [["\\[", "\\]"]],
+        // Hem $...$ hem \( ... \) destekli olsun
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
         processEscapes: true,
         processEnvironments: true
     },
-    options: {
-        ignoreHtmlClass: ".*|",
-        processHtmlClass: "arithmatex"
+    svg: {
+        fontCache: 'global'
     }
 };
 
-/* İşte sihirli dokunuş burası: Sayfa her değiştiğinde MathJax'i dürtüyoruz */
+// MkDocs Material sayfa içi gezinmelerde de yeniden render etsin
 document$.subscribe(() => {
-    MathJax.typesetPromise()
-})
+    MathJax.typesetPromise();
+});

@@ -1,18 +1,18 @@
 PROJE ANAYASASI: "VERİ DEFTERİ"
 =========================================
 
-1. PROJE TANIMI
+1. PROJE VİZYONU VE TANIMI
    - İsim: Veri Defteri
-   - Konu: Yapay Zeka ve Veri Mühendisliği Ders Notları
-   - Amaç: Öğrenciler için vize/final odaklı, okuması kolay not arşivi.
-   - Kullanıcı Profili: "Vibe Coding" yapıyorum. Kod bilgim YOK. Sadece kopyala-yapıştır yaparım. Bana asla karmaşık teknik terimlerle gelme.
+   - Ne Yapıyoruz?: Üniversite müfredatındaki (Yapay Zeka ve Veri Mühendisliği) derslerin, sınavlara (Vize/Final) hazırlık odaklı, yapay zeka ile zenginleştirilmiş dijital not arşivi.
+   - Geliştirme Felsefesi (Vibe Coding): Bu proje "Hiç kod yazmadan, sadece yapay zekayı yöneterek" geliştirilmektedir. Ben (Kullanıcı) kod yazmam, sadece vizyonu belirlerim ve kopyala-yapıştır yaparım.
+   - Hedef: Karmaşık akademik konuları (Sinyaller, Algoritmalar vb.), görseli bol, anlaşılır ve estetik (eski defter tarzı) bir formatta sunmak.
 
 2. TEKNOLOJİ YIĞINI (TECH STACK)
    - Altyapı: MkDocs
    - Tema: Material for MkDocs
    - Dil: Türkçe
    - İçerik Formatı: Markdown (.md)
-   - Formül Desteği: MathJax / LaTeX (Mühendislik notları için zorunlu)
+   - Formül Desteği: MathJax / KaTeX (Mühendislik notları için zorunlu)
    - Yapı: Klasör tabanlı (Navigasyon, klasörlere göre otomatik oluşmalı)
 
 3. TASARIM VE RENKLER (DEĞİŞTİRİLEMEZ)
@@ -26,4 +26,5 @@ PROJE ANAYASASI: "VERİ DEFTERİ"
    - Bir kod vereceğin zaman, HANGİ DOSYAYA yapıştıracağımı en başta dosya yoluyla (Örn: `mkdocs.yml`) belirt.
    - Bana "bunu terminalden yap" deme, tam komutu ver kopyalayayım.
    - Tasarımın dışına çıkma (Mavi, beyaz standart renkleri kullanma).
-   - Markdown notları oluştururken bol bol tablo, madde işareti ve emoji kullan.
+   - Markdown notları oluştururken bol bol tablo, madde işareti ve renkli kutucuklar (admonitions) kullan.
+   - Matematik formüllerinde ve grafiklerde "KaTeX" veya "MathJax" uyumluluğunu (çift ters bölü \\ vb.) her zaman kontrol et.

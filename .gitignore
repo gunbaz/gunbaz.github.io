@@ -1,0 +1,10 @@
+# --- Gereksiz Sistem Dosyaları ---
+site/
+__pycache__/
+*.pyc
+.DS_Store
+
+# --- İsteğe Bağlı (Göndermek İstemiyorsan Başındaki # işaretini kaldır) ---
+grafik_ciz.py
+CONTEXT.TXT
+debug_log.txt
