@@ -1,0 +1,912 @@
+
+<!doctype html>
+<html lang="tr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../01-ayrik-zamanli-isaretler/">
+      
+      
+        <link rel="next" href="../03-konvolusyon/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Ayrık Zamanlı Sistemler (Discrete-Time Systems) - Veri Defteri</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ayrk-zamanl-sistemler-discrete-time-systems" class="md-skip">
+          Ana içeriğe geç
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Başlık">
+    <a href="../../.." title="Veri Defteri" class="md-header__button md-logo" aria-label="Veri Defteri" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Veri Defteri
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ayrık Zamanlı Sistemler (Discrete-Time Systems)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Ara" placeholder="Ara" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Ara">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Temizle" aria-label="Temizle" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Arama başlatılıyor
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigasyon" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Veri Defteri" class="md-nav__button md-logo" aria-label="Veri Defteri" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Veri Defteri
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Veri Defteri'ne Hoşgeldiniz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Sinif
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Sinif
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sayisal Isaret Isleme
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sayisal Isaret Isleme
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-ayrik-zamanli-isaretler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sayısal İşaret İşleme: Ayrık Zamanlı İşaretler ve Temel Özellikler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ayrık Zamanlı Sistemler (Discrete-Time Systems)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ayrık Zamanlı Sistemler (Discrete-Time Systems)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      İçindekiler
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sistem-tanm-ve-blok-diyagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sistem Tanımı ve Blok Diyagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sistem-ozellikleri-5-temel-kural" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sistem Özellikleri (5 Temel Kural)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sistem Özellikleri (5 Temel Kural)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-belleksizlik-memoryless-static" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Belleksizlik (Memoryless / Static)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-dogrusallk-linearity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Doğrusallık (Linearity)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-otelemeyle-degismezlik-shift-invariance-time-invariance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Ötelemeyle Değişmezlik (Shift-Invariance / Time-Invariance)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-nedensellik-causality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Nedensellik (Causality)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-kararllk-bibo-stability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Kararlılık (BIBO Stability)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-konvolusyon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Konvolüsyon Toplamı (Convolution Sum)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-fark-denklemleri/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fark Denklemleri (Difference Equations)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      İçindekiler
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sistem-tanm-ve-blok-diyagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sistem Tanımı ve Blok Diyagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sistem-ozellikleri-5-temel-kural" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sistem Özellikleri (5 Temel Kural)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sistem Özellikleri (5 Temel Kural)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-belleksizlik-memoryless-static" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Belleksizlik (Memoryless / Static)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-dogrusallk-linearity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Doğrusallık (Linearity)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-otelemeyle-degismezlik-shift-invariance-time-invariance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Ötelemeyle Değişmezlik (Shift-Invariance / Time-Invariance)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-nedensellik-causality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Nedensellik (Causality)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-kararllk-bibo-stability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Kararlılık (BIBO Stability)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ayrk-zamanl-sistemler-discrete-time-systems">Ayrık Zamanlı Sistemler (Discrete-Time Systems)</h1>
+<p>Sinyal işlemenin kalbi olan sistemler, bir giriş işaretini ($x(n)$) alıp, belirli bir kurala göre işleyerek bir çıkış işareti ($y(n)$) üreten matematiksel yapılardır. Bu bölümde sistemlerin temel özelliklerini ve vize sınavlarında mutlaka karşınıza çıkacak 5 ana kriteri inceleyeceğiz.</p>
+<h2 id="sistem-tanm-ve-blok-diyagram">Sistem Tanımı ve Blok Diyagram</h2>
+<p>Bir ayrık zamanlı sistem matematiksel olarak bir dönüşüm operatörü ($T$) ile ifade edilir:</p>
+<p>$$y(n) = T[x(n)]$$</p>
+<p>Burada:</p>
+<ul>
+<li>$x(n)$: Giriş (Input / Excitation)</li>
+<li>$y(n)$: Çıkış (Output / Response)</li>
+</ul>
+<p><img alt="Sistem Blok Diyagramı" src="../../../images/sistem_blok_diyagrami.png" /></p>
+<hr />
+<h2 id="sistem-ozellikleri-5-temel-kural">Sistem Özellikleri (5 Temel Kural)</h2>
+<p>Bir sistemin karakterini belirlemek için aşağıdaki 5 test uygulanır. Sınavlarda genellikle "Sistem bu özellikleri sağlıyor mu? İspatlayınız." şeklinde sorular gelir.</p>
+<h3 id="1-belleksizlik-memoryless-static">1. Belleksizlik (Memoryless / Static)</h3>
+<p><strong>a) Tanım:</strong>
+Sistemin $n$ anındaki çıkışı, <strong>sadece</strong> o anki giriş değerine ($x(n)$) bağlıdır. Geçmiş ($n-1, n-2...$) veya gelecek ($n+1...$) değerlere ihtiyaç duymaz.</p>
+<p><strong>b) Matematiksel Şart:</strong>
+$$y(n) = f(x(n))$$</p>
+<div class="admonition note">
+<p class="admonition-title">Öğrenci Notu</p>
+<p>Eğer denklemde $x(n-1)$, $x(n+1)$ veya $\sum$ (toplam sembolü - çünkü toplamak hafıza gerektirir) görüyorsanız, o sistem <strong>Bellekli (Dinamik)</strong> bir sistemdir.</p>
+</div>
+<p><strong>c) Örnek Soru ve Çözüm:</strong></p>
+<p><strong>Soru:</strong> $y(n) = (x(n))^2$ sistemi belleksiz midir?</p>
+<p><strong>Çözüm:</strong>
+Denklemde $n$ anındaki çıkış, sadece $n$ anındaki girişin karesine bağlıdır. Başka bir zamana referans yoktur.</p>
+<p><strong>Sonuç:</strong> Sistem <strong>Belleksizdir.</strong></p>
+<hr />
+<h3 id="2-dogrusallk-linearity">2. Doğrusallık (Linearity)</h3>
+<p><strong>a) Tanım:</strong>
+Sistem, "Süperpozisyon" (Toplamsallık ve Çarpımsallık) ilkesine uymalıdır. Yani girişlerin toplamının cevabı, ayrı ayrı cevapların toplamına eşit olmalıdır.</p>
+<p><strong>b) Matematiksel Şart:</strong>
+Giriş $x(n) = a \cdot x_1(n) + b \cdot x_2(n)$ olduğunda, çıkış da $y(n) = a \cdot y_1(n) + b \cdot y_2(n)$ olmalıdır.</p>
+<p><strong>c) Örnek Soru ve Çözüm:</strong></p>
+<p><strong>Soru:</strong> $y(n) = 2x(n) + 3$ sistemi doğrusal mıdır? (Çok sık çıkan bir şaşırtmacalı soru!)</p>
+<p><strong>Çözüm:</strong></p>
+<ol>
+<li>
+<p><strong>Ayrı Ayrı Cevaplar:</strong></p>
+<ul>
+<li>$x_1(n)$ için çıkış: $y_1(n) = 2x_1(n) + 3$</li>
+<li>$x_2(n)$ için çıkış: $y_2(n) = 2x_2(n) + 3$</li>
+<li>Lineer Toplam (Beklenen): $y_{beklenen} = a(2x_1(n) + 3) + b(2x_2(n) + 3) = 2ax_1(n) + 3a + 2bx_2(n) + 3b$</li>
+</ul>
+</li>
+<li>
+<p><strong>Sisteme Toplu Giriş:</strong></p>
+<ul>
+<li>Giriş: $x_{yeni}(n) = a x_1(n) + b x_2(n)$</li>
+<li>Sistem Çıkışı: $y_{yeni} = 2(a x_1(n) + b x_2(n)) + 3 = 2ax_1(n) + 2bx_2(n) + 3$</li>
+</ul>
+</li>
+<li>
+<p><strong>Karşılaştırma:</strong>
+    $y_{beklenen} \neq y_{yeni}$ (Sabit sayı olan 3 yüzünden eşitlik bozuldu).</p>
+</li>
+</ol>
+<p><strong>Sonuç:</strong> Sistem <strong>Doğrusal Değildir (Non-Linear).</strong></p>
+<div class="admonition warning">
+<p class="admonition-title">Kritik Sınav Bilgisi</p>
+<p>Denklemde $+3$, $+5$ gibi girişten bağımsız <strong>sabit bir terim</strong> varsa veya $x^2(n)$, $\cos(x(n))$ gibi ifadeler varsa sistem <strong>Lineer Değildir.</strong></p>
+</div>
+<hr />
+<h3 id="3-otelemeyle-degismezlik-shift-invariance-time-invariance">3. Ötelemeyle Değişmezlik (Shift-Invariance / Time-Invariance)</h3>
+<p><strong>a) Tanım:</strong>
+Giriş sinyalini $k$ kadar ötelediğimizde (geciktirdiğimizde), çıkış sinyali de şekli bozulmadan tam olarak $k$ kadar öteleniyorsa sistem zamanla değişmiyordur (LTI - Linear Time Invariant).</p>
+<p><strong>b) Matematiksel Şart:</strong>
+Eğer $x(n) \to y(n)$ ise;
+$x(n-k) \to y(n-k)$ olmalıdır.</p>
+<p><strong>c) Örnek Soru ve Çözüm:</strong></p>
+<p><strong>Soru:</strong> $y(n) = n \cdot x(n)$ sistemi zamanla değişmez midir?</p>
+<p><strong>Çözüm:</strong></p>
+<ol>
+<li>
+<p><strong>Girişi Ötele:</strong> Giriş yerine $x(n-k)$ koy.
+    $$y_1(n) = n \cdot x(n-k)$$
+    <em>(Sistem kuralı: Girişi o anki zaman indisi $n$ ile çarp)</em></p>
+</li>
+<li>
+<p><strong>Çıkışı Ötele:</strong> Orijinal denklemdeki tüm $n$'leri $(n-k)$ yap.
+    $$y(n-k) = (n-k) \cdot x(n-k)$$</p>
+</li>
+<li>
+<p><strong>Karşılaştırma:</strong>
+    $n \cdot x(n-k) \neq (n-k) \cdot x(n-k)$</p>
+</li>
+</ol>
+<p><strong>Sonuç:</strong> Eşitlik sağlanmadığı için sistem <strong>Zamanla Değişir (Time-Variant).</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Öğrenci Notu</p>
+<p>Eğer $x(n)$'in katsayısı olarak <strong>$n$</strong> görüyorsanız (Örn: $n \cdot x(n)$, $\sin(n) \cdot x(n)$), o sistem %99 Zamanla Değişir.</p>
+</div>
+<hr />
+<h3 id="4-nedensellik-causality">4. Nedensellik (Causality)</h3>
+<p><strong>a) Tanım:</strong>
+Sistem "kahin" olmamalıdır. Çıkış değerini hesaplamak için sadece o anki veya geçmişteki giriş değerlerini kullanmalıdır. Gelecekteki ($n+1, n+2...$) değerlere bakamaz. Gerçek zamanlı (Real-time) çalışabilmesi için bu şarttır.</p>
+<p><strong>b) Matematiksel Şart:</strong>
+$y(n)$, sadece $x(n), x(n-1), x(n-2)...$ değerlerine bağlı olabilir. $x(n+k)$ ($k&gt;0$) yasaktır.</p>
+<p><strong>c) Örnek Soru ve Çözüm:</strong></p>
+<p><strong>Soru:</strong> $y(n) = x(n) + x(n+1)$ sistemi nedensel midir?</p>
+<p><strong>Çözüm:</strong>
+$n=0$ anındaki çıkışı bulmak için: $y(0) = x(0) + x(1)$.
+Sistem şu an ($n=0$)'dayken, gelecekteki ($n=1$) giriş değerini bilmek istiyor.</p>
+<p><strong>Sonuç:</strong> Sistem <strong>Nedensel Değildir (Non-Causal).</strong></p>
+<hr />
+<h3 id="5-kararllk-bibo-stability">5. Kararlılık (BIBO Stability)</h3>
+<p><strong>a) Tanım:</strong>
+Sınırlı Giriş - Sınırlı Çıkış (Bounded Input - Bounded Output). Eğer sisteme verdiğimiz giriş sonsuza gitmiyorsa (patlamıyorsa), çıkışın da sonsuza gitmemesi gerekir.</p>
+<p><strong>b) Matematiksel Şart:</strong>
+LTI sistemler için en pratik test <strong>Dürtü Cevabı ($h[n]$)</strong> üzerinden yapılır:
+$$\sum_{n=-\infty}^{\infty} |h[n]| &lt; \infty$$
+Yani dürtü cevabının mutlak toplamı sonlu bir sayı olmalıdır.</p>
+<p><strong>c) Örnek Soru ve Çözüm:</strong></p>
+<p><strong>Soru:</strong> Dürtü cevabı $h[n] = (0.5)^n u[n]$ olan sistem kararlı mıdır?</p>
+<p><strong>Çözüm:</strong>
+Toplam formülünü uygulayalım:
+$$S = \sum_{n=-\infty}^{\infty} |(0.5)^n u[n]| = \sum_{n=0}^{\infty} (0.5)^n$$
+Bu bir sonsuz geometrik seridir ($\sum a^n = \frac{1}{1-a}$, $|a|&lt;1$ ise).
+$$S = \frac{1}{1 - 0.5} = \frac{1}{0.5} = 2$$
+Toplam sonlu ($2 &lt; \infty$) olduğu için;</p>
+<p><strong>Sonuç:</strong> Sistem <strong>Kararlıdır (Stable).</strong></p>
+<div class="admonition warning">
+<p class="admonition-title">Kritik Sınav Bilgisi</p>
+<p>Geometrik serideki oran $|a| \ge 1$ olsaydı (Örn: $2^n u[n]$), toplam sonsuza gideceği için sistem kararsız olurdu.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tracking", "navigation.expand", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Kopyaland\u0131", "clipboard.copy": "Kopyala", "search.result.more.one": "Bu sayfada 1 tane daha", "search.result.more.other": "Bu sayfada # tane daha", "search.result.none": "E\u015fle\u015fen dok\u00fcman bulunamad\u0131", "search.result.one": "1 dok\u00fcman bulundu", "search.result.other": "# dok\u00fcman bulundu", "search.result.placeholder": "Aramaya ba\u015flamak i\u00e7in yaz\u0131n", "search.result.term.missing": "Eksik", "select.version": "Versiyon se\u00e7"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

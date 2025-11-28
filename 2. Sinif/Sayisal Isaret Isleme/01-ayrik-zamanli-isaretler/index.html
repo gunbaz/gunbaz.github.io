@@ -1,0 +1,1231 @@
+
+<!doctype html>
+<html lang="tr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../..">
+      
+      
+        <link rel="next" href="../02-ayrik-zamanli-sistemler/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Sayısal İşaret İşleme: Ayrık Zamanlı İşaretler ve Temel Özellikler - Veri Defteri</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#saysal-isaret-isleme-ayrk-zamanl-isaretler-ve-temel-ozellikler" class="md-skip">
+          Ana içeriğe geç
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Başlık">
+    <a href="../../.." title="Veri Defteri" class="md-header__button md-logo" aria-label="Veri Defteri" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Veri Defteri
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sayısal İşaret İşleme: Ayrık Zamanlı İşaretler ve Temel Özellikler
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Ara" placeholder="Ara" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Ara">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Temizle" aria-label="Temizle" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Arama başlatılıyor
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigasyon" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Veri Defteri" class="md-nav__button md-logo" aria-label="Veri Defteri" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Veri Defteri
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Veri Defteri'ne Hoşgeldiniz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Sinif
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Sinif
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sayisal Isaret Isleme
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sayisal Isaret Isleme
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sayısal İşaret İşleme: Ayrık Zamanlı İşaretler ve Temel Özellikler
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sayısal İşaret İşleme: Ayrık Zamanlı İşaretler ve Temel Özellikler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      İçindekiler
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-ayrk-zamanl-isaretler-nedir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Ayrık Zamanlı İşaretler Nedir?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-temel-sinyaller-elementary-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Temel Sinyaller (Elementary Signals)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Temel Sinyaller (Elementary Signals)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-birim-durtu-unit-impulse-n" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Birim Dürtü (Unit Impulse - δ[n])
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-birim-basamak-unit-step-un" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Birim Basamak (Unit Step - u[n])
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-ustel-sinyaller-exponential-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Üstel Sinyaller (Exponential Signals)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="C. Üstel Sinyaller (Exponential Signals)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-reel-ustel-isaretler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Reel Üstel İşaretler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-karmask-ustel-isaretler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Karmaşık Üstel İşaretler
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-sinyal-ozellikleri" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Sinyal Özellikleri
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Sinyal Özellikleri">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-periyodiklik-periodicity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Periyodiklik (Periodicity)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-simetri-cift-ve-tek-isaretler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Simetri: Çift ve Tek İşaretler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-enerji-ve-guc-sinyalleri" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Enerji ve Güç Sinyalleri
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-isaret-donusumleri-transformations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. İşaret Dönüşümleri (Transformations)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. İşaret Dönüşümleri (Transformations)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-oteleme-shifting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Öteleme (Shifting)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-ters-cevirme-reflection-folding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Ters Çevirme (Reflection / Folding)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-zaman-olcekleme-time-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Zaman Ölçekleme (Time Scaling)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hzl-bir-alstrma-vize-sorusu-tipi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hızlı Bir Alıştırma (Vize Sorusu Tipi)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-ayrik-zamanli-sistemler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ayrık Zamanlı Sistemler (Discrete-Time Systems)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-konvolusyon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Konvolüsyon Toplamı (Convolution Sum)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-fark-denklemleri/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fark Denklemleri (Difference Equations)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      İçindekiler
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-ayrk-zamanl-isaretler-nedir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Ayrık Zamanlı İşaretler Nedir?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-temel-sinyaller-elementary-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Temel Sinyaller (Elementary Signals)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Temel Sinyaller (Elementary Signals)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-birim-durtu-unit-impulse-n" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Birim Dürtü (Unit Impulse - δ[n])
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-birim-basamak-unit-step-un" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Birim Basamak (Unit Step - u[n])
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-ustel-sinyaller-exponential-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Üstel Sinyaller (Exponential Signals)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="C. Üstel Sinyaller (Exponential Signals)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-reel-ustel-isaretler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Reel Üstel İşaretler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-karmask-ustel-isaretler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Karmaşık Üstel İşaretler
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-sinyal-ozellikleri" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Sinyal Özellikleri
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Sinyal Özellikleri">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-periyodiklik-periodicity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Periyodiklik (Periodicity)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-simetri-cift-ve-tek-isaretler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Simetri: Çift ve Tek İşaretler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-enerji-ve-guc-sinyalleri" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Enerji ve Güç Sinyalleri
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-isaret-donusumleri-transformations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. İşaret Dönüşümleri (Transformations)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. İşaret Dönüşümleri (Transformations)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-oteleme-shifting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Öteleme (Shifting)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-ters-cevirme-reflection-folding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Ters Çevirme (Reflection / Folding)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-zaman-olcekleme-time-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Zaman Ölçekleme (Time Scaling)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hzl-bir-alstrma-vize-sorusu-tipi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hızlı Bir Alıştırma (Vize Sorusu Tipi)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="saysal-isaret-isleme-ayrk-zamanl-isaretler-ve-temel-ozellikler">Sayısal İşaret İşleme: Ayrık Zamanlı İşaretler ve Temel Özellikler</h1>
+<p>Bu ders notu, Sayısal İşaret İşleme (DSP) dersinin giriş konusu olan <strong>Ayrık Zamanlı İşaretler (Discrete-Time Signals)</strong> kavramını, matematiksel modellerini, sınıflandırmasını ve temel işlemlerini kapsamaktadır.</p>
+<hr />
+<h2 id="1-ayrk-zamanl-isaretler-nedir">1. Ayrık Zamanlı İşaretler Nedir?</h2>
+<p>Ayrık zamanlı bir işaret, bağımsız değişkenin (genellikle zaman) sadece tam sayı değerleri aldığı bir fonksiyondur. Sürekli zamanlı (analog) bir sinyalin, belirli aralıklarla örneklenmesiyle elde edilir.</p>
+<p><strong>Matematiksel Gösterim:</strong></p>
+<p>$$x(n) = {..., x(-1), x(0), x(1), ...}$$</p>
+<p>Burada $n$ bir tam sayıdır ($n \in \mathbb{Z}$) ve "örnek indisi" olarak adlandırılır. $x(n)$ ise o andaki genlik değeridir.</p>
+<div class="admonition note">
+<p class="admonition-title">Öğrenci Notu</p>
+<p>$x(n)$ gösterimindeki parantez bazen $x[n]$ olarak da kullanılır. İkisi de aynı anlama gelir; ancak sürekli zamandaki $x(t)$'den ayırt etmek için köşeli parantez literatürde daha yaygındır.</p>
+</div>
+<hr />
+<h2 id="2-temel-sinyaller-elementary-signals">2. Temel Sinyaller (Elementary Signals)</h2>
+<p>DSP analizinde sistemleri test etmek ve karmaşık sinyalleri modellemek için kullanılan yapı taşlarıdır.</p>
+<h3 id="a-birim-durtu-unit-impulse-n">A. Birim Dürtü (Unit Impulse - δ[n])</h3>
+<p>Sadece $n=0$ anında 1 değerini alan işaretin tanımı:</p>
+<p>$$
+\delta[n] =
+\begin{cases}
+1, &amp; n = 0 \\
+0, &amp; n \neq 0
+\end{cases}
+$$</p>
+<p><img alt="Birim Dürtü Sinyali" src="../../../images/birim_durtu.png" /></p>
+<p><strong>Önemli Özellikler:</strong></p>
+<ol>
+<li>
+<p><strong>Örnekleme Özelliği (Sampling Property):</strong> Bir sinyali dürtü ile çarparsanız, sadece dürtünün olduğu yerdeki değeri alırsınız.</p>
+<p>$$
+x(n)\delta(n-k) = x(k)\delta(n-k)
+$$</p>
+</li>
+<li>
+<p><strong>Eleme Özelliği (Sifting Property):</strong> Aşağıdaki eşitlik her zaman sağlanır:</p>
+<p>$$
+\sum_{n=-\infty}^{\infty} x(n)\delta(n-k) = x(k)
+$$</p>
+</li>
+</ol>
+<h3 id="b-birim-basamak-unit-step-un">B. Birim Basamak (Unit Step - u[n])</h3>
+<p>Birim basamak işareti şu şekilde tanımlanır:</p>
+<p>$$
+u[n] =
+\begin{cases}
+1, &amp; n \ge 0 \\
+0, &amp; n &lt; 0
+\end{cases}
+$$</p>
+<p><img alt="Birim Basamak Sinyali" src="../../../images/birim_basamak.png" /></p>
+<p><strong>Dürtü ve Basamak İlişkisi:</strong></p>
+<ul>
+<li>
+<p><strong>Dürtüden Basamağa:</strong> Basamak fonksiyonu, dürtülerin toplamıdır.</p>
+<p>$$
+u[n] = \sum_{k=-\infty}^{n} \delta(k)
+$$</p>
+</li>
+<li>
+<p><strong>Basamaktan Dürtüye:</strong> Dürtü, basamağın fark (difference) işlemidir.</p>
+<p>$$
+\delta[n] = u[n] - u[n-1]
+$$</p>
+</li>
+</ul>
+<h3 id="c-ustel-sinyaller-exponential-signals">C. Üstel Sinyaller (Exponential Signals)</h3>
+<h4 id="1-reel-ustel-isaretler">1. Reel Üstel İşaretler</h4>
+<p>Genel form: $x(n) = C \alpha^n$ (Burada $C$ ve $\alpha$ reel sayılardır).</p>
+<ul>
+<li>$|\alpha| &gt; 1$ ise sinyal <strong>üstel olarak büyür</strong>.</li>
+<li>$|\alpha| &lt; 1$ ise sinyal <strong>üstel olarak sönümlenir</strong>.</li>
+<li>$\alpha &lt; 0$ ise sinyal <strong>işaret değiştirerek (alternating)</strong> ilerler.</li>
+</ul>
+<p><img alt="Sönümlü Üstel Sinyal Örneği" src="../../../images/ustel_sinyal.png" /></p>
+<h4 id="2-karmask-ustel-isaretler">2. Karmaşık Üstel İşaretler</h4>
+<p>Genel form:</p>
+<p>$$
+x(n) = e^{j\omega_0 n}
+$$</p>
+<p>Euler formülü sayesinde bu işaret sinüzoidal bileşenlere ayrılabilir:</p>
+<p>$$
+e^{j\omega_0 n} = \cos(\omega_0 n) + j\sin(\omega_0 n)
+$$</p>
+<p>Burada $\omega_0$, radyan/örnek cinsinden <strong>açısal frekanstır</strong>.</p>
+<hr />
+<h2 id="3-sinyal-ozellikleri">3. Sinyal Özellikleri</h2>
+<p>Sinyalleri analiz edebilmek için onları belirli özelliklerine göre sınıflandırmamız gerekir.</p>
+<h3 id="a-periyodiklik-periodicity">A. Periyodiklik (Periodicity)</h3>
+<p>Sürekli zamanın aksine, ayrık zamanda her $\sin(\omega_0 n)$ veya $e^{j\omega_0 n}$ periyodik <strong>değildir</strong>.</p>
+<p>Bir $x(n)$ işaretinin periyodik olması için şu şart sağlanmalıdır:</p>
+<p>$$
+x(n) = x(n+N)
+$$</p>
+<p>Burada $N$, periyodu gösteren pozitif bir <strong>tam sayı</strong> olmalıdır.</p>
+<p><strong>Periyodiklik Şartı:</strong></p>
+<p>Açısal frekans $\omega_0$ şu şartı sağlamalıdır:</p>
+<p>$$
+\frac{\omega_0}{2\pi} = \frac{m}{N} \quad (\text{Rasyonel Bir Sayı})
+$$</p>
+<ul>
+<li>Eğer $\frac{\omega_0}{2\pi}$ rasyonel değilse, sinyal periyodik değildir.</li>
+<li><strong>Temel Periyot ($N$):</strong> Bu oranı sağlayan en küçük $N$ tam sayısıdır.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Kritik Sınav Bilgisi</p>
+<p>$\cos(3n)$ periyodik değildir çünkü $3/2\pi$ rasyonel değildir ($\pi$ irrasyoneldir). Ancak $\cos(0.2\pi n)$ periyodiktir.</p>
+</div>
+<h3 id="b-simetri-cift-ve-tek-isaretler">B. Simetri: Çift ve Tek İşaretler</h3>
+<p>Herhangi bir sinyal, çift (even) ve tek (odd) bileşenlerin toplamı olarak ifade edilebilir.</p>
+<ul>
+<li>
+<p><strong>Çift Sinyal (Even):</strong> Y eksenine göre simetriktir.</p>
+<p>$$
+x(-n) = x(n)
+$$</p>
+</li>
+<li>
+<p><strong>Tek Sinyal (Odd):</strong> Orijine göre simetriktir.</p>
+<p>$$
+x(-n) = -x(n)
+$$</p>
+</li>
+</ul>
+<p><strong>Bileşenlerine Ayırma Formülleri:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Bileşen</th>
+<th style="text-align: left;">Formül</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Çift Kısım ($x_e[n]$)</strong></td>
+<td style="text-align: left;">$\frac{1}{2} [x(n) + x(-n)]$</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Tek Kısım ($x_o[n]$)</strong></td>
+<td style="text-align: left;">$\frac{1}{2} [x(n) - x(-n)]$</td>
+</tr>
+</tbody>
+</table>
+<h3 id="c-enerji-ve-guc-sinyalleri">C. Enerji ve Güç Sinyalleri</h3>
+<p>Sinyallerin "büyüklüğünü" ölçmek için enerji veya güç kavramları kullanılır.</p>
+<p><strong>1. Sinyal Enerjisi ($E$):</strong></p>
+<p>$$
+E = \sum_{n=-\infty}^{\infty} |x(n)|^2
+$$</p>
+<p><strong>2. Sinyal Gücü ($P$):</strong></p>
+<p>$$
+P = \lim_{N \to \infty} \frac{1}{2N+1} \sum_{n=-N}^{N} |x(n)|^2
+$$</p>
+<p><strong>Karşılaştırma Tablosu:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Özellik</th>
+<th style="text-align: left;">Enerji Sinyali</th>
+<th style="text-align: left;">Güç Sinyali</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Tanım</strong></td>
+<td style="text-align: left;">Enerjisi sonlu ($0 &lt; E &lt; \infty$), Gücü sıfır olan sinyaller.</td>
+<td style="text-align: left;">Gücü sonlu ($0 &lt; P &lt; \infty$), Enerjisi sonsuz olan sinyaller.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Örnek</strong></td>
+<td style="text-align: left;">Sönümlü üstel, sonlu süreli kare dalga. (Genellikle periyodik olmayan, sönen sinyaller)</td>
+<td style="text-align: left;">Sinüs, Kosinüs, Birim Basamak. (Genellikle periyodik ve devamlı sinyaller)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Enerji/Güç Değeri</strong></td>
+<td style="text-align: left;">$E$: Sabit Sayı, $P$: 0</td>
+<td style="text-align: left;">$E$: $\infty$, $P$: Sabit Sayı</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-isaret-donusumleri-transformations">4. İşaret Dönüşümleri (Transformations)</h2>
+<p>Bağımsız değişken $n$ üzerinde yapılan işlemlerdir.</p>
+<h3 id="a-oteleme-shifting">A. Öteleme (Shifting)</h3>
+<p>Sinyalin zaman ekseninde kaydırılmasıdır.</p>
+<ul>
+<li><strong>Gecikme (Delay):</strong> $x(n-k)$ $\rightarrow$ Sinyal sağa kayar ($k&gt;0$).</li>
+<li><strong>İlerleme (Advance):</strong> $x(n+k)$ $\rightarrow$ Sinyal sola kayar ($k&gt;0$).</li>
+</ul>
+<h3 id="b-ters-cevirme-reflection-folding">B. Ters Çevirme (Reflection / Folding)</h3>
+<p>Sinyalin $n=0$ eksenine göre aynalanmasıdır.</p>
+<p>$$
+y(n) = x(-n)
+$$</p>
+<p>Geçmiş değerler geleceğe, gelecek değerler geçmişe döner.</p>
+<h3 id="c-zaman-olcekleme-time-scaling">C. Zaman Ölçekleme (Time Scaling)</h3>
+<p>Ayrık zamanda ölçekleme ($x(an)$), sürekli zamandaki gibi basit değildir.</p>
+<ul>
+<li><strong>Örnekleme Azaltma (Decimation):</strong> $y(n) = x(2n)$ (Örneğin 2 kat hızlandırma). Ara değerler (örneğin $x(1), x(3)$) kaybolur. Veri kaybı riski vardır.</li>
+<li><strong>Örnekleme Artırma (Interpolation):</strong> $y(n) = x(n/L)$. Genellikle iki örnek arasına sıfır eklenerek (zero-padding) yapılır, ardından filtreleme gerekir.</li>
+</ul>
+<hr />
+<h3 id="hzl-bir-alstrma-vize-sorusu-tipi">Hızlı Bir Alıştırma (Vize Sorusu Tipi)</h3>
+<p><strong>Soru:</strong> $x(n) = \cos(\frac{\pi}{4}n)$ işaretinin periyodunu bulunuz.</p>
+<p><strong>Çözüm:</strong></p>
+<ol>
+<li>$\omega_0 = \frac{\pi}{4}$</li>
+<li>Şart: $\frac{\omega_0}{2\pi} = \frac{m}{N}$</li>
+<li>$\frac{\pi/4}{2\pi} = \frac{1}{8}$</li>
+<li>Bu oran rasyoneldir ($1/8$). En küçük tam sayı $N=8$'dir.</li>
+<li><strong>Sonuç:</strong> Sinyal periyodiktir ve periyodu $N=8$ örnektir.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tracking", "navigation.expand", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Kopyaland\u0131", "clipboard.copy": "Kopyala", "search.result.more.one": "Bu sayfada 1 tane daha", "search.result.more.other": "Bu sayfada # tane daha", "search.result.none": "E\u015fle\u015fen dok\u00fcman bulunamad\u0131", "search.result.one": "1 dok\u00fcman bulundu", "search.result.other": "# dok\u00fcman bulundu", "search.result.placeholder": "Aramaya ba\u015flamak i\u00e7in yaz\u0131n", "search.result.term.missing": "Eksik", "select.version": "Versiyon se\u00e7"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

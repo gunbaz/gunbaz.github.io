@@ -1,0 +1,966 @@
+
+<!doctype html>
+<html lang="tr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../03-konvolusyon/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Fark Denklemleri (Difference Equations) - Veri Defteri</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fark-denklemleri-difference-equations" class="md-skip">
+          Ana içeriğe geç
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Başlık">
+    <a href="../../.." title="Veri Defteri" class="md-header__button md-logo" aria-label="Veri Defteri" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Veri Defteri
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Fark Denklemleri (Difference Equations)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Ara" placeholder="Ara" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Ara">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Temizle" aria-label="Temizle" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Arama başlatılıyor
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigasyon" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Veri Defteri" class="md-nav__button md-logo" aria-label="Veri Defteri" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Veri Defteri
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Veri Defteri'ne Hoşgeldiniz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Sinif
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Sinif
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sayisal Isaret Isleme
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sayisal Isaret Isleme
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-ayrik-zamanli-isaretler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sayısal İşaret İşleme: Ayrık Zamanlı İşaretler ve Temel Özellikler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-ayrik-zamanli-sistemler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ayrık Zamanlı Sistemler (Discrete-Time Systems)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-konvolusyon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Konvolüsyon Toplamı (Convolution Sum)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fark Denklemleri (Difference Equations)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fark Denklemleri (Difference Equations)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      İçindekiler
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tanm-ve-lccde-yaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tanım ve LCCDE Yapısı
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cozum-yontemi-klasik-yontem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Çözüm Yöntemi (Klasik Yöntem)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Çözüm Yöntemi (Klasik Yöntem)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adm-1-homojen-cozum-y_hn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 1: Homojen Çözüm ($y_h[n]$)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adm-2-ozel-cozum-y_pn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 2: Özel Çözüm ($y_p[n]$)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adm-3-toplam-cozum-ve-katsaylarn-bulunmas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 3: Toplam Çözüm ve Katsayıların Bulunması
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ornek-soru-ve-adm-adm-cozum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Örnek Soru ve Adım Adım Çözüm
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sistem-turleri-fir-ve-iir-karslastrmas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sistem Türleri: FIR ve IIR Karşılaştırması
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sistem Türleri: FIR ve IIR Karşılaştırması">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-fir-finite-impulse-response-sonlu-durtu-cevab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. FIR (Finite Impulse Response - Sonlu Dürtü Cevabı)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-iir-infinite-impulse-response-sonsuz-durtu-cevab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. IIR (Infinite Impulse Response - Sonsuz Dürtü Cevabı)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      İçindekiler
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tanm-ve-lccde-yaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tanım ve LCCDE Yapısı
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cozum-yontemi-klasik-yontem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Çözüm Yöntemi (Klasik Yöntem)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Çözüm Yöntemi (Klasik Yöntem)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adm-1-homojen-cozum-y_hn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 1: Homojen Çözüm ($y_h[n]$)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adm-2-ozel-cozum-y_pn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 2: Özel Çözüm ($y_p[n]$)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adm-3-toplam-cozum-ve-katsaylarn-bulunmas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 3: Toplam Çözüm ve Katsayıların Bulunması
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ornek-soru-ve-adm-adm-cozum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Örnek Soru ve Adım Adım Çözüm
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sistem-turleri-fir-ve-iir-karslastrmas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sistem Türleri: FIR ve IIR Karşılaştırması
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sistem Türleri: FIR ve IIR Karşılaştırması">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-fir-finite-impulse-response-sonlu-durtu-cevab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. FIR (Finite Impulse Response - Sonlu Dürtü Cevabı)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-iir-infinite-impulse-response-sonsuz-durtu-cevab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. IIR (Infinite Impulse Response - Sonsuz Dürtü Cevabı)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="fark-denklemleri-difference-equations">Fark Denklemleri (Difference Equations)</h1>
+<p>Sürekli zamanlı sistemleri diferansiyel denklemlerle modellediğimiz gibi, ayrık zamanlı sistemleri de <strong>Fark Denklemleri</strong> ile modelleriz. Bu konu, DSP'nin en "matematiksel" kısmıdır ve filtre tasarımının (IIR/FIR) temelini oluşturur.</p>
+<hr />
+<h2 id="tanm-ve-lccde-yaps">Tanım ve LCCDE Yapısı</h2>
+<p>Bir sistemin çıkışı ($y[n]$); geçmiş çıkış değerlerine ve o anki/geçmiş giriş değerlerine bağlıysa, bu ilişki bir fark denklemi ile gösterilir.</p>
+<p><strong>Doğrusal Sabit Katsayılı Fark Denklemi (LCCDE):</strong>
+En genel form şöyledir:</p>
+<p>$$
+\sum_{k=0}^{N} a_k y[n-k] = \sum_{k=0}^{M} b_k x[n-k]
+$$</p>
+<p>Burada:</p>
+<ul>
+<li>$y[n-k]$ terimleri <strong>Geri Beslemeyi (Feedback)</strong> temsil eder.</li>
+<li>$a_k$ ve $b_k$ sistemin sabit katsayılarıdır.</li>
+<li>Genellikle $a_0 = 1$ kabul edilir (veya denklemin tamamı $a_0$'a bölünür).</li>
+</ul>
+<hr />
+<h2 id="cozum-yontemi-klasik-yontem">Çözüm Yöntemi (Klasik Yöntem)</h2>
+<p>Diferansiyel denklemlerle neredeyse aynı mantıkla, 3 aşamada çözülür:</p>
+<p><strong>Toplam Çözüm = Homojen Çözüm + Özel Çözüm</strong></p>
+<p>$$y[n] = y_h[n] + y_p[n]$$</p>
+<h3 id="adm-1-homojen-cozum-y_hn">Adım 1: Homojen Çözüm ($y_h[n]$)</h3>
+<p>Sistemin dışarıdan bir giriş olmadığında ($x[n]=0$) kendi doğası gereği nasıl davrandığını (sönümleme vb.) gösterir.</p>
+<ol>
+<li>Denklemdeki giriş terimlerini ($x$) sıfıra eşitle.</li>
+<li>$y[n]$ yerine $r^n$ koyarak <strong>Karakteristik Denklemi</strong> oluştur.</li>
+<li>Bu polinomun köklerini ($r_1, r_2, \dots$) bul.</li>
+</ol>
+<p><strong>Çözüm Formatı:</strong></p>
+<p>$$y_h[n] = c_1 (r_1)^n + c_2 (r_2)^n + \dots$$</p>
+<div class="admonition warning">
+<p class="admonition-title">Kritik Sınav Bilgisi</p>
+<p>Eğer kökler çakışıksa (katlı kök varsa, örn: $r_1=r_2=0.5$), ikinci kökü birbirinden ayırmak için $n$ ile çarparız:
+$$y_h[n] = c_1 (0.5)^n + c_2 \cdot n \cdot (0.5)^n$$</p>
+</div>
+<h3 id="adm-2-ozel-cozum-y_pn">Adım 2: Özel Çözüm ($y_p[n]$)</h3>
+<p>Sistemin uygulanan girişe ($x[n]$) uyum sağlamak için ürettiği cevaptır. Giriş sinyalinin formuna "benzeyen" bir çözüm tahmin edilir.</p>
+<p><strong>Giriş Sinyaline Göre Tahmin Tablosu:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Giriş Sinyali ($x[n]$)</th>
+<th style="text-align: left;">Tahmin Edilen Özel Çözüm ($y_p[n]$)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Sabit</strong> ($A$ veya $A u[n]$)</td>
+<td style="text-align: left;">$K$ (Sabit Sayı)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Üstel</strong> ($A \alpha^n$)</td>
+<td style="text-align: left;">$K \alpha^n$</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Sinüzoidal</strong> ($A \cos(\omega_0 n)$)</td>
+<td style="text-align: left;">$K_1 \cos(\omega_0 n) + K_2 \sin(\omega_0 n)$</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Rampa</strong> ($A n$)</td>
+<td style="text-align: left;">$K_1 n + K_0$</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Öğrenci Notu</p>
+<p>Eğer giriş sinyalinin kökü, homojen çözümün köküyle aynıysa (çakışma varsa), sistem "rezonansa" girer. Bu durumda tablodaki tahmininizi $n$ ile çarpmanız gerekir. (Örn: $K \cdot n \cdot \alpha^n$).</p>
+</div>
+<h3 id="adm-3-toplam-cozum-ve-katsaylarn-bulunmas">Adım 3: Toplam Çözüm ve Katsayıların Bulunması</h3>
+<p>$$y[n] = y_h[n] + y_p[n]$$</p>
+<p>Denklemde hala bilinmeyen $c_1, c_2$ gibi katsayılar var. Bunları bulmak için <strong>Başlangıç Koşulları</strong> ($y[-1]$ vb.) kullanılır.</p>
+<p><strong>Dikkat:</strong> Başlangıç koşullarını doğrudan $y_h$ formülüne yazamazsınız! Önce toplam çözüm denkleminde $n=0, n=1$ gibi değerler için sistemin o anki çıkışını yinelemeli olarak hesaplayıp, sonra katsayıları bulmalısınız.</p>
+<hr />
+<h2 id="ornek-soru-ve-adm-adm-cozum">Örnek Soru ve Adım Adım Çözüm</h2>
+<p><strong>Soru:</strong>
+$y[n] - 0.5y[n-1] = x[n]$ fark denklemi veriliyor.
+Giriş $x[n] = u[n]$ (Birim basamak) ve başlangıç koşulu $y[-1] = 0$ ise sistemin cevabını ($n \ge 0$ için) bulunuz.</p>
+<p><strong>Çözüm:</strong></p>
+<p><strong>1. Homojen Çözüm:</strong></p>
+<ul>
+<li>Girişi sıfırla: $y[n] - 0.5y[n-1] = 0$</li>
+<li>Karakteristik denklem ($y[n] \to r^n$): $r^n - 0.5r^{n-1} = 0 \implies r - 0.5 = 0$</li>
+<li>Kök: $r = 0.5$</li>
+<li>$$y_h[n] = c \cdot (0.5)^n$$</li>
+</ul>
+<p><strong>2. Özel Çözüm:</strong></p>
+<ul>
+<li>Giriş $x[n] = u[n]$ (yani $n \ge 0$ için sabit 1).</li>
+<li>Tahmin: $y_p[n] = K$ (Sabit bir sayı).</li>
+<li>Denklemde yerine koy:
+    $$K - 0.5K = 1$$
+    $$0.5K = 1 \implies K = 2$$</li>
+<li>$$y_p[n] = 2$$</li>
+</ul>
+<p><strong>3. Toplam Çözüm:</strong></p>
+<p>$$y[n] = c \cdot (0.5)^n + 2$$</p>
+<p><strong>4. Katsayıyı ($c$) Bulma:</strong></p>
+<p>Bize $y[-1]=0$ verilmiş ama denklemimiz $n \ge 0$ için kurulu. Önce $n=0$ anındaki gerçek çıkışı ana denklemden manuel bulalım:</p>
+<ul>
+<li>Ana denklem: $y[0] - 0.5y[-1] = x[0]$</li>
+<li>$y[0] - 0.5(0) = 1$ (Çünkü $u[0]=1$)</li>
+<li>Buradan: <strong>$y[0] = 1$</strong> olduğunu bulduk.</li>
+</ul>
+<p>Şimdi toplam çözümde $n=0$ yazıp eşitleyelim:
+$$y[0] = c \cdot (0.5)^0 + 2 = 1$$
+$$c + 2 = 1 \implies c = -1$$</p>
+<p><strong>Sonuç:</strong>
+$$y[n] = 2 - (0.5)^n \quad \text{, } n \ge 0$$</p>
+<hr />
+<h2 id="sistem-turleri-fir-ve-iir-karslastrmas">Sistem Türleri: FIR ve IIR Karşılaştırması</h2>
+<p>Fark denklemlerinin yapısına göre filtreler ikiye ayrılır. Bu ayrım vize/finalde sözlü soru olarak gelebilir.</p>
+<p><img alt="Sistem Akış Diyagramı" src="../../../images/sistem_akis_diyagrami.png" /></p>
+<h3 id="1-fir-finite-impulse-response-sonlu-durtu-cevab">1. FIR (Finite Impulse Response - Sonlu Dürtü Cevabı)</h3>
+<p>Sadece girişlerin ($x[n], x[n-1]$) kullanıldığı sistemlerdir. Geri besleme yoktur.</p>
+<ul>
+<li><strong>Denklem:</strong> $y[n] = \sum b_k x[n-k]$</li>
+<li><strong>Özellik:</strong> $y[n-k]$ terimi içermez.</li>
+<li><strong>Avantaj:</strong> Her zaman kararlıdır (Stability garantidir).</li>
+</ul>
+<h3 id="2-iir-infinite-impulse-response-sonsuz-durtu-cevab">2. IIR (Infinite Impulse Response - Sonsuz Dürtü Cevabı)</h3>
+<p>Çıkışın hesaplanması için geçmiş çıkış değerlerinin ($y[n-1]$) de kullanıldığı sistemlerdir.</p>
+<ul>
+<li><strong>Denklem:</strong> $y[n] - \sum a_k y[n-k] = \sum b_k x[n-k]$</li>
+<li><strong>Özellik:</strong> Geri besleme (feedback) vardır. Dürtü cevabı sonsuza kadar gider.</li>
+<li><strong>Risk:</strong> Kökler birim çemberin dışına çıkarsa sistem kararsızlaşabilir (Patlayabilir).</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tracking", "navigation.expand", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Kopyaland\u0131", "clipboard.copy": "Kopyala", "search.result.more.one": "Bu sayfada 1 tane daha", "search.result.more.other": "Bu sayfada # tane daha", "search.result.none": "E\u015fle\u015fen dok\u00fcman bulunamad\u0131", "search.result.one": "1 dok\u00fcman bulundu", "search.result.other": "# dok\u00fcman bulundu", "search.result.placeholder": "Aramaya ba\u015flamak i\u00e7in yaz\u0131n", "search.result.term.missing": "Eksik", "select.version": "Versiyon se\u00e7"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
