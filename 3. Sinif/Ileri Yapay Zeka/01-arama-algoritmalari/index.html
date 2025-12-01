@@ -1,0 +1,1781 @@
+
+<!doctype html>
+<html lang="tr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../../2.%20Sinif/Sayisal%20Isaret%20Isleme/06-ornekleme/">
+      
+      
+        <link rel="next" href="../02-lojistik-regresyon/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Yapay Zekada Arama Algoritmaları - Veri Defteri</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#yapay-zekada-arama-algoritmalar" class="md-skip">
+          Ana içeriğe geç
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Başlık">
+    <a href="../../.." title="Veri Defteri" class="md-header__button md-logo" aria-label="Veri Defteri" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Veri Defteri
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Yapay Zekada Arama Algoritmaları
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Ara" placeholder="Ara" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Ara">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Temizle" aria-label="Temizle" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Arama başlatılıyor
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigasyon" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Veri Defteri" class="md-nav__button md-logo" aria-label="Veri Defteri" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Veri Defteri
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Veri Defteri'ne Hoşgeldiniz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Sinif
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Sinif
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sayisal Isaret Isleme
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sayisal Isaret Isleme
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2.%20Sinif/Sayisal%20Isaret%20Isleme/01-ayrik-zamanli-isaretler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sayısal İşaret İşleme: Ayrık Zamanlı İşaretler ve Temel Özellikler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2.%20Sinif/Sayisal%20Isaret%20Isleme/02-ayrik-zamanli-sistemler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ayrık Zamanlı Sistemler (Discrete-Time Systems)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2.%20Sinif/Sayisal%20Isaret%20Isleme/03-konvolusyon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Konvolüsyon Toplamı (Convolution Sum)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2.%20Sinif/Sayisal%20Isaret%20Isleme/04-fark-denklemleri/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fark Denklemleri (Difference Equations)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2.%20Sinif/Sayisal%20Isaret%20Isleme/05-fourier-analizi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fourier Analizi ve Frekans Cevabı
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2.%20Sinif/Sayisal%20Isaret%20Isleme/06-ornekleme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Örnekleme ve Geri Çatma (Sampling &amp; Reconstruction)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Sinif
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Sinif
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ileri Yapay Zeka
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ileri Yapay Zeka
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Yapay Zekada Arama Algoritmaları
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Yapay Zekada Arama Algoritmaları
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      İçindekiler
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-breadth-first-search-bfs-sg-oncelikli-arama" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Breadth First Search (BFS - Sığ Öncelikli Arama)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Breadth First Search (BFS - Sığ Öncelikli Arama)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-tanm-ve-calsma-mantg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a) Tanım ve Çalışma Mantığı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-veri-yaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b) Veri Yapısı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-karmasklk-analizi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        c) Karmaşıklık Analizi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-avantajdezavantaj" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        d) Avantaj/Dezavantaj
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-depth-first-search-dfs-derin-oncelikli-arama" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Depth First Search (DFS - Derin Öncelikli Arama)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Depth First Search (DFS - Derin Öncelikli Arama)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-tanm-ve-calsma-mantg_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a) Tanım ve Çalışma Mantığı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-veri-yaps_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b) Veri Yapısı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-karmasklk-analizi_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        c) Karmaşıklık Analizi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-avantajdezavantaj_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        d) Avantaj/Dezavantaj
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-iterative-deepening-dfs-id-dfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Iterative Deepening DFS (ID-DFS)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Iterative Deepening DFS (ID-DFS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-tanm-ve-calsma-mantg_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a) Tanım ve Çalışma Mantığı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-veri-yaps_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b) Veri Yapısı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-karmasklk-analizi_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        c) Karmaşıklık Analizi
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-uniform-cost-search-ucs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Uniform Cost Search (UCS)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Uniform Cost Search (UCS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-tanm-ve-calsma-mantg_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a) Tanım ve Çalışma Mantığı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-veri-yaps_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b) Veri Yapısı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-karmasklk-analizi_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        c) Karmaşıklık Analizi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-avantajdezavantaj_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        d) Avantaj/Dezavantaj
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-a-a-star-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. A* (A-Star) Search
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. A* (A-Star) Search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-tanm-ve-calsma-mantg_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a) Tanım ve Çalışma Mantığı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-veri-yaps_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b) Veri Yapısı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-heuristic-ve-admissible-sart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        c) Heuristic ve "Admissible" Şartı
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-minimax-ve-alpha-beta-pruning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Minimax ve Alpha-Beta Pruning
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Minimax ve Alpha-Beta Pruning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-tanm-ve-calsma-mantg_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a) Tanım ve Çalışma Mantığı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-alpha-beta-budamas-pruning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b) Alpha-Beta Budaması (Pruning)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ozet-karslastrma-tablosu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ÖZET: Karşılaştırma Tablosu
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-lojistik-regresyon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Makine Öğrenmesi - Lojistik Regresyon (Logistic Regression)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-yapay-sinir-aglari/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Yapay Sinir Ağları (Neural Networks)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      İçindekiler
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-breadth-first-search-bfs-sg-oncelikli-arama" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Breadth First Search (BFS - Sığ Öncelikli Arama)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Breadth First Search (BFS - Sığ Öncelikli Arama)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-tanm-ve-calsma-mantg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a) Tanım ve Çalışma Mantığı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-veri-yaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b) Veri Yapısı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-karmasklk-analizi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        c) Karmaşıklık Analizi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-avantajdezavantaj" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        d) Avantaj/Dezavantaj
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-depth-first-search-dfs-derin-oncelikli-arama" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Depth First Search (DFS - Derin Öncelikli Arama)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Depth First Search (DFS - Derin Öncelikli Arama)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-tanm-ve-calsma-mantg_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a) Tanım ve Çalışma Mantığı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-veri-yaps_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b) Veri Yapısı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-karmasklk-analizi_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        c) Karmaşıklık Analizi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-avantajdezavantaj_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        d) Avantaj/Dezavantaj
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-iterative-deepening-dfs-id-dfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Iterative Deepening DFS (ID-DFS)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Iterative Deepening DFS (ID-DFS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-tanm-ve-calsma-mantg_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a) Tanım ve Çalışma Mantığı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-veri-yaps_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b) Veri Yapısı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-karmasklk-analizi_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        c) Karmaşıklık Analizi
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-uniform-cost-search-ucs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Uniform Cost Search (UCS)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Uniform Cost Search (UCS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-tanm-ve-calsma-mantg_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a) Tanım ve Çalışma Mantığı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-veri-yaps_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b) Veri Yapısı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-karmasklk-analizi_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        c) Karmaşıklık Analizi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-avantajdezavantaj_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        d) Avantaj/Dezavantaj
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-a-a-star-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. A* (A-Star) Search
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. A* (A-Star) Search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-tanm-ve-calsma-mantg_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a) Tanım ve Çalışma Mantığı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-veri-yaps_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b) Veri Yapısı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-heuristic-ve-admissible-sart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        c) Heuristic ve "Admissible" Şartı
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-minimax-ve-alpha-beta-pruning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Minimax ve Alpha-Beta Pruning
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Minimax ve Alpha-Beta Pruning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-tanm-ve-calsma-mantg_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a) Tanım ve Çalışma Mantığı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-alpha-beta-budamas-pruning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b) Alpha-Beta Budaması (Pruning)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ozet-karslastrma-tablosu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ÖZET: Karşılaştırma Tablosu
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="yapay-zekada-arama-algoritmalar">Yapay Zekada Arama Algoritmaları</h1>
+<p>Yapay Zeka problemlerinin çoğu (satranç oynamak, rota oluşturmak, puzzle çözmek) aslında birer "Arama Problemi"dir. Bu derste, bir başlangıç durumundan hedef duruma ulaşmak için kullanılan temel algoritmaları inceleyeceğiz.</p>
+<hr />
+<h2 id="1-breadth-first-search-bfs-sg-oncelikli-arama">1. Breadth First Search (BFS - Sığ Öncelikli Arama)</h2>
+<h3 id="a-tanm-ve-calsma-mantg">a) Tanım ve Çalışma Mantığı</h3>
+<p>Ağacı katman katman (level-by-level) tarayan algoritmadır. Başlangıç düğümüne en yakın olan tüm komşuları ziyaret etmeden, bir alt derinliğe inmez. "Sığdan derine" doğru ilerler.</p>
+<h3 id="b-veri-yaps">b) Veri Yapısı</h3>
+<p><strong>FIFO (First-In First-Out) Queue</strong> (Kuyruk) kullanılır. İlk giren düğüm, ilk genişletilir.</p>
+<h3 id="c-karmasklk-analizi">c) Karmaşıklık Analizi</h3>
+<ul>
+<li>$b$: Dallanma faktörü (Branching factor - bir düğümün ortalama çocuk sayısı)</li>
+<li>
+<p>$d$: En sığ çözümün derinliği (Depth)</p>
+</li>
+<li>
+<p><strong>Zaman Karmaşıklığı (Time):</strong> $O(b^d)$</p>
+</li>
+<li><strong>Bellek Karmaşıklığı (Space):</strong> $O(b^d)$</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Kritik Sınav Bilgisi</p>
+<p>BFS'nin en büyük problemi <strong>Bellek (Space)</strong> kullanımıdır. Derinlik arttıkça kuyrukta tutulması gereken düğüm sayısı üstel olarak artar ve bellek taşmasına (Stack/Heap Overflow) neden olur.</p>
+</div>
+<h3 id="d-avantajdezavantaj">d) Avantaj/Dezavantaj</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Avantajlar</th>
+<th style="text-align: left;">Dezavantajlar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Complete (Tam):</strong> Çözüm varsa mutlaka bulur.</td>
+<td style="text-align: left;"><strong>Yüksek Bellek:</strong> Tüm katmanı hafızada tutmak zorundadır.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Optimal:</strong> Adım maliyetleri eşitse (örn: hepsi 1 birim) en kısa yolu garanti eder.</td>
+<td style="text-align: left;">Derin hedeflerde çok yavaştır.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-depth-first-search-dfs-derin-oncelikli-arama">2. Depth First Search (DFS - Derin Öncelikli Arama)</h2>
+<h3 id="a-tanm-ve-calsma-mantg_1">a) Tanım ve Çalışma Mantığı</h3>
+<p>Bir daldan gidebildiği kadar derine iner. Çıkmaz sokağa (leaf node) ulaştığında veya hedefi bulamadığında, bir önceki düğüme geri döner (backtracking) ve diğer dalı dener.</p>
+<h3 id="b-veri-yaps_1">b) Veri Yapısı</h3>
+<p><strong>LIFO (Last-In First-Out) Stack</strong> (Yığın) kullanılır. Genellikle "Recursive" (Özyinelemeli) fonksiyonlarla uygulanır.</p>
+<h3 id="c-karmasklk-analizi_1">c) Karmaşıklık Analizi</h3>
+<ul>
+<li>
+<p>$m$: Ağacın maksimum derinliği</p>
+</li>
+<li>
+<p><strong>Zaman Karmaşıklığı:</strong> $O(b^m)$</p>
+</li>
+<li><strong>Bellek Karmaşıklığı:</strong> $O(b \cdot m)$ (Lineer - En büyük artısı budur!)</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Algoritma Mantığı</p>
+<p>DFS sadece o an üzerinde çalıştığı dalı (path) hafızada tutar. Bu yüzden BFS'ye göre bellek dostudur.</p>
+</div>
+<h3 id="d-avantajdezavantaj_1">d) Avantaj/Dezavantaj</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Avantajlar</th>
+<th style="text-align: left;">Dezavantajlar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Düşük Bellek:</strong> Sadece $b \cdot m$ kadar alan harcar.</td>
+<td style="text-align: left;"><strong>Complete Değildir:</strong> Sonsuz derinlikli veya döngülü ağaçlarda kaybolabilir.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Şanslıysa hedefi BFS'den çok daha hızlı bulabilir.</td>
+<td style="text-align: left;"><strong>Optimal Değildir:</strong> Bulduğu ilk çözüm en kısa yol olmayabilir.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><img alt="BFS vs DFS" src="../../../images/bfs_vs_dfs.png" /></p>
+<h2 id="3-iterative-deepening-dfs-id-dfs">3. Iterative Deepening DFS (ID-DFS)</h2>
+<h3 id="a-tanm-ve-calsma-mantg_2">a) Tanım ve Çalışma Mantığı</h3>
+<p>BFS'nin "Optimalite" özelliğini DFS'nin "Düşük Bellek" avantajıyla birleştiren hibrit bir yöntemdir.
+DFS'yi önce Limit=0, sonra Limit=1, Limit=2... şeklinde derinlik sınırını artırarak tekrar tekrar çalıştırır.</p>
+<h3 id="b-veri-yaps_2">b) Veri Yapısı</h3>
+<p>Limitli DFS kullandığı için <strong>LIFO Stack</strong> kullanır.</p>
+<h3 id="c-karmasklk-analizi_2">c) Karmaşıklık Analizi</h3>
+<ul>
+<li><strong>Zaman:</strong> $O(b^d)$ (BFS ile aynıdır, tekrar tekrar taramak asimptotik olarak sonucu değiştirmez).</li>
+<li><strong>Bellek:</strong> $O(b \cdot d)$ (DFS gibi lineerdir).</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Kritik Sınav Bilgisi</p>
+<p>"Sürekli baştan başlamak zaman kaybı değil mi?" sorusu sıkça gelir. Cevap: Hayır. Çünkü üstel büyüyen bir ağaçta ($b^d$), düğümlerin büyük çoğunluğu en alt kattadır. Üst katları tekrar tekrar ziyaret etmenin maliyeti ihmal edilebilir düzeydedir.</p>
+</div>
+<hr />
+<h2 id="4-uniform-cost-search-ucs">4. Uniform Cost Search (UCS)</h2>
+<h3 id="a-tanm-ve-calsma-mantg_3">a) Tanım ve Çalışma Mantığı</h3>
+<p>BFS'nin maliyetli graflar için genelleştirilmiş halidir. Sadece adım sayısına değil, <strong>toplam yol maliyetine ($g(n)$)</strong> bakar. Her zaman "kümülatif maliyeti en düşük" olan düğümü genişletir.</p>
+<h3 id="b-veri-yaps_3">b) Veri Yapısı</h3>
+<p><strong>Priority Queue</strong> (Öncelik Kuyruğu) kullanılır. Kuyruk, düğümlerin $g(n)$ (başlangıçtan o ana kadarki maliyet) değerine göre küçükten büyüğe sıralı tutulur.</p>
+<h3 id="c-karmasklk-analizi_3">c) Karmaşıklık Analizi</h3>
+<ul>
+<li>$C^*$: Optimal çözümün maliyeti</li>
+<li>
+<p>$\epsilon$: Minimum kenar maliyeti</p>
+</li>
+<li>
+<p><strong>Zaman/Bellek:</strong> $O(b^{C^*/\epsilon})$</p>
+</li>
+</ul>
+<h3 id="d-avantajdezavantaj_2">d) Avantaj/Dezavantaj</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Avantajlar</th>
+<th style="text-align: left;">Dezavantajlar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Optimal:</strong> Her türlü pozitif kenar maliyetinde en ucuz yolu bulur.</td>
+<td style="text-align: left;">Hedefin yönünü bilmez, her yöne eşit yayılır (Kör arama).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Complete:</strong> (Maliyetler pozitifse).</td>
+<td style="text-align: left;">Bellek kullanımı yüksektir.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-a-a-star-search">5. A* (A-Star) Search</h2>
+<h3 id="a-tanm-ve-calsma-mantg_4">a) Tanım ve Çalışma Mantığı</h3>
+<p>Bilgilendirilmiş (Informed) arama algoritmalarının kralıdır. Hem geçmiş maliyeti ($g(n)$) hem de hedefe kalan tahmini mesafeyi ($h(n)$) hesaba katar.</p>
+<p>$$f(n) = g(n) + h(n)$$</p>
+<ul>
+<li>$g(n)$: Başlangıçtan $n$ düğümüne kadar olan gerçek maliyet.</li>
+<li>$h(n)$: $n$ düğümünden hedefe olan tahmini maliyet (Heuristic).</li>
+</ul>
+<h3 id="b-veri-yaps_4">b) Veri Yapısı</h3>
+<p><strong>Priority Queue</strong>. Düğümler $f(n)$ değerine göre sıralanır.</p>
+<h3 id="c-heuristic-ve-admissible-sart">c) Heuristic ve "Admissible" Şartı</h3>
+<p>A*'ın optimal çözüm bulabilmesi için Heuristic fonksiyon ($h(n)$) <strong>Admissible (Kabul Edilebilir)</strong> olmalıdır.</p>
+<p><strong>Şart:</strong> $h(n) \le h^*(n)$</p>
+<p>Yani; tahminimiz ($h(n)$), asla gerçek maliyetten ($h^*(n)$) büyük olmamalıdır. (Asla "kötümser" olma, yolu olduğundan uzun sanma).</p>
+<div class="admonition warning">
+<p class="admonition-title">Kritik Sınav Bilgisi</p>
+<p>Eğer $h(n) = 0$ alırsanız, A<em> algoritması </em><em>UCS</em><em> algoritmasına dönüşür.
+Eğer $h(n)$ inadmissible (aşırı büyük) olursa, A</em> optimalite özelliğini kaybeder ama daha hızlı çalışabilir.</p>
+</div>
+<hr />
+<h2 id="6-minimax-ve-alpha-beta-pruning">6. Minimax ve Alpha-Beta Pruning</h2>
+<h3 id="a-tanm-ve-calsma-mantg_5">a) Tanım ve Çalışma Mantığı</h3>
+<p>Satranç, XOX gibi karşılıklı, sıfır toplamlı (zero-sum) oyunlarda kullanılır.
+* <strong>MAX Oyuncusu:</strong> Skoru maksimize etmeye çalışır (Biz).
+* <strong>MIN Oyuncusu:</strong> Skoru minimize etmeye çalışır (Rakip).</p>
+<h3 id="b-alpha-beta-budamas-pruning">b) Alpha-Beta Budaması (Pruning)</h3>
+<p>Minimax ağacı çok büyük olduğu için, sonucu değiştirmeyecek gereksiz dalların kesilmesidir.</p>
+<ul>
+<li><strong>$\alpha$ (Alpha):</strong> MAX için o ana kadar bulunan en iyi (en yüksek) seçenek.</li>
+<li><strong>$\beta$ (Beta):</strong> MIN için o ana kadar bulunan en iyi (en düşük) seçenek.</li>
+</ul>
+<p><img alt="Minimax Ağacı" src="../../../images/minimax_agaci.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Algoritma Mantığı</p>
+<p>Eğer bir dalda $\alpha \ge \beta$ durumu oluşursa, o dalın geri kalanına bakmaya gerek yoktur (Pruning). Çünkü rasyonel bir rakip o dalı zaten seçmeyecektir.</p>
+</div>
+<hr />
+<h2 id="ozet-karslastrma-tablosu">ÖZET: Karşılaştırma Tablosu</h2>
+<p>Sınavda en çok puan getirecek tablo budur:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Algoritma</th>
+<th style="text-align: left;">Zaman Karmaşıklığı</th>
+<th style="text-align: left;">Bellek Karmaşıklığı</th>
+<th style="text-align: left;">Optimal mi?</th>
+<th style="text-align: left;">Complete (Tam) mi?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>BFS</strong></td>
+<td style="text-align: left;">$O(b^d)$</td>
+<td style="text-align: left;">$O(b^d)$ (Kötü)</td>
+<td style="text-align: left;">Evet (Birim maliyette)</td>
+<td style="text-align: left;">Evet</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DFS</strong></td>
+<td style="text-align: left;">$O(b^m)$</td>
+<td style="text-align: left;">$O(b \cdot m)$ (İyi)</td>
+<td style="text-align: left;">Hayır</td>
+<td style="text-align: left;">Hayır (Sonsuz döngü riski)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ID-DFS</strong></td>
+<td style="text-align: left;">$O(b^d)$</td>
+<td style="text-align: left;">$O(b \cdot d)$ (İyi)</td>
+<td style="text-align: left;">Evet (Birim maliyette)</td>
+<td style="text-align: left;">Evet</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>UCS</strong></td>
+<td style="text-align: left;">$O(b^{C^*/\epsilon})$</td>
+<td style="text-align: left;">$O(b^{C^*/\epsilon})$</td>
+<td style="text-align: left;">Evet (Genel)</td>
+<td style="text-align: left;">Evet</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>A</strong>*</td>
+<td style="text-align: left;">Heuristic'e bağlı</td>
+<td style="text-align: left;">Heuristic'e bağlı</td>
+<td style="text-align: left;">Evet ($h(n)$ admissible ise)</td>
+<td style="text-align: left;">Evet</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>$b$:</strong> Dallanma faktörü</li>
+<li><strong>$d$:</strong> Çözüm derinliği</li>
+<li><strong>$m$:</strong> Maksimum ağaç derinliği</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tracking", "navigation.expand", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Kopyaland\u0131", "clipboard.copy": "Kopyala", "search.result.more.one": "Bu sayfada 1 tane daha", "search.result.more.other": "Bu sayfada # tane daha", "search.result.none": "E\u015fle\u015fen dok\u00fcman bulunamad\u0131", "search.result.one": "1 dok\u00fcman bulundu", "search.result.other": "# dok\u00fcman bulundu", "search.result.placeholder": "Aramaya ba\u015flamak i\u00e7in yaz\u0131n", "search.result.term.missing": "Eksik", "select.version": "Versiyon se\u00e7"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

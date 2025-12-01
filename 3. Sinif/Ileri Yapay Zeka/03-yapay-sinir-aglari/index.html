@@ -1,0 +1,1400 @@
+
+<!doctype html>
+<html lang="tr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../02-lojistik-regresyon/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Yapay Sinir Ağları (Neural Networks) - Veri Defteri</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#yapay-sinir-aglar-neural-networks" class="md-skip">
+          Ana içeriğe geç
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Başlık">
+    <a href="../../.." title="Veri Defteri" class="md-header__button md-logo" aria-label="Veri Defteri" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Veri Defteri
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Yapay Sinir Ağları (Neural Networks)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Ara" placeholder="Ara" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Ara">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Temizle" aria-label="Temizle" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Arama başlatılıyor
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigasyon" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Veri Defteri" class="md-nav__button md-logo" aria-label="Veri Defteri" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Veri Defteri
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Veri Defteri'ne Hoşgeldiniz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Sinif
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Sinif
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sayisal Isaret Isleme
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sayisal Isaret Isleme
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2.%20Sinif/Sayisal%20Isaret%20Isleme/01-ayrik-zamanli-isaretler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sayısal İşaret İşleme: Ayrık Zamanlı İşaretler ve Temel Özellikler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2.%20Sinif/Sayisal%20Isaret%20Isleme/02-ayrik-zamanli-sistemler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ayrık Zamanlı Sistemler (Discrete-Time Systems)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2.%20Sinif/Sayisal%20Isaret%20Isleme/03-konvolusyon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Konvolüsyon Toplamı (Convolution Sum)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2.%20Sinif/Sayisal%20Isaret%20Isleme/04-fark-denklemleri/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fark Denklemleri (Difference Equations)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2.%20Sinif/Sayisal%20Isaret%20Isleme/05-fourier-analizi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fourier Analizi ve Frekans Cevabı
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2.%20Sinif/Sayisal%20Isaret%20Isleme/06-ornekleme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Örnekleme ve Geri Çatma (Sampling &amp; Reconstruction)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Sinif
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Sinif
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ileri Yapay Zeka
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ileri Yapay Zeka
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-arama-algoritmalari/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Yapay Zekada Arama Algoritmaları
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-lojistik-regresyon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Makine Öğrenmesi - Lojistik Regresyon (Logistic Regression)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Yapay Sinir Ağları (Neural Networks)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Yapay Sinir Ağları (Neural Networks)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      İçindekiler
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-multi-layer-perceptron-mlp-mimarisi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Multi-Layer Perceptron (MLP) Mimarisi
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Multi-Layer Perceptron (MLP) Mimarisi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#forward-propagation-ileri-yaylm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forward Propagation (İleri Yayılım)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-linearity-dogrusal-olmayanlk-ve-xor-problemi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Linearity (Doğrusal Olmayanlık) ve XOR Problemi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regresyon-uygulamas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regresyon Uygulaması
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-backpropagation-geri-yaylm-algoritmas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Backpropagation (Geri Yayılım Algoritması)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Backpropagation (Geri Yayılım Algoritması)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zincir-kural-chain-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zincir Kuralı (Chain Rule)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ogrenme-modlar-gradient-descent-varyasyonlar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Öğrenme Modları (Gradient Descent Varyasyonları)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-cok-snfl-snflandrma-multiclass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Çok Sınıflı Sınıflandırma (Multiclass)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Çok Sınıflı Sınıflandırma (Multiclass)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#softmax-aktivasyon-fonksiyonu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Softmax Aktivasyon Fonksiyonu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-hot-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Hot Encoding
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-uygulama-elle-hesaplama-ornegi-vize-sorusu-tipi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Uygulama: Elle Hesaplama Örneği (Vize Sorusu Tipi)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Uygulama: Elle Hesaplama Örneği (Vize Sorusu Tipi)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adm-1-ileri-yaylm-forward-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 1: İleri Yayılım (Forward Pass)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adm-2-geri-yaylm-backpropagation-w_2yi-guncelleyelim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 2: Geri Yayılım (Backpropagation) - $w_2$'yi güncelleyelim.
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ozet-yapay-sinir-ag-formulleri" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ÖZET: Yapay Sinir Ağı Formülleri
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      İçindekiler
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-multi-layer-perceptron-mlp-mimarisi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Multi-Layer Perceptron (MLP) Mimarisi
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Multi-Layer Perceptron (MLP) Mimarisi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#forward-propagation-ileri-yaylm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forward Propagation (İleri Yayılım)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-linearity-dogrusal-olmayanlk-ve-xor-problemi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Linearity (Doğrusal Olmayanlık) ve XOR Problemi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regresyon-uygulamas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regresyon Uygulaması
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-backpropagation-geri-yaylm-algoritmas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Backpropagation (Geri Yayılım Algoritması)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Backpropagation (Geri Yayılım Algoritması)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zincir-kural-chain-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zincir Kuralı (Chain Rule)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ogrenme-modlar-gradient-descent-varyasyonlar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Öğrenme Modları (Gradient Descent Varyasyonları)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-cok-snfl-snflandrma-multiclass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Çok Sınıflı Sınıflandırma (Multiclass)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Çok Sınıflı Sınıflandırma (Multiclass)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#softmax-aktivasyon-fonksiyonu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Softmax Aktivasyon Fonksiyonu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-hot-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Hot Encoding
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-uygulama-elle-hesaplama-ornegi-vize-sorusu-tipi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Uygulama: Elle Hesaplama Örneği (Vize Sorusu Tipi)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Uygulama: Elle Hesaplama Örneği (Vize Sorusu Tipi)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adm-1-ileri-yaylm-forward-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 1: İleri Yayılım (Forward Pass)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adm-2-geri-yaylm-backpropagation-w_2yi-guncelleyelim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 2: Geri Yayılım (Backpropagation) - $w_2$'yi güncelleyelim.
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ozet-yapay-sinir-ag-formulleri" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ÖZET: Yapay Sinir Ağı Formülleri
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="yapay-sinir-aglar-neural-networks">Yapay Sinir Ağları (Neural Networks)</h1>
+<p>Lojistik regresyon tek bir nörondu. Şimdi bu nöronları birbirine bağlayarak insan beynini taklit eden yapıları, yani <strong>Çok Katmanlı Algılayıcıları (MLP)</strong> inceleyeceğiz.</p>
+<hr />
+<h2 id="1-multi-layer-perceptron-mlp-mimarisi">1. Multi-Layer Perceptron (MLP) Mimarisi</h2>
+<p>Bir yapay sinir ağı temel olarak üç tip katmandan oluşur:</p>
+<ol>
+<li><strong>Giriş Katmanı (Input Layer):</strong> Verinin ağa girdiği yerdir. İşlem yapmaz, sadece veriyi iletir.</li>
+<li><strong>Gizli Katmanlar (Hidden Layers):</strong> Giriş ve çıkış arasında kalan, dış dünyadan soyutlanmış katmanlardır. "Gizli" denmesinin sebebi, bu katmanların değerlerinin veri setinde doğrudan gözlemlenememesidir. Öznitelik çıkarma (Feature Extraction) burada yapılır.</li>
+<li><strong>Çıkış Katmanı (Output Layer):</strong> Ağın tahminini ürettiği son katmandır.</li>
+</ol>
+<p><img alt="MLP Mimarisi" src="../../../images/mlp_mimarisi.png" /></p>
+<h3 id="forward-propagation-ileri-yaylm">Forward Propagation (İleri Yayılım)</h3>
+<p>Verinin girişten çıkışa doğru akışıdır. Her nöron iki işlem yapar:
+1.  <strong>Lineer Toplama:</strong> $z = \sum w_i x_i + b$
+2.  <strong>Aktivasyon:</strong> $a = \sigma(z)$</p>
+<p>Ağ boyunca akış: $x \to z^{[1]} \to a^{[1]} \to z^{[2]} \to a^{[2]} \dots \to \hat{y}$</p>
+<h3 id="non-linearity-dogrusal-olmayanlk-ve-xor-problemi">Non-Linearity (Doğrusal Olmayanlık) ve XOR Problemi</h3>
+<p>Tek katmanlı bir ağ (Perceptron), sadece doğrusal olarak ayrılabilen problemleri (AND, OR kapıları gibi) çözebilir. Ancak <strong>XOR</strong> gibi doğrusal olmayan problemleri çözemez.</p>
+<div class="admonition warning">
+<p class="admonition-title">Kritik Sınav Bilgisi</p>
+<p>Eğer gizli katmanlarda aktivasyon fonksiyonu (Sigmoid, ReLU vb.) kullanmazsanız, ağınız ne kadar derin olursa olsun, matematiksel olarak <strong>tek katmanlı lineer bir modele</strong> eşdeğerdir. Derin öğrenmenin gücü, aktivasyon fonksiyonlarının kattığı "Non-Lineerlikten" gelir.</p>
+</div>
+<h3 id="regresyon-uygulamas">Regresyon Uygulaması</h3>
+<p>Eğer amacımız sınıflandırma değil de bir sayı tahmin etmekse (Örn: Ev fiyatı), çıkış katmanındaki nöronun aktivasyon fonksiyonu:
+* Genellikle <strong>Linear (Hiçbir şey yapma)</strong> veya
+* Sadece pozitif değerler için <strong>ReLU</strong> seçilir.</p>
+<hr />
+<h2 id="2-backpropagation-geri-yaylm-algoritmas">2. Backpropagation (Geri Yayılım Algoritması)</h2>
+<p>Ağın tahminini ($\hat{y}$) bulduk (Forward pass). Ancak bu tahmin gerçek değerden ($y$) farklı. Hatayı azaltmak için ağırlıkları ($w$) nasıl güncelleyeceğiz?</p>
+<p><strong>Mantık:</strong> Çıkıştan girişe doğru giderek, "Hatanın ne kadarı hangi ağırlıktan kaynaklanıyor?" sorusunu cevaplarız. Bu bir <strong>Türev (Gradient)</strong> hesabıdır.</p>
+<h3 id="zincir-kural-chain-rule">Zincir Kuralı (Chain Rule)</h3>
+<p>Kalkülüsün en önemli kuralıdır. $L$ (Loss) fonksiyonunun $w$ (Ağırlık) parametresine göre türevini parçalayarak bulmamızı sağlar.</p>
+<p>$$\frac{\partial L}{\partial w} = \frac{\partial L}{\partial a} \cdot \frac{\partial a}{\partial z} \cdot \frac{\partial z}{\partial w}$$</p>
+<p>Bu üç terimi analiz edelim:
+1.  $\frac{\partial L}{\partial a}$: Maliyetin aktivasyona göre değişimi (Hata ne kadar?).
+2.  $\frac{\partial a}{\partial z}$: Aktivasyon fonksiyonunun türevi (Örn: Sigmoid türevi).
+3.  $\frac{\partial z}{\partial w}$: Giriş değeri (Çünkü $z = wx+b$, türevi $x$'tir).</p>
+<div class="admonition note">
+<p class="admonition-title">Öğrenci Notu</p>
+<p>Backpropagation aslında "Zincir Kuralı"nın ağ üzerinde tekrar tekrar uygulanmasından başka bir şey değildir. Her katman hatayı bir öncekine devreder.</p>
+</div>
+<h3 id="ogrenme-modlar-gradient-descent-varyasyonlar">Öğrenme Modları (Gradient Descent Varyasyonları)</h3>
+<p>Ağırlık güncellemesi ne sıklıkla yapılacak?</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Mod</th>
+<th style="text-align: left;">Açıklama</th>
+<th style="text-align: left;">Avantaj/Dezavantaj</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Batch</strong></td>
+<td style="text-align: left;">Tüm veri seti bittikten sonra 1 güncelleme yapılır.</td>
+<td style="text-align: left;">Kararlı (Stable) ama yavaştır. Bellek sorunu yaratabilir.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Online (Stochastic)</strong></td>
+<td style="text-align: left;">Her bir örnekten sonra hemen güncelleme yapılır.</td>
+<td style="text-align: left;">Hızlıdır ama gürültülüdür (Zikzak çizer).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Mini-Batch</strong></td>
+<td style="text-align: left;">Veri küçük paketlere (Örn: 32, 64) bölünür. Her pakette bir güncelleme.</td>
+<td style="text-align: left;">Hem hızlı hem kararlıdır. Endüstri standardıdır.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-cok-snfl-snflandrma-multiclass">3. Çok Sınıflı Sınıflandırma (Multiclass)</h2>
+<p>Eğer çıktımız kedi/köpek (Binary) değil de Kedi/Köpek/Kuş/Araba gibi $K$ sınıftan oluşuyorsa ne yaparız?</p>
+<h3 id="softmax-aktivasyon-fonksiyonu">Softmax Aktivasyon Fonksiyonu</h3>
+<p>Çıkış katmanındaki ham skorları ($z_i$), toplamı 1 olan bir olasılık dağılımına dönüştürür.</p>
+<p>$$a_i = \frac{e^{z_i}}{\sum_{j=1}^{K} e^{z_j}}$$</p>
+<p>Örnek: $z=[2.0, 1.0, 0.1] \xrightarrow{\text{Softmax}} p=[0.7, 0.2, 0.1]$</p>
+<h3 id="one-hot-encoding">One-Hot Encoding</h3>
+<p>Hedef etiketleri ($y$) sayısal vektörlere çevrilir. Sadece doğru sınıfın indeksi 1, diğerleri 0 olur.
+* Kedi (Sınıf 0): $[1, 0, 0, 0]$
+* Köpek (Sınıf 1): $[0, 1, 0, 0]$</p>
+<hr />
+<h2 id="4-uygulama-elle-hesaplama-ornegi-vize-sorusu-tipi">4. Uygulama: Elle Hesaplama Örneği (Vize Sorusu Tipi)</h2>
+<p>Basit bir ağ düşünelim:
+* <strong>Giriş:</strong> $x = 0.5$
+* <strong>Hedef:</strong> $y = 1.0$
+* <strong>Ağırlık (Giriş-Gizli):</strong> $w_1 = 0.5$
+* <strong>Ağırlık (Gizli-Çıkış):</strong> $w_2 = 0.2$
+* <strong>Aktivasyon:</strong> Sigmoid ($\sigma$)
+* <strong>Maliyet Fonksiyonu:</strong> Basitlik için Kare Hata ($L = \frac{1}{2}(\hat{y}-y)^2$) kullanalım.</p>
+<h3 id="adm-1-ileri-yaylm-forward-pass">Adım 1: İleri Yayılım (Forward Pass)</h3>
+<ol>
+<li>
+<p><strong>Gizli Nöron:</strong>
+    $z_1 = x \cdot w_1 = 0.5 \cdot 0.5 = 0.25$
+    $a_1 = \sigma(0.25) \approx 0.562$</p>
+</li>
+<li>
+<p><strong>Çıkış Nöronu:</strong>
+    $z_2 = a_1 \cdot w_2 = 0.562 \cdot 0.2 = 0.112$
+    $a_2 = \sigma(0.112) \approx 0.528$ (Bu bizim tahminimiz $\hat{y}$)</p>
+</li>
+</ol>
+<p><strong>Hata:</strong> $L = \frac{1}{2}(0.528 - 1.0)^2 = 0.111$</p>
+<h3 id="adm-2-geri-yaylm-backpropagation-w_2yi-guncelleyelim">Adım 2: Geri Yayılım (Backpropagation) - $w_2$'yi güncelleyelim.</h3>
+<p>Zincir kuralı: $\frac{\partial L}{\partial w_2} = \frac{\partial L}{\partial a_2} \cdot \frac{\partial a_2}{\partial z_2} \cdot \frac{\partial z_2}{\partial w_2}$</p>
+<ol>
+<li>Hata terimi: $\frac{\partial L}{\partial a_2} = (a_2 - y) = (0.528 - 1.0) = -0.472$</li>
+<li>Sigmoid türevi: $\frac{\partial a_2}{\partial z_2} = a_2(1-a_2) = 0.528(1-0.528) \approx 0.249$</li>
+<li>Giriş: $\frac{\partial z_2}{\partial w_2} = a_1 = 0.562$</li>
+</ol>
+<p><strong>Gradyan:</strong> $\frac{\partial L}{\partial w_2} = (-0.472) \cdot (0.249) \cdot (0.562) \approx -0.066$</p>
+<p><strong>Güncelleme ($\alpha = 1$ varsayalım):</strong>
+$w_2^{yeni} = w_2 - \alpha \cdot \text{Gradyan} = 0.2 - (-0.066) = 0.266$
+<em>(Ağırlık arttı, çünkü hedef 1.0 iken biz 0.528 bulduk, yani artırmamız gerekiyordu).</em></p>
+<hr />
+<h2 id="ozet-yapay-sinir-ag-formulleri">ÖZET: Yapay Sinir Ağı Formülleri</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Kavram</th>
+<th style="text-align: left;">Formül</th>
+<th style="text-align: left;">Not</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Lineer Katman</strong></td>
+<td style="text-align: left;">$z = w^T x + b$</td>
+<td style="text-align: left;">Matris çarpımı</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Sigmoid</strong></td>
+<td style="text-align: left;">$\sigma(z) = \frac{1}{1+e^{-z}}$</td>
+<td style="text-align: left;">Çıktı $(0, 1)$ arası</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Softmax</strong></td>
+<td style="text-align: left;">$a_i = \frac{e^{z_i}}{\sum e^{z_j}}$</td>
+<td style="text-align: left;">Çok sınıflı çıktı</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Cross-Entropy Loss</strong></td>
+<td style="text-align: left;">$L = -\sum y_i \log(\hat{y}_i)$</td>
+<td style="text-align: left;">Sınıflandırma Hatası</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Zincir Kuralı</strong></td>
+<td style="text-align: left;">$\frac{\partial L}{\partial w} = \delta \cdot x$</td>
+<td style="text-align: left;">$\delta$: Yerel Gradyan</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>SGD Güncelleme</strong></td>
+<td style="text-align: left;">$w \leftarrow w - \alpha \nabla w$</td>
+<td style="text-align: left;">$\alpha$: Learning Rate</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tracking", "navigation.expand", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Kopyaland\u0131", "clipboard.copy": "Kopyala", "search.result.more.one": "Bu sayfada 1 tane daha", "search.result.more.other": "Bu sayfada # tane daha", "search.result.none": "E\u015fle\u015fen dok\u00fcman bulunamad\u0131", "search.result.one": "1 dok\u00fcman bulundu", "search.result.other": "# dok\u00fcman bulundu", "search.result.placeholder": "Aramaya ba\u015flamak i\u00e7in yaz\u0131n", "search.result.term.missing": "Eksik", "select.version": "Versiyon se\u00e7"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
