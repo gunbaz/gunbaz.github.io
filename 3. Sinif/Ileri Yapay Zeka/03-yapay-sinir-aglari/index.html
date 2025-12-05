@@ -12,6 +12,8 @@
         <link rel="prev" href="../02-lojistik-regresyon/">
       
       
+        <link rel="next" href="../04-matematiksel-optimizasyon/">
+      
       
         
       
@@ -593,6 +595,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -942,6 +950,90 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-matematiksel-optimizasyon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Matematiksel Optimizasyonun Temelleri
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-konvekslik/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Konvekslik – Fonksiyonlar, Kümeler ve Özellikleri
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-pekistirmeli-ogrenme-temelleri/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pekiştirmeli Öğrenme (Reinforcement Learning) – Temel Yapı
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1260,13 +1352,15 @@
 * Köpek (Sınıf 1): $[0, 1, 0, 0]$</p>
 <hr />
 <h2 id="4-uygulama-elle-hesaplama-ornegi-vize-sorusu-tipi">4. Uygulama: Elle Hesaplama Örneği (Vize Sorusu Tipi)</h2>
-<p>Basit bir ağ düşünelim:
-* <strong>Giriş:</strong> $x = 0.5$
-* <strong>Hedef:</strong> $y = 1.0$
-* <strong>Ağırlık (Giriş-Gizli):</strong> $w_1 = 0.5$
-* <strong>Ağırlık (Gizli-Çıkış):</strong> $w_2 = 0.2$
-* <strong>Aktivasyon:</strong> Sigmoid ($\sigma$)
-* <strong>Maliyet Fonksiyonu:</strong> Basitlik için Kare Hata ($L = \frac{1}{2}(\hat{y}-y)^2$) kullanalım.</p>
+<p>Basit bir ağ düşünelim:</p>
+<ul>
+<li><strong>Giriş:</strong> $x = 0.5$</li>
+<li><strong>Hedef:</strong> $y = 1.0$</li>
+<li><strong>Ağırlık (Giriş-Gizli):</strong> $w_1 = 0.5$</li>
+<li><strong>Ağırlık (Gizli-Çıkış):</strong> $w_2 = 0.2$</li>
+<li><strong>Aktivasyon:</strong> Sigmoid ($\sigma$)</li>
+<li><strong>Maliyet Fonksiyonu:</strong> Basitlik için Kare Hata ($L = \frac{1}{2}(\hat{y}-y)^2$) kullanalım.</li>
+</ul>
 <h3 id="adm-1-ileri-yaylm-forward-pass">Adım 1: İleri Yayılım (Forward Pass)</h3>
 <ol>
 <li>

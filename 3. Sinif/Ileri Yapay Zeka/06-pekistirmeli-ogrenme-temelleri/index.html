@@ -9,10 +9,8 @@
       
       
       
-        <link rel="prev" href="../01-arama-algoritmalari/">
+        <link rel="prev" href="../05-konvekslik/">
       
-      
-        <link rel="next" href="../03-yapay-sinir-aglari/">
       
       
         
@@ -23,7 +21,7 @@
     
     
       
-        <title>Makine Öğrenmesi - Lojistik Regresyon (Logistic Regression) - Veri Defteri</title>
+        <title>Pekiştirmeli Öğrenme (Reinforcement Learning) – Temel Yapı - Veri Defteri</title>
       
     
     
@@ -74,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#makine-ogrenmesi-lojistik-regresyon-logistic-regression" class="md-skip">
+        <a href="#pekistirmeli-ogrenme-reinforcement-learning-temel-yap" class="md-skip">
           Ana içeriğe geç
         </a>
       
@@ -110,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Makine Öğrenmesi - Lojistik Regresyon (Logistic Regression)
+              Pekiştirmeli Öğrenme (Reinforcement Learning) – Temel Yapı
             
           </span>
         </div>
@@ -673,37 +671,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Makine Öğrenmesi - Lojistik Regresyon (Logistic Regression)
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../02-lojistik-regresyon/" class="md-nav__link">
         
   
   
@@ -719,176 +690,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      İçindekiler
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#a-temel-yap-ve-sigmoid-fonksiyonu" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        A. Temel Yapı ve Sigmoid Fonksiyonu
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="A. Temel Yapı ve Sigmoid Fonksiyonu">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#neden-regresyon-deniyor" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Neden "Regresyon" Deniyor?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#1-lineer-model-weighted-sum" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Lineer Model (Weighted Sum)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-sigmoid-aktivasyon-fonksiyonu-sigmaz" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Sigmoid Aktivasyon Fonksiyonu ($\sigma(z)$)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-karar-snr-decision-boundary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Karar Sınırı (Decision Boundary)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#b-maliyet-fonksiyonlar-cost-functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        B. Maliyet Fonksiyonları (Cost Functions)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="B. Maliyet Fonksiyonları (Cost Functions)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#neden-mse-kullanmyoruz" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Neden MSE Kullanmıyoruz?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cozum-cross-entropy-loss-log-loss" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Çözüm: Cross-Entropy Loss (Log-Loss)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#c-optimizasyon-yontemleri-agrlk-guncelleme" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        C. Optimizasyon Yöntemleri (Ağırlık Güncelleme)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="C. Optimizasyon Yöntemleri (Ağırlık Güncelleme)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-gradient-descent-gradyan-inis" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Gradient Descent (Gradyan İniş)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-irls-newton-raphson-yontemi" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. IRLS / Newton-Raphson Yöntemi
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#d-mlp-multi-layer-perceptron-baglants" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        D. MLP (Multi-Layer Perceptron) Bağlantısı
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -982,10 +783,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../06-pekistirmeli-ogrenme-temelleri/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pekiştirmeli Öğrenme (Reinforcement Learning) – Temel Yapı
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1001,6 +829,204 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      İçindekiler
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-sequential-decision-making-reward-hypothesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Sequential Decision Making &amp; Reward Hypothesis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Sequential Decision Making &amp; Reward Hypothesis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ajan-cevre-dongusu-the-rl-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ajan-Çevre Döngüsü (The RL Loop)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reward-hypothesis-odul-hipotezi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reward Hypothesis (Ödül Hipotezi)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#return-getiri-g_t-ve-iskonto-katsays-gamma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Return (Getiri - $G_t$) ve İskonto Katsayısı ($\gamma$)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-states-histories-and-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. States, Histories and Policies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. States, Histories and Policies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#history-h_t-vs-state-s_t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        History ($H_t$) vs State ($S_t$)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-markov-property-markov-ozelligi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Markov Property (Markov Özelliği)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#politika-policy-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Politika (Policy - $\pi$)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-markov-processes-mrp-mdp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Markov Processes (MRP &amp; MDP)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Markov Processes (MRP &amp; MDP)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-markov-reward-process-mrp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Markov Reward Process (MRP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-markov-decision-process-mdp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Markov Decision Process (MDP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-model-based-vs-model-free-rl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Model-Based vs Model-Free RL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Model-Based vs Model-Free RL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-based-rl-model-tabanl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model-Based RL (Model Tabanlı)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-free-rl-modelsiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model-Free RL (modelsiz)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1048,22 +1074,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#a-temel-yap-ve-sigmoid-fonksiyonu" class="md-nav__link">
+  <a href="#1-sequential-decision-making-reward-hypothesis" class="md-nav__link">
     <span class="md-ellipsis">
       
-        A. Temel Yapı ve Sigmoid Fonksiyonu
+        1. Sequential Decision Making &amp; Reward Hypothesis
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="A. Temel Yapı ve Sigmoid Fonksiyonu">
+    <nav class="md-nav" aria-label="1. Sequential Decision Making &amp; Reward Hypothesis">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#neden-regresyon-deniyor" class="md-nav__link">
+  <a href="#ajan-cevre-dongusu-the-rl-loop" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Neden "Regresyon" Deniyor?
+        Ajan-Çevre Döngüsü (The RL Loop)
       
     </span>
   </a>
@@ -1071,10 +1097,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#1-lineer-model-weighted-sum" class="md-nav__link">
+  <a href="#reward-hypothesis-odul-hipotezi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Lineer Model (Weighted Sum)
+        Reward Hypothesis (Ödül Hipotezi)
       
     </span>
   </a>
@@ -1082,21 +1108,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-sigmoid-aktivasyon-fonksiyonu-sigmaz" class="md-nav__link">
+  <a href="#return-getiri-g_t-ve-iskonto-katsays-gamma" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Sigmoid Aktivasyon Fonksiyonu ($\sigma(z)$)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-karar-snr-decision-boundary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Karar Sınırı (Decision Boundary)
+        Return (Getiri - $G_t$) ve İskonto Katsayısı ($\gamma$)
       
     </span>
   </a>
@@ -1109,22 +1124,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#b-maliyet-fonksiyonlar-cost-functions" class="md-nav__link">
+  <a href="#2-states-histories-and-policies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        B. Maliyet Fonksiyonları (Cost Functions)
+        2. States, Histories and Policies
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="B. Maliyet Fonksiyonları (Cost Functions)">
+    <nav class="md-nav" aria-label="2. States, Histories and Policies">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#neden-mse-kullanmyoruz" class="md-nav__link">
+  <a href="#history-h_t-vs-state-s_t" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Neden MSE Kullanmıyoruz?
+        History ($H_t$) vs State ($S_t$)
       
     </span>
   </a>
@@ -1132,10 +1147,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#cozum-cross-entropy-loss-log-loss" class="md-nav__link">
+  <a href="#the-markov-property-markov-ozelligi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Çözüm: Cross-Entropy Loss (Log-Loss)
+        The Markov Property (Markov Özelliği)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#politika-policy-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Politika (Policy - $\pi$)
       
     </span>
   </a>
@@ -1148,22 +1174,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#c-optimizasyon-yontemleri-agrlk-guncelleme" class="md-nav__link">
+  <a href="#3-markov-processes-mrp-mdp" class="md-nav__link">
     <span class="md-ellipsis">
       
-        C. Optimizasyon Yöntemleri (Ağırlık Güncelleme)
+        3. Markov Processes (MRP &amp; MDP)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="C. Optimizasyon Yöntemleri (Ağırlık Güncelleme)">
+    <nav class="md-nav" aria-label="3. Markov Processes (MRP &amp; MDP)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-gradient-descent-gradyan-inis" class="md-nav__link">
+  <a href="#a-markov-reward-process-mrp" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Gradient Descent (Gradyan İniş)
+        A. Markov Reward Process (MRP)
       
     </span>
   </a>
@@ -1171,10 +1197,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-irls-newton-raphson-yontemi" class="md-nav__link">
+  <a href="#b-markov-decision-process-mdp" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. IRLS / Newton-Raphson Yöntemi
+        B. Markov Decision Process (MDP)
       
     </span>
   </a>
@@ -1187,13 +1213,41 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#d-mlp-multi-layer-perceptron-baglants" class="md-nav__link">
+  <a href="#4-model-based-vs-model-free-rl" class="md-nav__link">
     <span class="md-ellipsis">
       
-        D. MLP (Multi-Layer Perceptron) Bağlantısı
+        4. Model-Based vs Model-Free RL
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="4. Model-Based vs Model-Free RL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-based-rl-model-tabanl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model-Based RL (Model Tabanlı)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-free-rl-modelsiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model-Free RL (modelsiz)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1214,93 +1268,110 @@
 
 
 
-<h1 id="makine-ogrenmesi-lojistik-regresyon-logistic-regression">Makine Öğrenmesi - Lojistik Regresyon (Logistic Regression)</h1>
-<p>Yapay Zeka ve Derin Öğrenme'nin "Merhaba Dünya"sı sayılan Lojistik Regresyon, isminde "Regresyon" geçmesine rağmen, aslında bir <strong>Sınıflandırma (Classification)</strong> algoritmasıdır. Özellikle İkili Sınıflandırma (Binary Classification - 0 veya 1) problemlerinde kullanılır.</p>
+<h1 id="pekistirmeli-ogrenme-reinforcement-learning-temel-yap">Pekiştirmeli Öğrenme (Reinforcement Learning) – Temel Yapı</h1>
+<p>Şimdiye kadar gözetimli (etiketli veri ile) öğrenmeyi gördük. Pekiştirmeli Öğrenme (RL) ise çok farklıdır: Burada bir öğretmen yoktur, sadece yapılan eylemlere karşılık alınan <strong>Ödül (Reward)</strong> veya <strong>Ceza</strong> vardır. Ajan, deneme-yanılma yoluyla hayatta kalmayı öğrenir.</p>
 <hr />
-<h2 id="a-temel-yap-ve-sigmoid-fonksiyonu">A. Temel Yapı ve Sigmoid Fonksiyonu</h2>
-<h3 id="neden-regresyon-deniyor">Neden "Regresyon" Deniyor?</h3>
-<p>Çünkü algoritmanın kalbinde Lineer Regresyon yatar. Lojistik Regresyon, Lineer Regresyonun çıktısını alır ve bir olasılık değerine dönüştürür.</p>
-<h3 id="1-lineer-model-weighted-sum">1. Lineer Model (Weighted Sum)</h3>
-<p>Önce girdiler ($x$), ağırlıklar ($w$) ile çarpılır ve bir sapma değeri ($b$ - bias) eklenir. Bu kısım saf matematiktir:</p>
-<p>$$z = w^T x + b = w_1 x_1 + w_2 x_2 + ... + b$$</p>
-<p>Burada $z$, $-\infty$ ile $+\infty$ arasında herhangi bir değer alabilir. Ancak biz "Sınıflandırma" yapmak (yani 0 ile 1 arasında bir ihtimal bulmak) istiyoruz.</p>
-<h3 id="2-sigmoid-aktivasyon-fonksiyonu-sigmaz">2. Sigmoid Aktivasyon Fonksiyonu ($\sigma(z)$)</h3>
-<p>Lineer modelin çıktısı ($z$), <strong>Sigmoid</strong> (veya Lojistik) fonksiyonundan geçirilerek "ezilir" (squashing).</p>
-<p><img alt="Sigmoid Fonksiyonu" src="../../../images/sigmoid_fonksiyonu.png" /></p>
-<p><strong>Formül:</strong>
-$$\sigma(z) = \frac{1}{1 + e^{-z}}$$</p>
-<p><strong>Özellikleri:</strong></p>
-<ul>
-<li>$z \to \infty$ iken $\sigma(z) \to 1$</li>
-<li>$z \to -\infty$ iken $\sigma(z) \to 0$</li>
-<li>$z = 0$ iken $\sigma(z) = 0.5$</li>
-</ul>
-<p>Böylece çıktımız ($\hat{y}$), "Girdinin 1. sınıfa ait olma olasılığı"nı ($P(y=1|x)$) verir.</p>
-<h3 id="3-karar-snr-decision-boundary">3. Karar Sınırı (Decision Boundary)</h3>
-<p>Model bir olasılık üretir (Örn: 0.85). Kesin bir sınıf (0 veya 1) atamak için bir eşik değeri (Threshold) kullanırız. Genellikle 0.5 seçilir.</p>
-<ul>
-<li>$\hat{y} \ge 0.5 \implies y = 1$ (Pozitif Sınıf)</li>
-<li>$\hat{y} &lt; 0.5 \implies y = 0$ (Negatif Sınıf)</li>
-</ul>
-<p><img alt="Karar Sınırı" src="../../../images/karar_siniri.png" /></p>
-<div class="admonition note">
-<p class="admonition-title">Öğrenci Notu</p>
-<p>Sigmoid fonksiyonunun türevi, optimizasyon sırasında çok işimize yarar:
-$\sigma'(z) = \sigma(z)(1 - \sigma(z))$. Bu sade yapı işlem yükünü hafifletir.</p>
-</div>
-<hr />
-<h2 id="b-maliyet-fonksiyonlar-cost-functions">B. Maliyet Fonksiyonları (Cost Functions)</h2>
-<p>Modelin ne kadar hata yaptığını ölçmemiz gerekir. Lineer regresyonda kullandığımız MSE (Hata Kareler Ortalaması) burada işe yaramaz.</p>
-<h3 id="neden-mse-kullanmyoruz">Neden MSE Kullanmıyoruz?</h3>
-<p>Sigmoid fonksiyonunun yapısından dolayı, eğer MSE kullanırsak maliyet fonksiyonu "Non-Convex" (Dışbükey olmayan) bir şekil alır. Yani bir sürü yerel minimum (local minima) oluşur ve Gradient Descent global minimumu bulamaz.</p>
-<h3 id="cozum-cross-entropy-loss-log-loss">Çözüm: Cross-Entropy Loss (Log-Loss)</h3>
-<p>Olasılık (Likelihood) maksimizasyonu prensibine dayanır. İstenen sınıfa verdiğimiz olasılığın logaritmasını maksimize etmeye (veya hatayı minimize etmeye) çalışırız.</p>
-<p><strong>Tek bir örnek için Maliyet:</strong>
-$$L(\hat{y}, y) = -(y \log(\hat{y}) + (1-y) \log(1-\hat{y}))$$</p>
-<p><strong>Tüm veri seti için Ortalama Maliyet ($J(w)$):</strong>
-$$J(w) = - \frac{1}{m} \sum_{i=1}^{m} [y^{(i)} \log(\hat{y}^{(i)}) + (1-y^{(i)}) \log(1-\hat{y}^{(i)})]$$</p>
-<ul>
-<li>Eğer $y=1$ ise; formül $-\log(\hat{y})$ olur. $\hat{y}$ 1'e yaklaştıkça hata 0'a iner.</li>
-<li>Eğer $y=0$ ise; formül $-\log(1-\hat{y})$ olur. $\hat{y}$ 0'a yaklaştıkça hata 0'a iner.</li>
-</ul>
-<hr />
-<h2 id="c-optimizasyon-yontemleri-agrlk-guncelleme">C. Optimizasyon Yöntemleri (Ağırlık Güncelleme)</h2>
-<p>Maliyet fonksiyonunu ($J(w)$) minimize eden en iyi ağırlıkları ($w$) bulmak için iki temel yöntem vardır.</p>
-<h3 id="1-gradient-descent-gradyan-inis">1. Gradient Descent (Gradyan İniş)</h3>
-<p>En yaygın yöntemdir. Maliyet fonksiyonunun türevini (eğimini) alarak, eğimin tersi yönünde küçük adımlar atarız.</p>
-<p><strong>Güncelleme Kuralı:</strong>
-$$w_{yeni} = w_{eski} - \alpha \nabla J(w)$$</p>
-<ul>
-<li>$\alpha$: Öğrenme oranı (Learning Rate).</li>
-<li>$\nabla J$: Gradyan (Türev) vektörü.</li>
-</ul>
-<p>Lojistik regresyon için türev şaşırtıcı derecede sadedir:
-$$\frac{\partial J}{\partial w} = \frac{1}{m} \sum ( \hat{y}^{(i)} - y^{(i)} ) x^{(i)}$$</p>
-<h3 id="2-irls-newton-raphson-yontemi">2. IRLS / Newton-Raphson Yöntemi</h3>
-<p>Daha ileri düzey bir optimizasyondur. Sadece eğime (1. türev) değil, eğimin değişim hızına (2. türev / Eğrilik) da bakar.</p>
-<p><strong>Özellikleri:</strong></p>
-<ul>
-<li><strong>Hessian Matrisi ($H$):</strong> İkinci türevlerden oluşan matristir.</li>
-<li><strong>Hız:</strong> Gradient Descent'e göre çok daha az adımda (iterasyonda) sonuca ulaşır.</li>
-<li><strong>Maliyet:</strong> Hessian matrisinin tersini ($H^{-1}$) almak hesaplama açısından çok pahalıdır ($O(D^3)$). Bu yüzden çok büyük veri setlerinde tercih edilmez.</li>
-</ul>
-<p><strong>Güncelleme Kuralı:</strong>
-$$w_{yeni} = w_{eski} - H^{-1} \nabla J(w)$$</p>
-<p>Bu yönteme, Lojistik Regresyon bağlamında <strong>IRLS (Iterative Reweighted Least Squares)</strong> adı da verilir.</p>
+<h2 id="1-sequential-decision-making-reward-hypothesis">1. Sequential Decision Making &amp; Reward Hypothesis</h2>
+<p>RL, sıradan bir sınıflandırma problemi değildir; bir <strong>Sıralı Karar Verme (Sequential Decision Making)</strong> problemidir.</p>
+<h3 id="ajan-cevre-dongusu-the-rl-loop">Ajan-Çevre Döngüsü (The RL Loop)</h3>
+<p>Sistem iki ana oyuncudan oluşur: <strong>Ajan (Agent)</strong> ve <strong>Çevre (Environment)</strong>.
+Her $t$ zaman adımında:</p>
+<ol>
+<li>Ajan, çevrenin durumunu ($S_t$) gözlemler.</li>
+<li>Buna göre bir eylem ($A_t$) seçer.</li>
+<li>Çevre, bu eyleme tepki olarak ajana bir sonraki durumu ($S_{t+1}$) ve bir sayısal ödül ($R_{t+1}$) verir.</li>
+</ol>
+<p><img alt="RL Döngüsü" src="../../../images/rl_dongusu.png" /></p>
+<h3 id="reward-hypothesis-odul-hipotezi">Reward Hypothesis (Ödül Hipotezi)</h3>
+<p>RL'in temel felsefesi şudur:</p>
+<blockquote>
+<p>"Başarmak istediğimiz tüm hedefler, beklenen kümülatif ödülün (toplam getiri) maksimizasyonu olarak ifade edilebilir."</p>
+</blockquote>
+<h3 id="return-getiri-g_t-ve-iskonto-katsays-gamma">Return (Getiri - $G_t$) ve İskonto Katsayısı ($\gamma$)</h3>
+<p>Ajanın amacı anlık ödülü değil, uzun vadeli toplam ödülü ($G_t$) maksimize etmektir.</p>
+<p>$$G_t = R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \dots = \sum_{k=0}^{\infty} \gamma^k R_{t+k+1}$$</p>
+<p><strong>Neden $\gamma$ (Discount Factor) Kullanıyoruz?</strong></p>
+<p>$\gamma \in [0, 1]$ aralığında bir sayıdır.</p>
+<ol>
+<li><strong>Matematiksel Yakınsama:</strong> Sonsuz adımda ödüllerin toplamının sonsuza gitmesini engeller.</li>
+<li><strong>Belirsizlik:</strong> Gelecek belirsizdir; şu anki ödül, gelecekteki vaatten daha değerlidir (Paranın zaman değeri gibi).</li>
+</ol>
 <div class="admonition warning">
 <p class="admonition-title">Kritik Sınav Bilgisi</p>
-<p>Vize sorularında "Gradient Descent ile Newton Yöntemi arasındaki fark nedir?" sorusu klasiktir.
-Cevap: Gradient Descent 1. türevi kullanır (yavaştır ama ucuzdur), Newton yöntemi 2. türevi (Hessian) kullanır (hızlıdır ama işlem maliyeti yüksektir).</p>
+<ul>
+<li>$\gamma = 0$: Ajan "Miyop"tur. Sadece şu anki ödüle ($R_{t+1}$) bakar.</li>
+<li>$\gamma \to 1$: Ajan "İleri Görüşlü"dür. Gelecekteki ödüller de şimdikiler kadar önemlidir.</li>
+</ul>
 </div>
 <hr />
-<h2 id="d-mlp-multi-layer-perceptron-baglants">D. MLP (Multi-Layer Perceptron) Bağlantısı</h2>
-<p>Bu dersin en önemli aydınlanma anı şurasıdır:</p>
-<p><strong>Lojistik Regresyon, aslında tek bir nörondan oluşan bir Sinir Ağıdır.</strong></p>
-<p>Eğer bir Yapay Sinir Ağı (YSA) çizerseniz ve bu ağda:
-1.  Sadece girdi katmanı ve çıktı katmanı varsa (Gizli katman yoksa),
-2.  Çıktı nöronunda aktivasyon fonksiyonu olarak <strong>Sigmoid</strong> kullanılıyorsa,
-3.  Loss fonksiyonu olarak <strong>Cross-Entropy</strong> kullanılıyorsa,</p>
-<p>Bu yapı matematiksel olarak Lojistik Regresyon ile <strong>birebir aynıdır</strong>. Bu yüzden Lojistik Regresyon, Derin Öğrenmeye girişin kapısıdır.</p>
+<h2 id="2-states-histories-and-policies">2. States, Histories and Policies</h2>
+<h3 id="history-h_t-vs-state-s_t">History ($H_t$) vs State ($S_t$)</h3>
+<ul>
+<li><strong>History (Tarihçe):</strong> Başlangıçtan bugüne kadar olan tüm gözlem, eylem ve ödüllerin ham dizisidir.
+    $$H_t = O_1, R_1, A_1, \dots, A_{t-1}, O_t, R_t$$</li>
+<li><strong>State (Durum):</strong> Tarihçenin, geleceği belirlemek için kullanılan özetlenmiş halidir.</li>
+</ul>
+<h3 id="the-markov-property-markov-ozelligi">The Markov Property (Markov Özelliği)</h3>
+<p>RL'de kullanılan durumlar genellikle "Markov" özelliğine sahip kabul edilir.</p>
+<blockquote>
+<p><strong>Tanım:</strong> "Gelecek, geçmişten bağımsızdır; sadece şimdiki duruma bağlıdır."</p>
+</blockquote>
+<p>$$P[S_{t+1} | S_t] = P[S_{t+1} | S_1, \dots, S_t]$$</p>
+<p>Yani; $S_t$ durumundaysanız, buraya nasıl geldiğinizin (History) bir önemi yoktur. Yapılacak hamle için $S_t$ tüm bilgiyi içerir.</p>
+<h3 id="politika-policy-pi">Politika (Policy - $\pi$)</h3>
+<p>Ajanın beynidir. Bir durumda hangi eylemi yapacağını belirleyen fonksiyondur.</p>
+<ol>
+<li><strong>Deterministik Politika:</strong> Her durum için tek bir eylem üretir.
+    $$a = \pi(s)$$</li>
+<li><strong>Stokastik Politika:</strong> Eylemlerin bir olasılık dağılımını üretir. (Örn: %70 ileri, %30 sağa).
+    $$\pi(a|s) = P[A_t = a | S_t = s]$$</li>
+</ol>
+<hr />
+<h2 id="3-markov-processes-mrp-mdp">3. Markov Processes (MRP &amp; MDP)</h2>
+<p>RL problemlerini matematiksel olarak modellemek için Markov süreçlerini kullanırız.</p>
+<p><img alt="Markov Zinciri" src="../../../images/markov_zinciri.png" /></p>
+<h3 id="a-markov-reward-process-mrp">A. Markov Reward Process (MRP)</h3>
+<p>Sadece durumların ve ödüllerin olduğu, <strong>Eylemsiz (No Action)</strong> süreçtir. Bir şişenin nehirde sürüklenmesi gibidir; kontrol sizde değildir.</p>
+<p>Bileşenler: $ S, P, R, \gamma $</p>
+<ul>
+<li>$S$: Durum uzayı.</li>
+<li>$P$: Geçiş Matrisi. $P_{ss'} = P[S_{t+1}=s' | S_t=s]$ (s'den s''e geçme olasılığı).</li>
+<li>$R$: Ödül fonksiyonu. $R_s = \mathbb{E}[R_{t+1} | S_t=s]$.</li>
+<li>$\gamma$: İskonto katsayısı.</li>
+</ul>
+<p><strong>Durum Değer Fonksiyonu ($v(s)$):</strong>
+Bir $s$ durumunda bulunmanın ne kadar "değerli" olduğunu söyler.
+$$v(s) = \mathbb{E} [G_t | S_t = s]$$</p>
+<h3 id="b-markov-decision-process-mdp">B. Markov Decision Process (MDP)</h3>
+<p>MRP'ye <strong>Ajan (Karar verici)</strong> eklenmiş halidir. RL'in temelini oluşturur.</p>
+<p>Bileşenler: $ S, A, P, R, \gamma $</p>
+<ul>
+<li>$A$: Eylem uzayı (Ajanın yapabileceği hareketler).</li>
+</ul>
+<p>Artık geçişler ve ödüller sadece duruma değil, <strong>seçilen eyleme</strong> de bağlıdır:
+$$P_{ss'}^a = P[S_{t+1}=s' | S_t=s, A_t=a]$$
+$$R_s^a = \mathbb{E}[R_{t+1} | S_t=s, A_t=a]$$</p>
+<div class="admonition note">
+<p class="admonition-title">Öğrenci Notu</p>
+<p>MDP'de amaç, toplam ödülü maksimize edecek en iyi politikayı ($\pi^*$) bulmaktır. MRP'de ise sadece süreci izler ve değerini hesaplarız.</p>
+</div>
+<hr />
+<h2 id="4-model-based-vs-model-free-rl">4. Model-Based vs Model-Free RL</h2>
+<p>Bu ayrım, ajanın çevre hakkında ne bildiğiyle ilgilidir.</p>
+<h3 id="model-based-rl-model-tabanl">Model-Based RL (Model Tabanlı)</h3>
+<p>Ajan, çevrenin nasıl çalıştığını bilir veya öğrenmeye çalışır.</p>
+<ul>
+<li><strong>Model:</strong> Geçiş olasılıkları ($P$) ve ödül fonksiyonudur ($R$).</li>
+<li>Ajan, eylem yapmadan önce kafasında simülasyon yapabilir ("Eğer sağa gidersem %90 ihtimalle duvara çarparım" diyebilir).</li>
+<li>Bu işleme <strong>Planlama (Planning)</strong> denir. (Örn: Satranç).</li>
+</ul>
+<h3 id="model-free-rl-modelsiz">Model-Free RL (modelsiz)</h3>
+<p>Ajan çevrenin kurallarını ($P$ ve $R$) bilmez.</p>
+<ul>
+<li>Sadece deneyimleyerek (Trial-and-Error) öğrenir.</li>
+<li>"Burası tehlikeli" der ama nedenini (olasılıkları) matematiksel olarak bilmez.</li>
+<li>Q-Learning gibi popüler algoritmalar bu sınıftadır.</li>
+</ul>
 
 
 

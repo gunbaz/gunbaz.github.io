@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../01-arama-algoritmalari/">
+        <link rel="prev" href="../03-yapay-sinir-aglari/">
       
       
-        <link rel="next" href="../03-yapay-sinir-aglari/">
+        <link rel="next" href="../05-konvekslik/">
       
       
         
@@ -23,7 +23,7 @@
     
     
       
-        <title>Makine Öğrenmesi - Lojistik Regresyon (Logistic Regression) - Veri Defteri</title>
+        <title>Matematiksel Optimizasyonun Temelleri - Veri Defteri</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#makine-ogrenmesi-lojistik-regresyon-logistic-regression" class="md-skip">
+        <a href="#matematiksel-optimizasyonun-temelleri" class="md-skip">
           Ana içeriğe geç
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Makine Öğrenmesi - Lojistik Regresyon (Logistic Regression)
+              Matematiksel Optimizasyonun Temelleri
             
           </span>
         </div>
@@ -673,37 +673,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Makine Öğrenmesi - Lojistik Regresyon (Logistic Regression)
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../02-lojistik-regresyon/" class="md-nav__link">
         
   
   
@@ -719,176 +692,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      İçindekiler
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#a-temel-yap-ve-sigmoid-fonksiyonu" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        A. Temel Yapı ve Sigmoid Fonksiyonu
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="A. Temel Yapı ve Sigmoid Fonksiyonu">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#neden-regresyon-deniyor" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Neden "Regresyon" Deniyor?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#1-lineer-model-weighted-sum" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Lineer Model (Weighted Sum)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-sigmoid-aktivasyon-fonksiyonu-sigmaz" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Sigmoid Aktivasyon Fonksiyonu ($\sigma(z)$)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-karar-snr-decision-boundary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Karar Sınırı (Decision Boundary)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#b-maliyet-fonksiyonlar-cost-functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        B. Maliyet Fonksiyonları (Cost Functions)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="B. Maliyet Fonksiyonları (Cost Functions)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#neden-mse-kullanmyoruz" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Neden MSE Kullanmıyoruz?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cozum-cross-entropy-loss-log-loss" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Çözüm: Cross-Entropy Loss (Log-Loss)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#c-optimizasyon-yontemleri-agrlk-guncelleme" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        C. Optimizasyon Yöntemleri (Ağırlık Güncelleme)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="C. Optimizasyon Yöntemleri (Ağırlık Güncelleme)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-gradient-descent-gradyan-inis" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Gradient Descent (Gradyan İniş)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-irls-newton-raphson-yontemi" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. IRLS / Newton-Raphson Yöntemi
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#d-mlp-multi-layer-perceptron-baglants" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        D. MLP (Multi-Layer Perceptron) Bağlantısı
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -926,10 +729,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../04-matematiksel-optimizasyon/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Matematiksel Optimizasyonun Temelleri
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -945,6 +775,176 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      İçindekiler
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction-to-mathematical-optimization-giris" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introduction to Mathematical Optimization (Giriş)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introduction to Mathematical Optimization (Giriş)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arama-vs-optimizasyon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arama vs. Optimizasyon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimizasyon-probleminin-resmi-tanm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optimizasyon Probleminin Resmi Tanımı
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-optimization-problems-problem-turleri" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Optimization Problems (Problem Türleri)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Optimization Problems (Problem Türleri)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-konveks-kume-convex-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Konveks Küme (Convex Set)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-konveks-fonksiyon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Konveks Fonksiyon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-lineer-esitsizlikler-ve-kesisimler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Lineer Eşitsizlikler ve Kesişimler
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-application-least-squares-en-kucuk-kareler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Application: Least Squares (En Küçük Kareler)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Application: Least Squares (En Küçük Kareler)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-tanm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem Tanımı
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hata-residual-fonksiyonu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hata (Residual) Fonksiyonu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amac-fonksiyonu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amaç Fonksiyonu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cozum-yontemi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Çözüm Yöntemi
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1048,22 +1048,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#a-temel-yap-ve-sigmoid-fonksiyonu" class="md-nav__link">
+  <a href="#1-introduction-to-mathematical-optimization-giris" class="md-nav__link">
     <span class="md-ellipsis">
       
-        A. Temel Yapı ve Sigmoid Fonksiyonu
+        1. Introduction to Mathematical Optimization (Giriş)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="A. Temel Yapı ve Sigmoid Fonksiyonu">
+    <nav class="md-nav" aria-label="1. Introduction to Mathematical Optimization (Giriş)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#neden-regresyon-deniyor" class="md-nav__link">
+  <a href="#arama-vs-optimizasyon" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Neden "Regresyon" Deniyor?
+        Arama vs. Optimizasyon
       
     </span>
   </a>
@@ -1071,32 +1071,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#1-lineer-model-weighted-sum" class="md-nav__link">
+  <a href="#optimizasyon-probleminin-resmi-tanm" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Lineer Model (Weighted Sum)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-sigmoid-aktivasyon-fonksiyonu-sigmaz" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Sigmoid Aktivasyon Fonksiyonu ($\sigma(z)$)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-karar-snr-decision-boundary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Karar Sınırı (Decision Boundary)
+        Optimizasyon Probleminin Resmi Tanımı
       
     </span>
   </a>
@@ -1109,22 +1087,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#b-maliyet-fonksiyonlar-cost-functions" class="md-nav__link">
+  <a href="#2-optimization-problems-problem-turleri" class="md-nav__link">
     <span class="md-ellipsis">
       
-        B. Maliyet Fonksiyonları (Cost Functions)
+        2. Optimization Problems (Problem Türleri)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="B. Maliyet Fonksiyonları (Cost Functions)">
+    <nav class="md-nav" aria-label="2. Optimization Problems (Problem Türleri)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#neden-mse-kullanmyoruz" class="md-nav__link">
+  <a href="#a-konveks-kume-convex-set" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Neden MSE Kullanmıyoruz?
+        A. Konveks Küme (Convex Set)
       
     </span>
   </a>
@@ -1132,10 +1110,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#cozum-cross-entropy-loss-log-loss" class="md-nav__link">
+  <a href="#b-konveks-fonksiyon" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Çözüm: Cross-Entropy Loss (Log-Loss)
+        B. Konveks Fonksiyon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-lineer-esitsizlikler-ve-kesisimler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Lineer Eşitsizlikler ve Kesişimler
       
     </span>
   </a>
@@ -1148,22 +1137,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#c-optimizasyon-yontemleri-agrlk-guncelleme" class="md-nav__link">
+  <a href="#3-application-least-squares-en-kucuk-kareler" class="md-nav__link">
     <span class="md-ellipsis">
       
-        C. Optimizasyon Yöntemleri (Ağırlık Güncelleme)
+        3. Application: Least Squares (En Küçük Kareler)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="C. Optimizasyon Yöntemleri (Ağırlık Güncelleme)">
+    <nav class="md-nav" aria-label="3. Application: Least Squares (En Küçük Kareler)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-gradient-descent-gradyan-inis" class="md-nav__link">
+  <a href="#problem-tanm" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Gradient Descent (Gradyan İniş)
+        Problem Tanımı
       
     </span>
   </a>
@@ -1171,10 +1160,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-irls-newton-raphson-yontemi" class="md-nav__link">
+  <a href="#hata-residual-fonksiyonu" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. IRLS / Newton-Raphson Yöntemi
+        Hata (Residual) Fonksiyonu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amac-fonksiyonu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amaç Fonksiyonu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cozum-yontemi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Çözüm Yöntemi
       
     </span>
   </a>
@@ -1183,17 +1194,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#d-mlp-multi-layer-perceptron-baglants" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        D. MLP (Multi-Layer Perceptron) Bağlantısı
-      
-    </span>
-  </a>
   
 </li>
       
@@ -1214,93 +1214,94 @@
 
 
 
-<h1 id="makine-ogrenmesi-lojistik-regresyon-logistic-regression">Makine Öğrenmesi - Lojistik Regresyon (Logistic Regression)</h1>
-<p>Yapay Zeka ve Derin Öğrenme'nin "Merhaba Dünya"sı sayılan Lojistik Regresyon, isminde "Regresyon" geçmesine rağmen, aslında bir <strong>Sınıflandırma (Classification)</strong> algoritmasıdır. Özellikle İkili Sınıflandırma (Binary Classification - 0 veya 1) problemlerinde kullanılır.</p>
+<h1 id="matematiksel-optimizasyonun-temelleri">Matematiksel Optimizasyonun Temelleri</h1>
+<p>Yapay Zeka modellerinin (Lojistik Regresyon, Sinir Ağları vb.) öğrenmesi, aslında birer optimizasyon işlemidir. Bu derste "En iyi parametreleri nasıl buluruz?" sorusunun matematiksel altyapısını kuracağız.</p>
 <hr />
-<h2 id="a-temel-yap-ve-sigmoid-fonksiyonu">A. Temel Yapı ve Sigmoid Fonksiyonu</h2>
-<h3 id="neden-regresyon-deniyor">Neden "Regresyon" Deniyor?</h3>
-<p>Çünkü algoritmanın kalbinde Lineer Regresyon yatar. Lojistik Regresyon, Lineer Regresyonun çıktısını alır ve bir olasılık değerine dönüştürür.</p>
-<h3 id="1-lineer-model-weighted-sum">1. Lineer Model (Weighted Sum)</h3>
-<p>Önce girdiler ($x$), ağırlıklar ($w$) ile çarpılır ve bir sapma değeri ($b$ - bias) eklenir. Bu kısım saf matematiktir:</p>
-<p>$$z = w^T x + b = w_1 x_1 + w_2 x_2 + ... + b$$</p>
-<p>Burada $z$, $-\infty$ ile $+\infty$ arasında herhangi bir değer alabilir. Ancak biz "Sınıflandırma" yapmak (yani 0 ile 1 arasında bir ihtimal bulmak) istiyoruz.</p>
-<h3 id="2-sigmoid-aktivasyon-fonksiyonu-sigmaz">2. Sigmoid Aktivasyon Fonksiyonu ($\sigma(z)$)</h3>
-<p>Lineer modelin çıktısı ($z$), <strong>Sigmoid</strong> (veya Lojistik) fonksiyonundan geçirilerek "ezilir" (squashing).</p>
-<p><img alt="Sigmoid Fonksiyonu" src="../../../images/sigmoid_fonksiyonu.png" /></p>
-<p><strong>Formül:</strong>
-$$\sigma(z) = \frac{1}{1 + e^{-z}}$$</p>
-<p><strong>Özellikleri:</strong></p>
+<h2 id="1-introduction-to-mathematical-optimization-giris">1. Introduction to Mathematical Optimization (Giriş)</h2>
+<p>Optimizasyon, belirli kısıtlar altında bir amacı (maliyeti, süreyi, hatayı) en aza indiren (veya karı maksimize eden) çözümün bulunmasıdır.</p>
+<h3 id="arama-vs-optimizasyon">Arama vs. Optimizasyon</h3>
+<p>Daha önce gördüğümüz Arama Algoritmaları (BFS, DFS, A*) ile Matematiksel Optimizasyon arasında temel farklar vardır:</p>
 <ul>
-<li>$z \to \infty$ iken $\sigma(z) \to 1$</li>
-<li>$z \to -\infty$ iken $\sigma(z) \to 0$</li>
-<li>$z = 0$ iken $\sigma(z) = 0.5$</li>
+<li><strong>Arama Problemleri:</strong> Genellikle <strong>Ayrık (Discrete)</strong> ve <strong>Sonlu (Finite)</strong> uzaylarda çalışır. Ancak durum sayısı arttıkça karmaşıklık <strong>Üstel (Exponential)</strong> artar. (Örn: Satranç tahtası).</li>
+<li><strong>Matematiksel Programlama:</strong> Genellikle <strong>Sürekli (Continuous)</strong> değişkenlerle çalışır. Değişkenler reel sayılardır ($x \in \mathbb{R}^n$).</li>
 </ul>
-<p>Böylece çıktımız ($\hat{y}$), "Girdinin 1. sınıfa ait olma olasılığı"nı ($P(y=1|x)$) verir.</p>
-<h3 id="3-karar-snr-decision-boundary">3. Karar Sınırı (Decision Boundary)</h3>
-<p>Model bir olasılık üretir (Örn: 0.85). Kesin bir sınıf (0 veya 1) atamak için bir eşik değeri (Threshold) kullanırız. Genellikle 0.5 seçilir.</p>
+<h3 id="optimizasyon-probleminin-resmi-tanm">Optimizasyon Probleminin Resmi Tanımı</h3>
+<p>Standart bir optimizasyon problemi şu formatta yazılır:</p>
+<p>$$
+\begin{align} 
+\text{minimize} \quad &amp; f_0(x) \ 
+\text{subject to} \quad &amp; f_i(x) \le b_i, \quad i = 1, \dots, m 
+\end{align}
+$$</p>
+<p>Burada:</p>
 <ul>
-<li>$\hat{y} \ge 0.5 \implies y = 1$ (Pozitif Sınıf)</li>
-<li>$\hat{y} &lt; 0.5 \implies y = 0$ (Negatif Sınıf)</li>
+<li>$x = (x_1, \dots, x_n)$: Optimizasyon değişkenleri vektörü.</li>
+<li>$f_0(x)$: <strong>Amaç Fonksiyonu (Objective Function)</strong>. (Minimize etmek istediğimiz maliyet).</li>
+<li>$f_i(x)$: <strong>Kısıt Fonksiyonları (Constraints)</strong>.</li>
+<li>$b_i$: Kısıt sınırları.</li>
 </ul>
-<p><img alt="Karar Sınırı" src="../../../images/karar_siniri.png" /></p>
+<p><strong>Temel Kavramlar:</strong></p>
+<ul>
+<li><strong>Uygulanabilir Bölge (Feasible Region):</strong> Tüm kısıtları ($f_i(x) \le b_i$) sağlayan $x$ değerlerinin oluşturduğu kümedir.</li>
+<li><strong>Optimal Çözüm ($x^*$):</strong> Uygulanabilir bölge içinde $f_0(x)$ değerini en küçük yapan $x$ vektörüdür.</li>
+</ul>
+<hr />
+<h2 id="2-optimization-problems-problem-turleri">2. Optimization Problems (Problem Türleri)</h2>
+<p>Optimizasyon dünyasında en kritik ayrım şudur: Problem <strong>Konveks (Dışbükey)</strong> mi, yoksa <strong>Konveks Değil (Non-Convex)</strong> mi?</p>
+<p><img alt="Konveks vs Non-Konveks" src="../../../images/konveks_vs_nonkonveks.png" /></p>
+<h3 id="a-konveks-kume-convex-set">A. Konveks Küme (Convex Set)</h3>
+<p>Bir kümenin konveks olması için şu şartı sağlaması gerekir:</p>
+<blockquote>
+<p>"Küme içindeki herhangi iki noktayı birleştiren düz çizgi, tamamen kümenin içinde kalmalıdır."</p>
+</blockquote>
+<ul>
+<li><strong>Örnek:</strong> Daire içi, küp içi, üçgen içi konvekstir.</li>
+<li><strong>Konveks Olmayan:</strong> Hilal şekli (uçları birleştiren çizgi boşluktan geçer), simit şekli.</li>
+</ul>
+<h3 id="b-konveks-fonksiyon">B. Konveks Fonksiyon</h3>
+<p>Bir fonksiyonun konveks olması, grafiğinin bir <strong>"Kase" (Bowl)</strong> veya <strong>"Vadi"</strong> şeklinde olması demektir.</p>
+<p><strong>Tanım:</strong> Fonksiyon eğrisinin üzerindeki herhangi iki noktayı birleştiren kiriş (chord), fonksiyonun üzerinde kalıyorsa o fonksiyon konvekstir.</p>
+<p>$$f(\alpha x + (1-\alpha)y) \le \alpha f(x) + (1-\alpha)f(y)$$</p>
+<div class="admonition warning">
+<p class="admonition-title">Kritik Sınav Bilgisi: Neden Konvekslik Önemli?</p>
+<p>Konveks bir fonksiyonda <strong>Yerel Minimum (Local Minimum)</strong> aynı zamanda <strong>Global Minimum</strong>dur. Yani, çukru bulduğunuzda "Acaba daha derin bir çukur var mı?" diye endişelenmenize gerek yoktur. Non-Convex problemlerde (Sinir Ağları gibi) ise birçok yerel tuzak vardır.</p>
+</div>
+<h3 id="c-lineer-esitsizlikler-ve-kesisimler">C. Lineer Eşitsizlikler ve Kesişimler</h3>
+<p>Her lineer kısıt ($a^T x \le b$), uzayı ikiye böler ve bir <strong>Yarı-Uzay (Half-Space)</strong> tanımlar.</p>
+<ul>
+<li>Yarı-uzaylar konveks kümelerdir.</li>
+<li>Konveks kümelerin kesişimi de konvekstir.</li>
+<li>Bu nedenle, lineer kısıtlarla tanımlanan uygulanabilir bölge (poliedron) her zaman konvekstir.</li>
+</ul>
+<hr />
+<h2 id="3-application-least-squares-en-kucuk-kareler">3. Application: Least Squares (En Küçük Kareler)</h2>
+<p>Optimizasyonun mühendislikteki en yaygın uygulamasıdır. Bir veri bulutuna en uygun doğruyu veya eğriyi uydurma (Curve Fitting) işlemidir.</p>
+<h3 id="problem-tanm">Problem Tanımı</h3>
+<p>Elimizde $(x_i, y_i)$ şeklinde veri noktaları var. Biz bu noktaları en iyi temsil eden $y = ax + b$ doğrusunu arıyoruz.</p>
+<ul>
+<li><strong>Değişkenler:</strong> $a$ (eğim) ve $b$ (kesim noktası).</li>
+<li><strong>Model Tahmini:</strong> $\hat{y}_i = ax_i + b$</li>
+</ul>
+<h3 id="hata-residual-fonksiyonu">Hata (Residual) Fonksiyonu</h3>
+<p>Her bir nokta için gerçek değer ile tahmin arasındaki farka "artık" (residual) denir:
+$$r_i = y_i - (ax_i + b)$$</p>
+<p><img alt="En Küçük Kareler" src="../../../images/en_kucuk_kareler.png" /></p>
+<h3 id="amac-fonksiyonu">Amaç Fonksiyonu</h3>
+<p>Amacımız hataları sıfırlamak değil (imkansız olabilir), hataların büyüklüğünü minimize etmektir. Negatif hatalar pozitifleri götürmesin diye <strong>kareleri toplamını</strong> minimize ederiz.</p>
+<p>$$\text{minimize} \quad \sum_{i=1}^{m} r_i^2 = \sum_{i=1}^{m} (y_i - (ax_i + b))^2$$</p>
+<p>Bu fonksiyon ($J(a, b)$), parametrelere göre <strong>Konveks (Parabolik)</strong> bir yapıdadır. Yani tek bir dibi vardır.</p>
+<h3 id="cozum-yontemi">Çözüm Yöntemi</h3>
+<p>Kalkülüs kullanarak türev alır ve sıfıra eşitleriz:</p>
+<ol>
+<li>Hata fonksiyonunun $a$'ya göre kısmi türevi alınır ve 0'a eşitlenir: $\frac{\partial J}{\partial a} = 0$</li>
+<li>Hata fonksiyonunun $b$'ye göre kısmi türevi alınır ve 0'a eşitlenir: $\frac{\partial J}{\partial b} = 0$</li>
+</ol>
+<p>Bu işlem bize kapalı formda (Analytical Solution) optimal $a^<em>$ ve $b^</em>$ değerlerini verir.</p>
 <div class="admonition note">
 <p class="admonition-title">Öğrenci Notu</p>
-<p>Sigmoid fonksiyonunun türevi, optimizasyon sırasında çok işimize yarar:
-$\sigma'(z) = \sigma(z)(1 - \sigma(z))$. Bu sade yapı işlem yükünü hafifletir.</p>
+<p>Neden Mutlak Değer ($|r_i|$) değil de Kare ($r_i^2$) kullanıyoruz?
+Çünkü kare fonksiyonu her noktada türevi alınabilir (differentiable) bir fonksiyondur. Mutlak değer fonksiyonunun $0$ noktasında türevi yoktur (sivri uç), bu da optimizasyonu zorlaştırır.</p>
 </div>
-<hr />
-<h2 id="b-maliyet-fonksiyonlar-cost-functions">B. Maliyet Fonksiyonları (Cost Functions)</h2>
-<p>Modelin ne kadar hata yaptığını ölçmemiz gerekir. Lineer regresyonda kullandığımız MSE (Hata Kareler Ortalaması) burada işe yaramaz.</p>
-<h3 id="neden-mse-kullanmyoruz">Neden MSE Kullanmıyoruz?</h3>
-<p>Sigmoid fonksiyonunun yapısından dolayı, eğer MSE kullanırsak maliyet fonksiyonu "Non-Convex" (Dışbükey olmayan) bir şekil alır. Yani bir sürü yerel minimum (local minima) oluşur ve Gradient Descent global minimumu bulamaz.</p>
-<h3 id="cozum-cross-entropy-loss-log-loss">Çözüm: Cross-Entropy Loss (Log-Loss)</h3>
-<p>Olasılık (Likelihood) maksimizasyonu prensibine dayanır. İstenen sınıfa verdiğimiz olasılığın logaritmasını maksimize etmeye (veya hatayı minimize etmeye) çalışırız.</p>
-<p><strong>Tek bir örnek için Maliyet:</strong>
-$$L(\hat{y}, y) = -(y \log(\hat{y}) + (1-y) \log(1-\hat{y}))$$</p>
-<p><strong>Tüm veri seti için Ortalama Maliyet ($J(w)$):</strong>
-$$J(w) = - \frac{1}{m} \sum_{i=1}^{m} [y^{(i)} \log(\hat{y}^{(i)}) + (1-y^{(i)}) \log(1-\hat{y}^{(i)})]$$</p>
-<ul>
-<li>Eğer $y=1$ ise; formül $-\log(\hat{y})$ olur. $\hat{y}$ 1'e yaklaştıkça hata 0'a iner.</li>
-<li>Eğer $y=0$ ise; formül $-\log(1-\hat{y})$ olur. $\hat{y}$ 0'a yaklaştıkça hata 0'a iner.</li>
-</ul>
-<hr />
-<h2 id="c-optimizasyon-yontemleri-agrlk-guncelleme">C. Optimizasyon Yöntemleri (Ağırlık Güncelleme)</h2>
-<p>Maliyet fonksiyonunu ($J(w)$) minimize eden en iyi ağırlıkları ($w$) bulmak için iki temel yöntem vardır.</p>
-<h3 id="1-gradient-descent-gradyan-inis">1. Gradient Descent (Gradyan İniş)</h3>
-<p>En yaygın yöntemdir. Maliyet fonksiyonunun türevini (eğimini) alarak, eğimin tersi yönünde küçük adımlar atarız.</p>
-<p><strong>Güncelleme Kuralı:</strong>
-$$w_{yeni} = w_{eski} - \alpha \nabla J(w)$$</p>
-<ul>
-<li>$\alpha$: Öğrenme oranı (Learning Rate).</li>
-<li>$\nabla J$: Gradyan (Türev) vektörü.</li>
-</ul>
-<p>Lojistik regresyon için türev şaşırtıcı derecede sadedir:
-$$\frac{\partial J}{\partial w} = \frac{1}{m} \sum ( \hat{y}^{(i)} - y^{(i)} ) x^{(i)}$$</p>
-<h3 id="2-irls-newton-raphson-yontemi">2. IRLS / Newton-Raphson Yöntemi</h3>
-<p>Daha ileri düzey bir optimizasyondur. Sadece eğime (1. türev) değil, eğimin değişim hızına (2. türev / Eğrilik) da bakar.</p>
-<p><strong>Özellikleri:</strong></p>
-<ul>
-<li><strong>Hessian Matrisi ($H$):</strong> İkinci türevlerden oluşan matristir.</li>
-<li><strong>Hız:</strong> Gradient Descent'e göre çok daha az adımda (iterasyonda) sonuca ulaşır.</li>
-<li><strong>Maliyet:</strong> Hessian matrisinin tersini ($H^{-1}$) almak hesaplama açısından çok pahalıdır ($O(D^3)$). Bu yüzden çok büyük veri setlerinde tercih edilmez.</li>
-</ul>
-<p><strong>Güncelleme Kuralı:</strong>
-$$w_{yeni} = w_{eski} - H^{-1} \nabla J(w)$$</p>
-<p>Bu yönteme, Lojistik Regresyon bağlamında <strong>IRLS (Iterative Reweighted Least Squares)</strong> adı da verilir.</p>
-<div class="admonition warning">
-<p class="admonition-title">Kritik Sınav Bilgisi</p>
-<p>Vize sorularında "Gradient Descent ile Newton Yöntemi arasındaki fark nedir?" sorusu klasiktir.
-Cevap: Gradient Descent 1. türevi kullanır (yavaştır ama ucuzdur), Newton yöntemi 2. türevi (Hessian) kullanır (hızlıdır ama işlem maliyeti yüksektir).</p>
-</div>
-<hr />
-<h2 id="d-mlp-multi-layer-perceptron-baglants">D. MLP (Multi-Layer Perceptron) Bağlantısı</h2>
-<p>Bu dersin en önemli aydınlanma anı şurasıdır:</p>
-<p><strong>Lojistik Regresyon, aslında tek bir nörondan oluşan bir Sinir Ağıdır.</strong></p>
-<p>Eğer bir Yapay Sinir Ağı (YSA) çizerseniz ve bu ağda:
-1.  Sadece girdi katmanı ve çıktı katmanı varsa (Gizli katman yoksa),
-2.  Çıktı nöronunda aktivasyon fonksiyonu olarak <strong>Sigmoid</strong> kullanılıyorsa,
-3.  Loss fonksiyonu olarak <strong>Cross-Entropy</strong> kullanılıyorsa,</p>
-<p>Bu yapı matematiksel olarak Lojistik Regresyon ile <strong>birebir aynıdır</strong>. Bu yüzden Lojistik Regresyon, Derin Öğrenmeye girişin kapısıdır.</p>
 
 
 
