@@ -7,8 +7,9 @@ theme:
     scheme: default
   features:
     - navigation.tracking
-    - navigation.expand
     - navigation.indexes
+    #- navigation.sections
+    - navigation.top
     # navigation.instant bilerek kapalı, MathJax ile bazen sorun çıkarıyor
 
 markdown_extensions:

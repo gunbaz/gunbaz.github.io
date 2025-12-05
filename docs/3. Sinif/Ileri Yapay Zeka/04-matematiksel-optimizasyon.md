@@ -94,6 +94,7 @@ $$r_i = y_i - (ax_i + b)$$
 ![En Küçük Kareler]( ../../images/en_kucuk_kareler.png )
 
 
+
 ### Amaç Fonksiyonu
 Amacımız hataları sıfırlamak değil (imkansız olabilir), hataların büyüklüğünü minimize etmektir. Negatif hatalar pozitifleri götürmesin diye **kareleri toplamını** minimize ederiz.
 
@@ -112,3 +113,22 @@ Bu işlem bize kapalı formda (Analytical Solution) optimal $a^*$ ve $b^*$ değe
 !!! note "Öğrenci Notu"
     Neden Mutlak Değer ($|r_i|$) değil de Kare ($r_i^2$) kullanıyoruz?
     Çünkü kare fonksiyonu her noktada türevi alınabilir (differentiable) bir fonksiyondur. Mutlak değer fonksiyonunun $0$ noktasında türevi yoktur (sivri uç), bu da optimizasyonu zorlaştırır.
+
+!!! note "İspat: Eğim (m) Formülünün Türetilmesi"
+    Amaç, Hata Kareler Toplamı (SSE) fonksiyonunu minimize etmektir:
+    $$E(m, c) = \sum_{i=1}^{n} (y_i - (mx_i + c))^2$$
+
+    **1. Türev Al ve Sıfıra Eşitle:**
+    Eğimi bulmak için fonksiyonun $m$'ye göre kısmi türevini alıp 0'a eşitleriz (Zincir kuralı uygulanır):
+    $$\frac{\partial E}{\partial m} = \sum_{i=1}^{n} 2(y_i - (mx_i + c)) \cdot (-x_i) = 0$$
+
+    **2. Düzenle ve Dağıt:**
+    Her iki tarafı -2'ye bölüp, toplam sembolünü terimlere dağıtırsak:
+    $$\begin{align} \sum (y_i - mx_i - c)x_i &= 0 \\\\ \sum x_i y_i - m \sum x_i^2 - c \sum x_i &= 0 \\\\ \sum x_i y_i &= m \sum x_i^2 + c \sum x_i \end{align}$$
+
+    **3. Yerine Koyma (Substitution):**
+    Sabit terim ($c$) için bildiğimiz $c = \bar{y} - m\bar{x}$ eşitliğini ve $\sum x_i = n\bar{x}$ bilgisini denklemde yerine koyup $m$'yi yalnız bırakırız.
+
+    **4. Sonuç:**
+    Gerekli cebirsel dönüşümler (kovaryans ve varyans formuna geçiş) yapıldığında nihai formül elde edilir:
+    $$m = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^{n} (x_i - \bar{x})^2}$$
