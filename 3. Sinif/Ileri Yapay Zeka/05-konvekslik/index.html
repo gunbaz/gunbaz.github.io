@@ -245,9 +245,7 @@
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -308,9 +306,7 @@
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
         
           
           <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
@@ -993,6 +989,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#temel-teorem_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Temel Teorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ozet-tablo" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1260,6 +1267,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#temel-teorem_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Temel Teorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ozet-tablo" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1310,15 +1328,59 @@
 <h3 id="onemli-konveks-kumeler">Önemli Konveks Kümeler</h3>
 <p>Sınavlarda "Aşağıdakilerden hangisi konveks kümedir?" sorusuyla sık karşılaşılır.</p>
 <ol>
-<li><strong>Lineer Eşitsizlikler (Yarı Uzaylar):</strong>
+<li>
+<p><strong>Lineer Eşitsizlikler (Yarı Uzaylar):</strong>
     $$Ax \le b$$
-    Bir uzayı bıçakla ikiye kestiğinizi düşünün. Kalan parça (Yarı Uzay) her zaman konvekstir.</li>
-<li><strong>Lineer Eşitlikler (Hiper Düzlemler):</strong>
+    Bir uzayı bıçakla ikiye kestiğinizi düşünün. Kalan parça (Yarı Uzay) her zaman konvekstir.</p>
+<div class="admonition note">
+<p class="admonition-title">İspat: Lineer Eşitsizliğin Konveksliği</p>
+<p>Küme: $$ C = {x \in \mathbb{R}^n : Ax \le b} $$
+İspat Mantığı: $x, y \in C$ olsun. $0 \le \theta \le 1$ için $z = \theta x + (1-\theta)y$ alalım.
+$Az = A(\theta x + (1-\theta)y) = \theta Ax + (1-\theta)Ay \le \theta b + (1-\theta)b = b$.
+Sonuç: $z \in C$, yani küme konvekstir.</p>
+</div>
+</li>
+<li>
+<p><strong>Lineer Eşitlikler (Hiper Düzlemler):</strong>
     $$Ax = b$$
-    Doğrular, düzlemler ve hiper düzlemler konvekstir.</li>
-<li><strong>Kesişim Özelliği (Intersection):</strong>
+    Doğrular, düzlemler ve hiper düzlemler konvekstir.</p>
+<div class="admonition note">
+<p class="admonition-title">İspat 2: Lineer Eşitliklerin (Hiper Düzlem) Konveksliği</p>
+<p><strong>Teorem:</strong> $C = {x \in \mathbb{R}^n : Ax = b}$ kümesi konvekstir.</p>
+<p><strong>Kanıt:</strong></p>
+<ol>
+<li>$x, y \in C$ olsun. Bu durumda $Ax = b$ ve $Ay = b$ dir.</li>
+<li>Konveks kombinasyon $z = \theta x + (1-\theta)y$ olsun.</li>
+<li>Matris çarpımının lineerlik özelliğini kullanalım:
+$$
+\begin{align}
+Az &amp;= A(\theta x + (1-\theta)y) \\
+    &amp;= \theta (Ax) + (1-\theta)(Ay) \\
+    &amp;= \theta b + (1-\theta)b \\
+    &amp;= b
+    \end{align}
+$$
+<strong>Sonuç:</strong> $Az = b$ şartı korunduğu için $z \in C$ dir. Hiper düzlemler konvekstir.</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Kesişim Özelliği (Intersection):</strong>
     İki veya daha fazla konveks kümenin kesişimi, <strong>her zaman konvekstir</strong>. (Örn: İki dairenin kesişim bölgesi).
-    $$C_1 \cap C_2 \implies \text{Konveks}$$</li>
+    $$C_1 \cap C_2 \implies \text{Konveks}$$</p>
+<div class="admonition note">
+<p class="admonition-title">İspat 3: Konveks Kümelerin Kesişimi</p>
+<p><strong>Teorem:</strong> $C_1$ ve $C_2$ konveks kümeler ise, kesişimleri $C_{int} = C_1 \cap C_2$ de konvekstir.</p>
+<p><strong>Kanıt:</strong>
+1. Kesişim kümesinden iki nokta $x, y \in C_{int}$ alalım.
+2. Kesişimin tanımı gereği: $x, y \in C_1$ <strong>VE</strong> $x, y \in C_2$ dir.
+3. $C_1$ konveks olduğu için, bu iki noktanın karışımı $z = \theta x + (1-\theta)y$, $C_1$'in içindedir ($z \in C_1$).
+4. Aynı şekilde $C_2$ de konveks olduğu için, $z \in C_2$ dir.
+5. $z$ hem $C_1$'de hem de $C_2$'de olduğuna göre:
+$$z \in C_1 \cap C_2$$
+<strong>Sonuç:</strong> Kesişim kümesi konvekstir.</p>
+</div>
+</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Kritik Sınav Bilgisi</p>
@@ -1388,6 +1450,34 @@ $$z^T \nabla^2 f(x) z \ge 0$$</p>
 <p><strong>"Konveks bir optimizasyon probleminde (Amaç fonksiyonu konveks + Kısıt kümesi konveks), bulunan herhangi bir lokal optimum, aynı zamanda GLOBAL OPTIMUMDUR."</strong></p>
 </blockquote>
 <p>Bu demektir ki; eğer probleminizin konveks olduğunu ispatlarsanız, Gradient Descent ile bulduğunuz sonucun "En iyi sonuç" olduğundan %100 emin olabilirsiniz.</p>
+<h3 id="temel-teorem_1">Temel Teorem</h3>
+<p>"Konveks bir optimizasyon probleminde (Amaç fonksiyonu konveks + Kısıt kümesi konveks), bulunan herhangi bir lokal optimum, aynı zamanda GLOBAL OPTIMUMDUR."</p>
+<p>Bu demektir ki; eğer probleminizin konveks olduğunu ispatlarsanız, Gradient Descent ile bulduğunuz sonucun "En iyi sonuç" olduğundan %100 emin olabilirsiniz.</p>
+<div class="admonition note">
+<p class="admonition-title">İspat: Yerel Minimumun Global Oluşu</p>
+<p><strong>Teorem:</strong> $f(x)$ konveks bir fonksiyon ise, herhangi bir yerel minimum ($x^{\ast}$) aynı zamanda global minimumdur.</p>
+<p><strong>Kanıt (Çelişki Yöntemi ile):</strong></p>
+<ol>
+<li><strong>Varsayım:</strong> Diyelim ki $x^{\ast}$ bir yerel minimumdur ancak <strong>global minimum değildir</strong>.</li>
+<li><strong>Global Minimumun Varlığı:</strong> Bu durumda, tanım kümesi içinde $f(y) &lt; f(x^{\ast})$ şartını sağlayan başka bir $y$ noktası (global minimum) bulunmalıdır.</li>
+<li><strong>Ara Nokta Seçimi:</strong> $x^{\ast}$ ile $y$ arasında bir $z$ noktası tanımlayalım. $\theta$, 0 ile 1 arasında çok küçük bir sayı olsun ($0 &lt; \theta \le 1$):
+    $$z = \theta y + (1-\theta)x^{\ast}$$
+    ($\theta$ yeterince küçük seçildiğinde, $z$ noktası $x^{\ast}$'ın "yerel komşuluğuna" girer).</li>
+<li><strong>Konvekslik Tanımı:</strong> $f$ fonksiyonu konveks olduğu için Jensen eşitsizliği geçerlidir:
+    $$f(z) \le \theta f(y) + (1-\theta)f(x^{\ast})$$</li>
+<li><strong>Eşitsizlik Analizi:</strong> $f(y) &lt; f(x^{\ast})$ olduğunu biliyoruz. Bunu eşitsizliğin sağ tarafına uygularsak:
+    $$
+    \begin{align}
+    f(z) &amp;\le \theta f(y) + (1-\theta)f(x^{\ast}) \\
+         &amp;&lt; \theta f(x^{\ast}) + (1-\theta)f(x^{\ast}) \quad (\text{Çünkü } f(y) &lt; f(x^{\ast})) \\
+         &amp;= (\theta + 1 - \theta)f(x^{\ast}) \\
+         &amp;= f(x^{\ast})
+    \end{align}
+    $$</li>
+<li><strong>Çelişki:</strong> Sonuç olarak $f(z) &lt; f(x^{\ast})$ bulduk. Yani $x^{\ast}$'ın çok yakınında, ondan daha küçük değere sahip bir $z$ noktası var. Bu durum, $x^{\ast}$'ın <strong>yerel minimum</strong> olması tanımıyla çelişir.</li>
+<li><strong>Sonuç:</strong> Varsayım yanlıştır. Konveks bir fonksiyonda $x^{\ast}$ yerel minimum ise, zorunlu olarak global minimumdur.</li>
+</ol>
+</div>
 <p><img alt="Global Optimum Garantisi" src="../../../images/global_optimum_garantisi.png" /></p>
 <h3 id="ozet-tablo">Özet Tablo</h3>
 <table>
@@ -1441,6 +1531,12 @@ $$z^T \nabla^2 f(x) z \ge 0$$</p>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Başa dön
+</button>
+        
       </main>
       
         <footer class="md-footer">
@@ -1470,7 +1566,7 @@ $$z^T \nabla^2 f(x) z \ge 0$$</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tracking", "navigation.expand", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Kopyaland\u0131", "clipboard.copy": "Kopyala", "search.result.more.one": "Bu sayfada 1 tane daha", "search.result.more.other": "Bu sayfada # tane daha", "search.result.none": "E\u015fle\u015fen dok\u00fcman bulunamad\u0131", "search.result.one": "1 dok\u00fcman bulundu", "search.result.other": "# dok\u00fcman bulundu", "search.result.placeholder": "Aramaya ba\u015flamak i\u00e7in yaz\u0131n", "search.result.term.missing": "Eksik", "select.version": "Versiyon se\u00e7"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tracking", "navigation.indexes", "navigation.top"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Kopyaland\u0131", "clipboard.copy": "Kopyala", "search.result.more.one": "Bu sayfada 1 tane daha", "search.result.more.other": "Bu sayfada # tane daha", "search.result.none": "E\u015fle\u015fen dok\u00fcman bulunamad\u0131", "search.result.one": "1 dok\u00fcman bulundu", "search.result.other": "# dok\u00fcman bulundu", "search.result.placeholder": "Aramaya ba\u015flamak i\u00e7in yaz\u0131n", "search.result.term.missing": "Eksik", "select.version": "Versiyon se\u00e7"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
