@@ -86,6 +86,7 @@ Hedef etiketleri ($y$) sayısal vektörlere çevrilir. Sadece doğru sınıfın 
 ## 4. Uygulama: Elle Hesaplama Örneği (Vize Sorusu Tipi)
 
 Basit bir ağ düşünelim:
+
 * **Giriş:** $x = 0.5$
 * **Hedef:** $y = 1.0$
 * **Ağırlık (Giriş-Gizli):** $w_1 = 0.5$
