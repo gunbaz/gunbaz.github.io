@@ -108,7 +108,7 @@ Kalkülüs kullanarak türev alır ve sıfıra eşitleriz:
 1.  Hata fonksiyonunun $a$'ya göre kısmi türevi alınır ve 0'a eşitlenir: $\frac{\partial J}{\partial a} = 0$
 2.  Hata fonksiyonunun $b$'ye göre kısmi türevi alınır ve 0'a eşitlenir: $\frac{\partial J}{\partial b} = 0$
 
-Bu işlem bize kapalı formda (Analytical Solution) optimal $a^\*$ ve $b^\*$ değerlerini verir.
+Bu işlem bize kapalı formda (Analytical Solution) optimal $a^{ast}$ ve $b^{ast}$ değerlerini verir.
 
 !!! note "Öğrenci Notu"
     Neden Mutlak Değer ($|r_i|$) değil de Kare ($r_i^2$) kullanıyoruz?
