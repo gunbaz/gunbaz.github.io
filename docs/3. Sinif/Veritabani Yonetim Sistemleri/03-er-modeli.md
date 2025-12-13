@@ -65,6 +65,7 @@ Tek bir atomik değere sahip olan, daha fazla bölünemeyen niteliktir (Örn: `Y
 
 ### Birleşik Nitelik (Composite - Örn: Adres)
 Daha küçük, anlamlı alt bileşenlere ayrılabilen niteliktir.
+
 * Örn: `Adres` niteliği; `Sokak`, `Cadde`, `Şehir`, `PostaKodu` gibi alt niteliklerden oluşur.
 
 ### Türetilen Nitelik (Derived - Örn: Doğum tarihinden Yaş hesaplama)
@@ -169,7 +170,7 @@ Bir varlık kümesindeki her kaydı **benzersiz** şekilde tanımlayabilen özni
 ### Aday Anahtar (Candidate Key)
 Süper anahtar olup, **minimumluk (minimality)** şartını sağlayan öznitelik kümesidir. Yani, bu kümeden herhangi bir öznitelik çıkarılırsa, artık kaydı benzersiz tanımlayamaz.
 
-* Örn: $\{TCKimlikNo\}$, $\{Email\}$ (Benzersiz ise). $\{TCKimlikNo, Ad\}$ aday anahtar değildir, çünkü `Ad` çıkarılabilir.
+* Örn: $\{TCKimlikNo\}$, $\{Email\}$ (Benzersiz ise). $\{ Ad\}$ aday anahtar değildir, çünkü `Ad` çıkarılabilir.
 
 ### Birincil Anahtar (Primary Key) - Kuralları (Unique + Not Null)
 VTYS tasarımcısı tarafından **aday anahtarlar arasından** seçilen, varlık kümesini benzersiz tanımlamak için kullanılan anahtardır.
@@ -192,7 +193,7 @@ Bir tablodaki kaydın, **başka bir tablonun birincil anahtarını** referans g�
 
 ## 10. Güçlü ve Zayıf Varlık Kümeleri
 
-![Zayıf Varlık Gösterimi]( ../../images/er_zayif_varlik.png )
+![Zayıf Varlık Gösterimi]( ../../images/er_zayif_varlik.png )   
 
 ### Güçlü Varlık Kümesi (Kendi anahtarı olan)
 Kendi Birincil Anahtarını (Primary Key) **benzersiz bir şekilde tanımlayabilen** varlık kümesidir. Varlığı, başka bir varlığa bağımlı değildir. E-R diyagramında tek dikdörtgenle gösterilir.
