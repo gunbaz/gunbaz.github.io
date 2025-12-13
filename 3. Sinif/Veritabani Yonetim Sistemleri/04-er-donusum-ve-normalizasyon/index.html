@@ -1,0 +1,2839 @@
+
+<!doctype html>
+<html lang="tr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../03-er-modeli/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>ER Modelden Tabloya Dönüşüm ve Normalizasyon - Veri Defteri</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#er-modelden-tabloya-donusum-ve-normalizasyon" class="md-skip">
+          Ana içeriğe geç
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Başlık">
+    <a href="../../.." title="Veri Defteri" class="md-header__button md-logo" aria-label="Veri Defteri" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Veri Defteri
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ER Modelden Tabloya Dönüşüm ve Normalizasyon
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Ara" placeholder="Ara" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Ara">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Temizle" aria-label="Temizle" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Arama başlatılıyor
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigasyon" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Veri Defteri" class="md-nav__button md-logo" aria-label="Veri Defteri" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Veri Defteri
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Veri Defteri'ne Hoşgeldiniz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Sinif
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Sinif
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sayisal Isaret Isleme
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sayisal Isaret Isleme
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2.%20Sinif/Sayisal%20Isaret%20Isleme/01-ayrik-zamanli-isaretler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sayısal İşaret İşleme: Ayrık Zamanlı İşaretler ve Temel Özellikler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2.%20Sinif/Sayisal%20Isaret%20Isleme/02-ayrik-zamanli-sistemler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ayrık Zamanlı Sistemler (Discrete-Time Systems)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2.%20Sinif/Sayisal%20Isaret%20Isleme/03-konvolusyon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Konvolüsyon Toplamı (Convolution Sum)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2.%20Sinif/Sayisal%20Isaret%20Isleme/04-fark-denklemleri/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fark Denklemleri (Difference Equations)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2.%20Sinif/Sayisal%20Isaret%20Isleme/05-fourier-analizi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fourier Analizi ve Frekans Cevabı
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2.%20Sinif/Sayisal%20Isaret%20Isleme/06-ornekleme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Örnekleme ve Geri Çatma (Sampling &amp; Reconstruction)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Sinif
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Sinif
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ileri Yapay Zeka
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ileri Yapay Zeka
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ileri%20Yapay%20Zeka/01-arama-algoritmalari/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Yapay Zekada Arama Algoritmaları
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ileri%20Yapay%20Zeka/02-lojistik-regresyon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Makine Öğrenmesi - Lojistik Regresyon (Logistic Regression)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ileri%20Yapay%20Zeka/03-yapay-sinir-aglari/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Yapay Sinir Ağları (Neural Networks)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ileri%20Yapay%20Zeka/04-matematiksel-optimizasyon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Matematiksel Optimizasyonun Temelleri
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ileri%20Yapay%20Zeka/05-konvekslik/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Konvekslik – Fonksiyonlar, Kümeler ve Özellikleri
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ileri%20Yapay%20Zeka/06-pekistirmeli-ogrenme-temelleri/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pekiştirmeli Öğrenme (Reinforcement Learning) – Temel Yapı
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Veritabani Yonetim Sistemleri
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Veritabani Yonetim Sistemleri
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-giris/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Veri Tabanı Yönetim Sistemleri (VTYS) Giriş
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-vtys-mimari-kavramlar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Veritabanı Mimarisi ve Temel Kavramlar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-er-modeli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Varlık-İlişki (E-R) Modeli ve Veritabanı Tasarımı
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ER Modelden Tabloya Dönüşüm ve Normalizasyon
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ER Modelden Tabloya Dönüşüm ve Normalizasyon
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      İçindekiler
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-er-diyagramlarnn-tabloya-donusturulmesi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ER Diyagramlarının Tabloya Dönüştürülmesi
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. ER Diyagramlarının Tabloya Dönüştürülmesi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bire-bir-11-iliskilerin-donusturulmesi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bire Bir (1:1) İlişkilerin Dönüştürülmesi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#birden-coga-1n-iliskilerin-donusturulmesi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Birden Çoğa (1:N) İlişkilerin Dönüştürülmesi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coka-cok-mn-iliskilerin-donusturulmesi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Çoka Çok (M:N) İlişkilerin Dönüştürülmesi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cok-degerli-ozniteliklerin-donusturulmesi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Çok Değerli Özniteliklerin Dönüştürülmesi
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-normalizasyon-giris" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Normalizasyon Giriş
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Normalizasyon Giriş">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normalizasyonun-amaclar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normalizasyonun Amaçları
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normalizasyon-asamalar-genel-baks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normalizasyon Aşamaları (Genel Bakış)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-bagmllk-turleri-dependency-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Bağımlılık Türleri (Dependency Types)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Bağımlılık Türleri (Dependency Types)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fonksiyonel-bagmllk-functional-dependency-fd-x-rightarrow-y-gosterimiyle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fonksiyonel Bağımlılık (Functional Dependency - FD) -&gt; $X \rightarrow Y$ gösterimiyle.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tam-fonksiyonel-bagmllk-full-functional-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tam Fonksiyonel Bağımlılık (Full Functional Dependency)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ksmi-bagmllk-partial-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kısmi Bağımlılık (Partial Dependency)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gecisli-bagmllk-transitive-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Geçişli Bağımlılık (Transitive Dependency)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cok-degerli-bagmllk-multivalued-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Çok Değerli Bağımlılık (Multivalued Dependency)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-normal-formlar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Normal Formlar
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Normal Formlar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normal-olmayan-form-unnormalized-form-unf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normal Olmayan Form (Unnormalized Form - UNF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#birinci-normal-form-1nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Birinci Normal Form (1NF)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Birinci Normal Form (1NF)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kural-atomik-degerler-tekrarlayan-grup-yok" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kural: Atomik Değerler, Tekrarlayan Grup Yok.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-nf-sorunlar-anomalies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 NF Sorunları (Anomalies)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ikinci-normal-form-2nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        İkinci Normal Form (2NF)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="İkinci Normal Form (2NF)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kural-1nf-ksmi-bagmllk-yok" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kural: 1NF + Kısmi Bağımlılık Yok
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2nf-sorunlar-hala-gecisli-bagmllklar-var" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2NF Sorunları: Hâlâ Geçişli Bağımlılıklar Var.
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ucuncu-normal-form-3nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Üçüncü Normal Form (3NF)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Üçüncü Normal Form (3NF)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kural-2nf-gecisli-bagmllk-yok" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kural: 2NF + Geçişli Bağımlılık Yok
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boyce-codd-normal-formu-bcnf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boyce-Codd Normal Formu (BCNF)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Boyce-Codd Normal Formu (BCNF)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kural-her-determinant-bir-aday-anahtar-olmal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kural: Her Determinant Bir Aday Anahtar Olmalı
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dorduncu-normal-form-4nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dördüncü Normal Form (4NF)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dördüncü Normal Form (4NF)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kural-bcnf-cok-degerli-bagmllk-yok" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kural: BCNF + Çok Değerli Bağımlılık Yok
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-normalizasyon-uygulama-ornekleri" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Normalizasyon Uygulama Örnekleri
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Normalizasyon Uygulama Örnekleri">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ornek-1-okul-tablosu-cozumlemesi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Örnek 1: Okul Tablosu Çözümlemesi
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Örnek 1: Okul Tablosu Çözümlemesi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#baslangc-normal-olmayan-form-unf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Başlangıç: Normal Olmayan Form (UNF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adm-1-birinci-normal-form-1nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 1: Birinci Normal Form (1NF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adm-2-ikinci-normal-form-2nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 2: İkinci Normal Form (2NF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adm-3-ucuncu-normal-form-3nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 3: Üçüncü Normal Form (3NF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ornek-2-bilgisayar-kasasurun-parca-cozumlemesi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Örnek 2: Bilgisayar Kasası/Ürün Parça Çözümlemesi
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Örnek 2: Bilgisayar Kasası/Ürün Parça Çözümlemesi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#baslangc-normal-olmayan-form-unf_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Başlangıç: Normal Olmayan Form (UNF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adm-1-birinci-normal-form-1nf_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 1: Birinci Normal Form (1NF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adm-2-ikinci-normal-form-2nf_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 2: İkinci Normal Form (2NF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adm-3-ucuncu-normal-form-3nf_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 3: Üçüncü Normal Form (3NF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ornek-3-siparis-sistemi-cozumlemesi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Örnek 3: Sipariş Sistemi Çözümlemesi
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Örnek 3: Sipariş Sistemi Çözümlemesi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adm-1-birinci-normal-form-1nf_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 1: Birinci Normal Form (1NF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adm-2-ikinci-normal-form-2nf_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 2: İkinci Normal Form (2NF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adm-3-ucuncu-normal-form-3nf_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 3: Üçüncü Normal Form (3NF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      İçindekiler
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-er-diyagramlarnn-tabloya-donusturulmesi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ER Diyagramlarının Tabloya Dönüştürülmesi
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. ER Diyagramlarının Tabloya Dönüştürülmesi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bire-bir-11-iliskilerin-donusturulmesi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bire Bir (1:1) İlişkilerin Dönüştürülmesi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#birden-coga-1n-iliskilerin-donusturulmesi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Birden Çoğa (1:N) İlişkilerin Dönüştürülmesi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coka-cok-mn-iliskilerin-donusturulmesi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Çoka Çok (M:N) İlişkilerin Dönüştürülmesi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cok-degerli-ozniteliklerin-donusturulmesi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Çok Değerli Özniteliklerin Dönüştürülmesi
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-normalizasyon-giris" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Normalizasyon Giriş
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Normalizasyon Giriş">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normalizasyonun-amaclar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normalizasyonun Amaçları
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normalizasyon-asamalar-genel-baks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normalizasyon Aşamaları (Genel Bakış)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-bagmllk-turleri-dependency-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Bağımlılık Türleri (Dependency Types)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Bağımlılık Türleri (Dependency Types)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fonksiyonel-bagmllk-functional-dependency-fd-x-rightarrow-y-gosterimiyle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fonksiyonel Bağımlılık (Functional Dependency - FD) -&gt; $X \rightarrow Y$ gösterimiyle.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tam-fonksiyonel-bagmllk-full-functional-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tam Fonksiyonel Bağımlılık (Full Functional Dependency)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ksmi-bagmllk-partial-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kısmi Bağımlılık (Partial Dependency)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gecisli-bagmllk-transitive-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Geçişli Bağımlılık (Transitive Dependency)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cok-degerli-bagmllk-multivalued-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Çok Değerli Bağımlılık (Multivalued Dependency)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-normal-formlar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Normal Formlar
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Normal Formlar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normal-olmayan-form-unnormalized-form-unf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normal Olmayan Form (Unnormalized Form - UNF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#birinci-normal-form-1nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Birinci Normal Form (1NF)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Birinci Normal Form (1NF)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kural-atomik-degerler-tekrarlayan-grup-yok" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kural: Atomik Değerler, Tekrarlayan Grup Yok.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-nf-sorunlar-anomalies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 NF Sorunları (Anomalies)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ikinci-normal-form-2nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        İkinci Normal Form (2NF)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="İkinci Normal Form (2NF)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kural-1nf-ksmi-bagmllk-yok" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kural: 1NF + Kısmi Bağımlılık Yok
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2nf-sorunlar-hala-gecisli-bagmllklar-var" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2NF Sorunları: Hâlâ Geçişli Bağımlılıklar Var.
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ucuncu-normal-form-3nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Üçüncü Normal Form (3NF)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Üçüncü Normal Form (3NF)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kural-2nf-gecisli-bagmllk-yok" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kural: 2NF + Geçişli Bağımlılık Yok
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boyce-codd-normal-formu-bcnf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boyce-Codd Normal Formu (BCNF)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Boyce-Codd Normal Formu (BCNF)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kural-her-determinant-bir-aday-anahtar-olmal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kural: Her Determinant Bir Aday Anahtar Olmalı
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dorduncu-normal-form-4nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dördüncü Normal Form (4NF)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dördüncü Normal Form (4NF)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kural-bcnf-cok-degerli-bagmllk-yok" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kural: BCNF + Çok Değerli Bağımlılık Yok
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-normalizasyon-uygulama-ornekleri" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Normalizasyon Uygulama Örnekleri
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Normalizasyon Uygulama Örnekleri">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ornek-1-okul-tablosu-cozumlemesi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Örnek 1: Okul Tablosu Çözümlemesi
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Örnek 1: Okul Tablosu Çözümlemesi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#baslangc-normal-olmayan-form-unf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Başlangıç: Normal Olmayan Form (UNF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adm-1-birinci-normal-form-1nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 1: Birinci Normal Form (1NF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adm-2-ikinci-normal-form-2nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 2: İkinci Normal Form (2NF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adm-3-ucuncu-normal-form-3nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 3: Üçüncü Normal Form (3NF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ornek-2-bilgisayar-kasasurun-parca-cozumlemesi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Örnek 2: Bilgisayar Kasası/Ürün Parça Çözümlemesi
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Örnek 2: Bilgisayar Kasası/Ürün Parça Çözümlemesi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#baslangc-normal-olmayan-form-unf_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Başlangıç: Normal Olmayan Form (UNF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adm-1-birinci-normal-form-1nf_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 1: Birinci Normal Form (1NF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adm-2-ikinci-normal-form-2nf_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 2: İkinci Normal Form (2NF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adm-3-ucuncu-normal-form-3nf_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 3: Üçüncü Normal Form (3NF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ornek-3-siparis-sistemi-cozumlemesi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Örnek 3: Sipariş Sistemi Çözümlemesi
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Örnek 3: Sipariş Sistemi Çözümlemesi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adm-1-birinci-normal-form-1nf_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 1: Birinci Normal Form (1NF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adm-2-ikinci-normal-form-2nf_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 2: İkinci Normal Form (2NF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adm-3-ucuncu-normal-form-3nf_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adım 3: Üçüncü Normal Form (3NF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="er-modelden-tabloya-donusum-ve-normalizasyon">ER Modelden Tabloya Dönüşüm ve Normalizasyon</h1>
+<p>Bu bölüm, veritabanı tasarımının <strong>mantıksal tasarım</strong> aşamasını kapsamaktadır. Kavramsal olarak tasarlanan ER diyagramlarının ilişkisel tablolara dönüştürülmesi (Mapping) kuralları ve veri tabanı performansını, bütünlüğünü ve tutarlılığını sağlamak için uygulanan <strong>Normalizasyon</strong> süreçleri (1NF, 2NF, 3NF, BCNF) detaylı analiz örnekleriyle ele alınmıştır.</p>
+<hr />
+<h2 id="1-er-diyagramlarnn-tabloya-donusturulmesi">1. ER Diyagramlarının Tabloya Dönüştürülmesi</h2>
+<p>Kavramsal tasarım aşamasının çıktısı olan ER Diyagramları, mantıksal tasarım aşamasında İlişkisel Modelin temel yapı taşı olan tablolara dönüştürülür. Bu dönüşümde anahtarların (PK ve FK) doğru yerleştirilmesi kritiktir.</p>
+<h3 id="bire-bir-11-iliskilerin-donusturulmesi">Bire Bir (1:1) İlişkilerin Dönüştürülmesi</h3>
+<p>Bir varlık kümesindeki her kaydın, diğer varlık kümesindeki en fazla bir kayıtla ilişkilendirildiği durumdur.</p>
+<div class="admonition note">
+<p class="admonition-title">Dönüşüm Kuralı (1:1)</p>
+<p>Dönüşüm için iki geçerli yol vardır:</p>
+<ol>
+<li>İki tablo ayrı tutulur ve <strong>birinci tablonun PK'sı, ikinci tabloya FK olarak eklenir.</strong></li>
+<li>En az NULL değer içerecek taraf seçilir ve o tabloya diğer tablonun PK'sı FK olarak eklenir. (NULL içermeyecek tabloya eklemek tercih edilir).</li>
+<li>Alternatif olarak, iki tablo tek bir tabloda birleştirilebilir.</li>
+</ol>
+</div>
+<ul>
+<li><strong>Örnek:</strong> <code>Personel</code> (1:1) <code>OtoparkYeri</code>. <code>Personel</code> tablosunun PK'sı (<code>PersonelID</code>), <code>OtoparkYeri</code> tablosuna FK olarak eklenir ve bu FK aynı zamanda PK veya Unique kısıtlı olarak tanımlanır. </li>
+</ul>
+<h3 id="birden-coga-1n-iliskilerin-donusturulmesi">Birden Çoğa (1:N) İlişkilerin Dönüştürülmesi</h3>
+<p>Bu, ilişkisel veritabanı tasarımında en sık karşılaşılan kuraldır.</p>
+<div class="admonition warning">
+<p class="admonition-title">Dönüşüm Kuralı (1:N)</p>
+<p>İlişkiye katılan <strong>N tarafındaki</strong> (çoklu taraf) tabloya, <strong>1 tarafındaki</strong> (tekil taraf) tablonun Birincil Anahtarı (PK), Yabancı Anahtar (FK) olarak eklenir.</p>
+</div>
+<ul>
+<li><strong>Örnek:</strong> <code>Bölüm</code> (1:N) <code>Çalışan</code>. <code>Bölüm</code> tablosunun PK'sı (<code>BölümID</code>), <code>Çalışan</code> tablosuna FK olarak eklenir. Bu FK, <code>Çalışan</code> tablosunun PK'sının parçası değildir.</li>
+</ul>
+<h3 id="coka-cok-mn-iliskilerin-donusturulmesi">Çoka Çok (M:N) İlişkilerin Dönüştürülmesi</h3>
+<p>M:N ilişkileri, doğrudan tablolar arasına FK eklenerek temsil edilemez.</p>
+<p><img alt="M:N İlişki Dönüşümü" src="../../../images/norm_er_to_tablo.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">Dönüşüm Kuralı (M:N)</p>
+<p>Çoka çok ilişkileri çözmek için <strong>üçüncü bir ara tablo (Junction Table)</strong> oluşturulur.</p>
+<ol>
+<li>Ara tablonun içine, ilişkiye katılan her iki tablonun PK'ları FK olarak eklenir.</li>
+<li>Ara tablonun <strong>Birincil Anahtarı (PK)</strong>, bu iki FK'nın <strong>birleşimiyle (Composite Key)</strong> oluşur.</li>
+</ol>
+</div>
+<ul>
+<li><strong>Örnek:</strong> <code>Öğrenci</code> (M:N) <code>Ders</code>. Ara tablo <code>Kayıt</code> oluşur. PK'sı: $\{\text{OgrenciID}, \text{DersKodu}\}$.</li>
+</ul>
+<h3 id="cok-degerli-ozniteliklerin-donusturulmesi">Çok Değerli Özniteliklerin Dönüştürülmesi</h3>
+<p>Bir varlığın aynı öznitelik için birden fazla değere sahip olabildiği durumlardır (Örn: <code>Personel</code>in <code>Telefon Numaraları</code>).</p>
+<div class="admonition note">
+<p class="admonition-title">Dönüşüm Kuralı (Çok Değerli)</p>
+<p>Çok değerli öznitelikler <strong>ayrı bir tabloya</strong> dönüştürülür.</p>
+<ol>
+<li>Yeni tabloda, çok değerli özniteliğin kendisi (Örn: <code>TelefonNo</code>) bir sütun olur.</li>
+<li>Bu yeni tabloya, ait olduğu varlık kümesinin PK'sı (Örn: <code>PersonelID</code>) FK olarak eklenir.</li>
+<li>Yeni tablonun PK'sı, <strong>FK ile çok değerli özniteliğin birleşimiyle</strong> oluşur.</li>
+</ol>
+</div>
+<ul>
+<li><strong>Örnek Tablo:</strong> <code>PersonelTelefonlari</code> ${\text{PersonelID (FK, PK parçası)}, \text{TelefonNo (PK parçası)}}$.</li>
+</ul>
+<hr />
+<h2 id="2-normalizasyon-giris">2. Normalizasyon Giriş</h2>
+<p>Normalizasyon, veri tekrarını (redundancy) azaltmak ve veri bütünlüğünü artırmak için tabloları sistematik bir şekilde ayrıştırma sürecidir.</p>
+<h3 id="normalizasyonun-amaclar">Normalizasyonun Amaçları</h3>
+<ul>
+<li><strong>Veri Bütünlüğü (Integrity):</strong> Güncelleme, ekleme ve silme anomalilerini (anomalies) ortadan kaldırmak.</li>
+<li><strong>Bağımsızlık:</strong> Veritabanını uygulamalardan daha bağımsız hale getirmek.</li>
+<li><strong>Performans:</strong> Veri tekrarını azaltarak depolama alanından tasarruf etmek ve veri erişim hızını artırmak (Teorik olarak, pratikte bazen denormalizasyon gerekebilir).</li>
+</ul>
+<h3 id="normalizasyon-asamalar-genel-baks">Normalizasyon Aşamaları (Genel Bakış)</h3>
+<p>Normalizasyon, bir dizi kural (Normal Form) üzerinden ilerler. Bir tablo, bir sonraki seviyeye geçmek için önceki seviyenin tüm kurallarını sağlamalıdır.</p>
+<p>$$1NF \subset 2NF \subset 3NF \subset BCNF$$</p>
+<p><img alt="Normalizasyon Aşamaları" src="../../../images/norm_kume_gosterimi.png" /></p>
+<hr />
+<h2 id="3-bagmllk-turleri-dependency-types">3. Bağımlılık Türleri (Dependency Types)</h2>
+<p>Normalizasyonun temelini, tablolar içindeki öznitelikler arasındaki bağımlılık ilişkileri oluşturur.</p>
+<p><img alt="Bağımlılık Türleri" src="../../../images/norm_bagimlilik_turleri.png" /></p>
+<h3 id="fonksiyonel-bagmllk-functional-dependency-fd-x-rightarrow-y-gosterimiyle">Fonksiyonel Bağımlılık (Functional Dependency - FD) -&gt; $X \rightarrow Y$ gösterimiyle.</h3>
+<p>Bir $R$ tablosundaki öznitelik kümesi $X$, $Y$ öznitelik kümesini fonksiyonel olarak belirlerse ($X \rightarrow Y$), bu şu demektir:</p>
+<ul>
+<li>$R$'nin herhangi iki kaydında, eğer $X$ değerleri eşitse, $Y$ değerleri de mutlaka eşit olmalıdır.</li>
+<li>$X$ değeri, $Y$ değerini benzersiz olarak belirler.</li>
+</ul>
+<h3 id="tam-fonksiyonel-bagmllk-full-functional-dependency">Tam Fonksiyonel Bağımlılık (Full Functional Dependency)</h3>
+<p>Bir öznitelik kümesi $X$, bir $Y$ özniteliğini fonksiyonel olarak belirliyorsa ($X \rightarrow Y$), ve $X$'in hiçbir <strong>öz alt kümesi</strong> ($X'$), $Y$'yi tek başına belirleyemiyorsa, bu bağımlılık tam fonksiyonel bağımlılıktır.</p>
+<h3 id="ksmi-bagmllk-partial-dependency">Kısmi Bağımlılık (Partial Dependency)</h3>
+<p>Bir tabloda, <strong>birincil anahtarın sadece bir parçası</strong> (öz alt kümesi) tablonun birincil anahtar olmayan özniteliklerinden birini belirliyorsa, bu kısmi bağımlılıktır.</p>
+<ul>
+<li>$\{A, B\} \rightarrow C$ iken, $A \rightarrow C$ şartı sağlanıyorsa, $\{A, B\} \rightarrow C$ kısmi bağımlılıktır. (1NF'yi çözerken görülür).</li>
+</ul>
+<h3 id="gecisli-bagmllk-transitive-dependency">Geçişli Bağımlılık (Transitive Dependency)</h3>
+<p>Bir tabloda, birincil anahtar olmayan bir $Z$ özniteliği, yine birincil anahtar olmayan başka bir $Y$ özniteliğini belirliyorsa, bu geçişli bağımlılıktır.</p>
+<ul>
+<li>$X \rightarrow Y$ ve $Y \rightarrow Z$ iken, $X \rightarrow Z$ ilişkisi oluşur. (3NF'yi çözerken kritiktir).</li>
+</ul>
+<h3 id="cok-degerli-bagmllk-multivalued-dependency">Çok Değerli Bağımlılık (Multivalued Dependency)</h3>
+<p>Çok değerli bağımlılık ($X \rightarrow \rightarrow Y$), bir $X$ değeri için, $Y$ değerlerinin bir kümesinin var olduğunu belirtir ve bu küme, tablodaki diğer özniteliklerden bağımsızdır. Çok değerli bağımlılıklar 4NF'nin temelidir.</p>
+<hr />
+<h2 id="4-normal-formlar">4. Normal Formlar</h2>
+<p>Normalizasyon süreci, tabloları belirli kurallar (Normal Formlar) setine uygun hale getirerek veri tekrarını ve anomalileri ortadan kaldırmayı amaçlar. </p>
+<h3 id="normal-olmayan-form-unnormalized-form-unf">Normal Olmayan Form (Unnormalized Form - UNF)</h3>
+<p>Bu, verilerin ham, işlenmemiş halidir. Bir tabloda hücre başına birden fazla değer veya <strong>tekrarlayan gruplar (Repeating Groups)</strong> bulunur. İlişkisel veritabanı teorisine göre bu yapıya izin verilmez.</p>
+<ul>
+<li><strong>Sorun:</strong> İlişkisel modelin temel yapısını bozar.</li>
+</ul>
+<h3 id="birinci-normal-form-1nf">Birinci Normal Form (1NF)</h3>
+<h4 id="kural-atomik-degerler-tekrarlayan-grup-yok">Kural: Atomik Değerler, Tekrarlayan Grup Yok.</h4>
+<p>Bir tablo 1NF'de olmak için şu iki kurala uymalıdır:</p>
+<ol>
+<li>Her hücrede (satır/sütun kesişiminde) <strong>atomik (bölünemez)</strong> tek bir değer bulunmalıdır.</li>
+<li>Tabloda <strong>tekrarlayan gruplar</strong> olmamalıdır.</li>
+<li><strong>Çözüm:</strong> Tekrarlayan gruplar kaldırılır, her tekrar ayrı bir satır olarak listelenir ve yeni bir Primary Key (PK) tanımlanır.</li>
+</ol>
+<h4 id="1-nf-sorunlar-anomalies">1 NF Sorunları (Anomalies)</h4>
+<p>Birincil anahtara tam olarak bağlı olmayan öznitelikler nedeniyle tabloda anomaliler (veri tutarsızlığı sorunları) yaşanır:</p>
+<ul>
+<li><strong>Ekleme (Insertion) Anomalisi:</strong> Yeni bir bilgi eklemek için, henüz var olmayan başka bir bilgiyi de girmek zorunda kalmak.</li>
+<li><strong>Silme (Deletion) Anomalisi:</strong> Bir kaydı silerken, silmek istemediğimiz başka bir bilgiyi de kaybetmek.</li>
+<li><strong>Güncelleme (Update) Anomalisi:</strong> Aynı bilginin birden fazla yerde tutulması nedeniyle, güncellenmesi gerektiğinde tüm kopyaların güncellenmemesi sonucu veri tutarsızlığı oluşması.</li>
+</ul>
+<h3 id="ikinci-normal-form-2nf">İkinci Normal Form (2NF)</h3>
+<h4 id="kural-1nf-ksmi-bagmllk-yok">Kural: 1NF + Kısmi Bağımlılık Yok</h4>
+<p>Bir tablo 2NF'de olmak için:</p>
+<ol>
+<li>1NF'de olmalıdır.</li>
+<li>
+<p>Tabloda <strong>kısmi fonksiyonel bağımlılık (Partial Functional Dependency)</strong> olmamalıdır. Yani, <strong>birincil anahtar olmayan hiçbir öznitelik</strong>, birleşik anahtarın (Composite Key) <strong>sadece bir parçasına</strong> fonksiyonel olarak bağımlı olmamalıdır.</p>
+</li>
+<li>
+<p><strong>Sorun Nedir?</strong> Kısmi bağımlılıklar veri tekrarına yol açar (Örn: Birleşik anahtarın bir parçası, birincil anahtar olmayan bir sütunu tekrar tekrar belirler).</p>
+</li>
+<li><strong>Çözüm Nedir?</strong> Kısmi bağımlılığa neden olan öznitelikler, anahtarın bağımlı oldukları parçasıyla birlikte <strong>ayrı bir tabloya</strong> taşınır.</li>
+</ol>
+<h4 id="2nf-sorunlar-hala-gecisli-bagmllklar-var">2NF Sorunları: Hâlâ Geçişli Bağımlılıklar Var.</h4>
+<p>2NF, kısmi bağımlılıkları çözer, ancak birincil anahtar olmayan öznitelikler arasındaki bağımlılıkları (<strong>Geçişli Bağımlılık</strong>) çözmez. Bu durum, 3NF'ye geçişi gerektirir.</p>
+<h3 id="ucuncu-normal-form-3nf">Üçüncü Normal Form (3NF)</h3>
+<h4 id="kural-2nf-gecisli-bagmllk-yok">Kural: 2NF + Geçişli Bağımlılık Yok</h4>
+<p>Bir tablo 3NF'de olmak için:</p>
+<ol>
+<li>2NF'de olmalıdır.</li>
+<li>
+<p>Tabloda <strong>geçişli fonksiyonel bağımlılık (Transitive Dependency)</strong> olmamalıdır. Yani, birincil anahtar olmayan alanlar birbirine bağlı olamaz.</p>
+</li>
+<li>
+<p><strong>Sorun Nedir?</strong> Geçişli bağımlılık (Örn: $\text{PK} \rightarrow \text{A}$ ve $\text{A} \rightarrow \text{B}$) Veri Tekrarına ve Güncelleme anomalilerine yol açar.</p>
+</li>
+<li><strong>Çözüm Nedir?</strong> Geçişli bağımlılığa neden olan öznitelik (Örn: A ve B), belirleyen (A) ile birlikte <strong>ayrı bir tabloya</strong> taşınır.</li>
+</ol>
+<h3 id="boyce-codd-normal-formu-bcnf">Boyce-Codd Normal Formu (BCNF)</h3>
+<p>BCNF, 3NF'nin daha sıkı bir tanımıdır ve tüm anomalileri çözer (4NF ve 5NF hariç).</p>
+<h4 id="kural-her-determinant-bir-aday-anahtar-olmal">Kural: Her Determinant Bir Aday Anahtar Olmalı</h4>
+<p>Bir tablo BCNF'de olmak için, tabloda tanımlanan her fonksiyonel bağımlılık ($X \rightarrow Y$) için, <strong>belirleyen ($X$)</strong> mutlaka bir <strong>aday anahtar (Candidate Key)</strong> olmalıdır.</p>
+<ul>
+<li><strong>Farkı:</strong> BCNF, birden fazla aday anahtarın olduğu ve bir aday anahtarın birincil anahtar olmayan başka bir özniteliğe bağlı olduğu özel durumlarda 3NF'nin çözemediği anomalileri çözer. Her BCNF tablo 3NF'dir, ancak her 3NF tablo BCNF olmayabilir.</li>
+</ul>
+<h3 id="dorduncu-normal-form-4nf">Dördüncü Normal Form (4NF)</h3>
+<h4 id="kural-bcnf-cok-degerli-bagmllk-yok">Kural: BCNF + Çok Değerli Bağımlılık Yok</h4>
+<p>Bir tablo 4NF'de olmak için:</p>
+<ol>
+<li>BCNF'de olmalıdır.</li>
+<li>Tabloda <strong>çok değerli bağımlılık (Multivalued Dependency - MVD)</strong> olmamalıdır.</li>
+</ol>
+<p><strong>Sorun Nedir?</strong> Çok değerli bağımlılık ($X \rightarrow \rightarrow Y$) veri tekrarına yol açar. Bu durum, genellikle çok değerli özniteliklerin 1NF'de çözülmesinden sonra ortaya çıkar.</p>
+<p><strong>Çözüm Nedir?</strong> Çok değerli bağımlılığa neden olan öznitelikler <strong>ayrı bir tabloya</strong> taşınır ve sadece Primary Key ile çok değerli özniteliği içerir.</p>
+<hr />
+<h2 id="5-normalizasyon-uygulama-ornekleri">5. Normalizasyon Uygulama Örnekleri</h2>
+<p>Bu bölümde, karmaşık veri yapılarını analiz ederek, veri tekrarını ve anomali risklerini ortadan kaldırmak için tabloları adım adım Birinci (1NF), İkinci (2NF) ve Üçüncü (3NF) Normal Formlara ayıracağız.</p>
+<h3 id="ornek-1-okul-tablosu-cozumlemesi">Örnek 1: Okul Tablosu Çözümlemesi</h3>
+<p><strong>Senaryo:</strong> Okul sistemi, öğrencilerin kişisel bilgilerini, kayıtlı olduğu bölümü ve aldığı dersleri/notları tek bir tabloda tutmaktadır.</p>
+<h4 id="baslangc-normal-olmayan-form-unf">Başlangıç: Normal Olmayan Form (UNF)</h4>
+<p><code>OGRENCI_DETAY</code> tablosunda, bir öğrenci birden fazla ders alabileceği için <code>(DersKodu, Not)</code> tekrarlayan bir gruptur.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">OgrID (PK)</th>
+<th style="text-align: left;">OgrAd</th>
+<th style="text-align: left;">BolumAd</th>
+<th style="text-align: left;">BolumBaskanı</th>
+<th style="text-align: center;">Dersler (Tekrarlayan Grup)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">100</td>
+<td style="text-align: left;">Ali</td>
+<td style="text-align: left;">Bilgisayar Müh.</td>
+<td style="text-align: left;">Ayşe Yılmaz</td>
+<td style="text-align: center;">{DVT(A), YZ(B)}</td>
+</tr>
+<tr>
+<td style="text-align: center;">101</td>
+<td style="text-align: left;">Veli</td>
+<td style="text-align: left;">İnşaat Müh.</td>
+<td style="text-align: left;">Can Kaya</td>
+<td style="text-align: center;">{STA(A+)}</td>
+</tr>
+</tbody>
+</table>
+<h4 id="adm-1-birinci-normal-form-1nf">Adım 1: Birinci Normal Form (1NF)</h4>
+<p>Tekrarlayan grubu kaldırıp atomikleştirme. PK: $\{\text{OgrID}, \text{DersKodu}\}$.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>OgrID</strong> (PK parçası)</th>
+<th style="text-align: left;">OgrAd</th>
+<th style="text-align: center;"><strong>DersKodu</strong> (PK parçası)</th>
+<th style="text-align: center;">Not</th>
+<th style="text-align: left;">BolumAd</th>
+<th style="text-align: left;">BolumBaskanı</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">100</td>
+<td style="text-align: left;">Ali</td>
+<td style="text-align: center;">DVT</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: left;">Bilgisayar Müh.</td>
+<td style="text-align: left;">Ayşe Yılmaz</td>
+</tr>
+<tr>
+<td style="text-align: center;">100</td>
+<td style="text-align: left;">Ali</td>
+<td style="text-align: center;">YZ</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: left;">Bilgisayar Müh.</td>
+<td style="text-align: left;">Ayşe Yılmaz</td>
+</tr>
+<tr>
+<td style="text-align: center;">101</td>
+<td style="text-align: left;">Veli</td>
+<td style="text-align: center;">STA</td>
+<td style="text-align: center;">A+</td>
+<td style="text-align: left;">İnşaat Müh.</td>
+<td style="text-align: left;">Can Kaya</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">1NF Sorunları</p>
+<p><code>OgrAd</code>, <code>BolumAd</code>, <code>BolumBaskanı</code> bilgileri tekrar etmektedir. Bu, <strong>Kısmi Bağımlılığa</strong> ve <strong>Geçişli Bağımlılığa</strong> işaret eder.</p>
+</div>
+<h4 id="adm-2-ikinci-normal-form-2nf">Adım 2: İkinci Normal Form (2NF)</h4>
+<p>Kısmi Bağımlılığı çözme: Birincil anahtarın sadece bir parçasına ($\text{OgrID}$) bağlı olan öznitelikler (<code>OgrAd</code>, <code>BolumAd</code>, <code>BolumBaskanı</code>) ayrılır.</p>
+<p><strong>Tablo 1: OGRENCI</strong></p>
+<ul>
+<li><strong>PK:</strong> $\{\text{OgrID}\}$</li>
+<li><strong>Bağımlılık:</strong> $\text{OgrID} \rightarrow \text{OgrAd}, \text{BolumAd}, \text{BolumBaskanı}$ (Hâlâ geçişli bağımlılık içerir.)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>OgrID</strong></th>
+<th style="text-align: left;">OgrAd</th>
+<th style="text-align: left;">BolumAd</th>
+<th style="text-align: left;">BolumBaskanı</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">100</td>
+<td style="text-align: left;">Ali</td>
+<td style="text-align: left;">Bilgisayar Müh.</td>
+<td style="text-align: left;">Ayşe Yılmaz</td>
+</tr>
+<tr>
+<td style="text-align: center;">101</td>
+<td style="text-align: left;">Veli</td>
+<td style="text-align: left;">İnşaat Müh.</td>
+<td style="text-align: left;">Can Kaya</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tablo 2: KAYIT</strong></p>
+<ul>
+<li><strong>PK:</strong> $\{\text{OgrID, DersKodu}\}$</li>
+<li><strong>Bağımlılık:</strong> $\{\text{OgrID}, \text{DersKodu}\} \rightarrow \text{Not}$ (Tam Bağımlılık)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>OgrID (FK)</strong></th>
+<th style="text-align: center;"><strong>DersKodu</strong></th>
+<th style="text-align: center;">Not</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">DVT</td>
+<td style="text-align: center;">A</td>
+</tr>
+<tr>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">YZ</td>
+<td style="text-align: center;">B</td>
+</tr>
+<tr>
+<td style="text-align: center;">101</td>
+<td style="text-align: center;">STA</td>
+<td style="text-align: center;">A+</td>
+</tr>
+</tbody>
+</table>
+<h4 id="adm-3-ucuncu-normal-form-3nf">Adım 3: Üçüncü Normal Form (3NF)</h4>
+<p>Geçişli Bağımlılığı çözme: $\text{OgrID} \rightarrow \text{BolumAd}$ ve $\text{BolumAd} \rightarrow \text{BolumBaskanı}$ ilişkisini parçala.</p>
+<p><strong>Tablo 3: BOLUM</strong></p>
+<ul>
+<li><strong>PK:</strong> $\{\text{BolumAd}\}$</li>
+<li><strong>Bağımlılık:</strong> $\text{BolumAd} \rightarrow \text{BolumBaskanı}$</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>BolumAd</strong></th>
+<th style="text-align: left;">BolumBaskanı</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Bilgisayar Müh.</td>
+<td style="text-align: left;">Ayşe Yılmaz</td>
+</tr>
+<tr>
+<td style="text-align: center;">İnşaat Müh.</td>
+<td style="text-align: left;">Can Kaya</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nihai Tablolar (3NF):</strong></p>
+<ol>
+<li><strong>OGRENCI</strong> $\{\text{OgrID (PK)}, \text{OgrAd}, \text{BolumAd (FK)}\}$</li>
+<li><strong>KAYIT</strong> $\{\text{OgrID (FK, PK parçası)}, \text{DersKodu (PK parçası)}, \text{Not}\}$</li>
+<li><strong>BOLUM</strong> $\{\text{BolumAd (PK)}, \text{BolumBaskanı}\}$</li>
+</ol>
+<hr />
+<h3 id="ornek-2-bilgisayar-kasasurun-parca-cozumlemesi">Örnek 2: Bilgisayar Kasası/Ürün Parça Çözümlemesi</h3>
+<p><strong>Senaryo:</strong> Bir firma, ürettiği bilgisayar kasalarını ve bu kasaları oluşturan parçaları (ParçaNo, ParçaAdı) ve bu parçaları hangi tedarikçinin sağladığını (TedarikçiNo, TedarikçiAdı) kaydetmektedir.</p>
+<h4 id="baslangc-normal-olmayan-form-unf_1">Başlangıç: Normal Olmayan Form (UNF)</h4>
+<ul>
+<li>Bir <code>KasaID</code> birden fazla <code>ParçaNo</code> içerir (Tekrarlayan Grup).</li>
+<li>Her <code>ParçaNo</code> birden fazla <code>TedarikçiNo</code> ile tedarik edilebilir (Tekrarlayan Grup).</li>
+</ul>
+<h4 id="adm-1-birinci-normal-form-1nf_1">Adım 1: Birinci Normal Form (1NF)</h4>
+<p>PK: $\{\text{KasaID, ParçaNo, TedarikçiNo}\}$</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>KasaID</strong> (P)</th>
+<th style="text-align: center;"><strong>ParçaNo</strong> (P)</th>
+<th style="text-align: center;"><strong>TedarikçiNo</strong> (P)</th>
+<th style="text-align: left;">KasaAdı</th>
+<th style="text-align: left;">ParçaAdı</th>
+<th style="text-align: left;">TedarikçiAdı</th>
+<th style="text-align: center;">Fiyat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">K1</td>
+<td style="text-align: center;">P1</td>
+<td style="text-align: center;">T1</td>
+<td style="text-align: left;">Oyuncu Kasa</td>
+<td style="text-align: left;">Ram 16GB</td>
+<td style="text-align: left;">A Ltd.</td>
+<td style="text-align: center;">1000</td>
+</tr>
+<tr>
+<td style="text-align: center;">K1</td>
+<td style="text-align: center;">P2</td>
+<td style="text-align: center;">T2</td>
+<td style="text-align: left;">Oyuncu Kasa</td>
+<td style="text-align: left;">Anakart</td>
+<td style="text-align: left;">B AŞ.</td>
+<td style="text-align: center;">3000</td>
+</tr>
+<tr>
+<td style="text-align: center;">K2</td>
+<td style="text-align: center;">P1</td>
+<td style="text-align: center;">T1</td>
+<td style="text-align: left;">Ofis Kasa</td>
+<td style="text-align: left;">Ram 16GB</td>
+<td style="text-align: left;">A Ltd.</td>
+<td style="text-align: center;">1100</td>
+</tr>
+</tbody>
+</table>
+<h4 id="adm-2-ikinci-normal-form-2nf_1">Adım 2: İkinci Normal Form (2NF)</h4>
+<p>Kısmi Bağımlılıkları çözme:</p>
+<ol>
+<li>$\text{KasaID} \rightarrow \text{KasaAdı}$ (Kısmi Bağımlılık)</li>
+<li>$\text{ParçaNo} \rightarrow \text{ParçaAdı}$ (Kısmi Bağımlılık)</li>
+<li>$\text{TedarikçiNo} \rightarrow \text{TedarikçiAdı}$ (Kısmi Bağımlılık)</li>
+</ol>
+<p><strong>Tablo 1: KASA</strong> $\{\text{KasaID (PK)}, \text{KasaAdı}\}$</p>
+<p><strong>Tablo 2: PARCA</strong> $\{\text{ParçaNo (PK)}, \text{ParçaAdı}\}$</p>
+<p><strong>Tablo 3: TEDARIKCI</strong> $\{\text{TedarikçiNo (PK)}, \text{TedarikçiAdı}\}$</p>
+<p><strong>Tablo 4: KASA_ICERIK</strong> $\{\text{KasaID (FK, P)}, \text{ParçaNo (FK, P)}, \text{TedarikçiNo (FK, P)}, \text{Fiyat}\}$</p>
+<ul>
+<li><code>KASA_ICERIK</code> tablosu 2NF'dedir (PK'nın tamamına bağlıdır), ancak Tedarikçi bilgileri arasında geçişli bağımlılık riski hala vardır. Bu tablo aslında Üçlü (Ternary) ilişkiyi temsil eder.</li>
+</ul>
+<h4 id="adm-3-ucuncu-normal-form-3nf_1">Adım 3: Üçüncü Normal Form (3NF)</h4>
+<p>Örnek tablolarımızda <strong>geçişli bağımlılık</strong> yoktur (Çünkü $\text{ParçaNo}$'dan bağımsız bir $\text{X} \rightarrow \text{Y}$ ilişkisi kalmamıştır). Bu nedenle tüm tablolar <strong>3NF</strong>'dedir.</p>
+<hr />
+<h3 id="ornek-3-siparis-sistemi-cozumlemesi">Örnek 3: Sipariş Sistemi Çözümlemesi</h3>
+<p><strong>Senaryo:</strong> Müşteri siparişlerini kaydeden bir tablo.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">SiparişNo (P)</th>
+<th style="text-align: left;">MüşteriID</th>
+<th style="text-align: left;">MüşteriAd</th>
+<th style="text-align: left;">MüşteriAdres</th>
+<th style="text-align: center;">ÜrünNo (P)</th>
+<th style="text-align: left;">ÜrünAd</th>
+<th style="text-align: center;">Adet</th>
+<th style="text-align: center;">Fiyat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">S1</td>
+<td style="text-align: left;">M10</td>
+<td style="text-align: left;">Ahmet Yılmaz</td>
+<td style="text-align: left;">Ankara</td>
+<td style="text-align: center;">U1</td>
+<td style="text-align: left;">Klavye</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">200</td>
+</tr>
+<tr>
+<td style="text-align: center;">S1</td>
+<td style="text-align: left;">M10</td>
+<td style="text-align: left;">Ahmet Yılmaz</td>
+<td style="text-align: left;">Ankara</td>
+<td style="text-align: center;">U2</td>
+<td style="text-align: left;">Mouse</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">150</td>
+</tr>
+<tr>
+<td style="text-align: center;">S2</td>
+<td style="text-align: left;">M20</td>
+<td style="text-align: left;">Ayşe Can</td>
+<td style="text-align: left;">İzmir</td>
+<td style="text-align: center;">U1</td>
+<td style="text-align: left;">Klavye</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">200</td>
+</tr>
+</tbody>
+</table>
+<h4 id="adm-1-birinci-normal-form-1nf_2">Adım 1: Birinci Normal Form (1NF)</h4>
+<p>Tablo zaten 1NF'dedir (tekrarlayan grup yoktur, tüm değerler atomiktir). PK: $\{\text{SiparişNo}, \text{ÜrünNo}\}$</p>
+<h4 id="adm-2-ikinci-normal-form-2nf_2">Adım 2: İkinci Normal Form (2NF)</h4>
+<p>Kısmi Bağımlılıkları çözme:</p>
+<ol>
+<li>$\text{SiparişNo} \rightarrow \text{MüşteriID}, \text{MüşteriAd}, \text{MüşteriAdres}$</li>
+<li>$\text{ÜrünNo} \rightarrow \text{ÜrünAd}$</li>
+</ol>
+<p><strong>Tablo 1: SIPARIS_BILGI</strong></p>
+<ul>
+<li><strong>PK:</strong> $\{\text{SiparişNo}\}$</li>
+<li><strong>İçerik:</strong> Siparişe ait tekil bilgiler (Müşteri detayları).</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>SiparişNo</strong></th>
+<th style="text-align: left;">MüşteriID</th>
+<th style="text-align: left;">MüşteriAd</th>
+<th style="text-align: left;">MüşteriAdres</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">S1</td>
+<td style="text-align: left;">M10</td>
+<td style="text-align: left;">Ahmet Yılmaz</td>
+<td style="text-align: left;">Ankara</td>
+</tr>
+<tr>
+<td style="text-align: center;">S2</td>
+<td style="text-align: left;">M20</td>
+<td style="text-align: left;">Ayşe Can</td>
+<td style="text-align: left;">İzmir</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tablo 2: URUN_BILGI</strong></p>
+<ul>
+<li><strong>PK:</strong> $\{\text{ÜrünNo}\}$</li>
+<li><strong>İçerik:</strong> Ürüne ait tekil bilgiler.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>ÜrünNo</strong></th>
+<th style="text-align: left;">ÜrünAd</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">U1</td>
+<td style="text-align: left;">Klavye</td>
+</tr>
+<tr>
+<td style="text-align: center;">U2</td>
+<td style="text-align: left;">Mouse</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tablo 3: SIPARIS_DETAY</strong></p>
+<ul>
+<li><strong>PK:</strong> $\{\text{SiparişNo (FK, P)}, \text{ÜrünNo (FK, P)}\}$</li>
+<li><strong>İçerik:</strong> Sipariş hattı bilgileri (Miktar, Fiyat).</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>SiparişNo (FK)</strong></th>
+<th style="text-align: center;"><strong>ÜrünNo (FK)</strong></th>
+<th style="text-align: center;">Adet</th>
+<th style="text-align: center;">Fiyat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">S1</td>
+<td style="text-align: center;">U1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">200</td>
+</tr>
+<tr>
+<td style="text-align: center;">S1</td>
+<td style="text-align: center;">U2</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">150</td>
+</tr>
+<tr>
+<td style="text-align: center;">S2</td>
+<td style="text-align: center;">U1</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">200</td>
+</tr>
+</tbody>
+</table>
+<h4 id="adm-3-ucuncu-normal-form-3nf_2">Adım 3: Üçüncü Normal Form (3NF)</h4>
+<p>Geçişli Bağımlılıkları çözme:</p>
+<p><code>SIPARIS_BILGI</code> tablosunda geçişli bağımlılık vardır: $\text{SiparişNo} \rightarrow \text{MüşteriID}$ ve $\text{MüşteriID} \rightarrow \text{MüşteriAd}, \text{MüşteriAdres}$.</p>
+<p><strong>Tablo 4: MUSTERI</strong></p>
+<ul>
+<li><strong>PK:</strong> $\{\text{MüşteriID}\}$</li>
+<li><strong>İçerik:</strong> Müşteriye ait kalıcı bilgiler.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>MüşteriID</strong></th>
+<th style="text-align: left;">MüşteriAd</th>
+<th style="text-align: left;">MüşteriAdres</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">M10</td>
+<td style="text-align: left;">Ahmet Yılmaz</td>
+<td style="text-align: left;">Ankara</td>
+</tr>
+<tr>
+<td style="text-align: center;">M20</td>
+<td style="text-align: left;">Ayşe Can</td>
+<td style="text-align: left;">İzmir</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nihai Tablolar (3NF):</strong></p>
+<ol>
+<li><strong>SIPARIS</strong> $\{\text{SiparişNo (PK)}, \text{MüşteriID (FK)}\}$</li>
+<li><strong>MUSTERI</strong> $\{\text{MüşteriID (PK)}, \text{MüşteriAd}, \text{MüşteriAdres}\}$</li>
+<li><strong>URUN</strong> $\{\text{ÜrünNo (PK)}, \text{ÜrünAd}\}$</li>
+<li><strong>SIPARIS_DETAY</strong> $\{\text{SiparişNo (FK, P)}, \text{ÜrünNo (FK, P)}, \text{Adet}, \text{Fiyat}\}$</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Başa dön
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tracking", "navigation.indexes", "navigation.top"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Kopyaland\u0131", "clipboard.copy": "Kopyala", "search.result.more.one": "Bu sayfada 1 tane daha", "search.result.more.other": "Bu sayfada # tane daha", "search.result.none": "E\u015fle\u015fen dok\u00fcman bulunamad\u0131", "search.result.one": "1 dok\u00fcman bulundu", "search.result.other": "# dok\u00fcman bulundu", "search.result.placeholder": "Aramaya ba\u015flamak i\u00e7in yaz\u0131n", "search.result.term.missing": "Eksik", "select.version": "Versiyon se\u00e7"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

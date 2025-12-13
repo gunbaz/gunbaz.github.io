@@ -12,6 +12,8 @@
         <link rel="prev" href="../02-vtys-mimari-kavramlar/">
       
       
+        <link rel="next" href="../04-er-donusum-ve-normalizasyon/">
+      
       
         
       
@@ -828,6 +830,8 @@
       
         
       
+        
+      
     
     
     
@@ -1571,6 +1575,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-er-donusum-ve-normalizasyon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ER Modelden Tabloya Dönüşüm ve Normalizasyon
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2251,8 +2283,10 @@
 <h3 id="basitcekirdek-nitelik-simple">Basit/Çekirdek Nitelik (Simple)</h3>
 <p>Tek bir atomik değere sahip olan, daha fazla bölünemeyen niteliktir (Örn: <code>Yaş</code>, <code>TC Kimlik No</code>).</p>
 <h3 id="birlesik-nitelik-composite-orn-adres">Birleşik Nitelik (Composite - Örn: Adres)</h3>
-<p>Daha küçük, anlamlı alt bileşenlere ayrılabilen niteliktir.
-* Örn: <code>Adres</code> niteliği; <code>Sokak</code>, <code>Cadde</code>, <code>Şehir</code>, <code>PostaKodu</code> gibi alt niteliklerden oluşur.</p>
+<p>Daha küçük, anlamlı alt bileşenlere ayrılabilen niteliktir.</p>
+<ul>
+<li>Örn: <code>Adres</code> niteliği; <code>Sokak</code>, <code>Cadde</code>, <code>Şehir</code>, <code>PostaKodu</code> gibi alt niteliklerden oluşur.</li>
+</ul>
 <h3 id="turetilen-nitelik-derived-orn-dogum-tarihinden-yas-hesaplama">Türetilen Nitelik (Derived - Örn: Doğum tarihinden Yaş hesaplama)</h3>
 <p>Değeri, veritabanında saklanan diğer niteliklerden veya verilerden hesaplanabilen niteliktir. Türetilmiş niteliğin kendisi depolanmaz, çalışma zamanında hesaplanır.</p>
 <ul>
@@ -2335,7 +2369,7 @@
 <h3 id="aday-anahtar-candidate-key">Aday Anahtar (Candidate Key)</h3>
 <p>Süper anahtar olup, <strong>minimumluk (minimality)</strong> şartını sağlayan öznitelik kümesidir. Yani, bu kümeden herhangi bir öznitelik çıkarılırsa, artık kaydı benzersiz tanımlayamaz.</p>
 <ul>
-<li>Örn: ${TCKimlikNo}$, ${Email}$ (Benzersiz ise). ${TCKimlikNo, Ad}$ aday anahtar değildir, çünkü <code>Ad</code> çıkarılabilir.</li>
+<li>Örn: ${TCKimlikNo}$, ${Email}$ (Benzersiz ise). ${ Ad}$ aday anahtar değildir, çünkü <code>Ad</code> çıkarılabilir.</li>
 </ul>
 <h3 id="birincil-anahtar-primary-key-kurallar-unique-not-null">Birincil Anahtar (Primary Key) - Kuralları (Unique + Not Null)</h3>
 <p>VTYS tasarımcısı tarafından <strong>aday anahtarlar arasından</strong> seçilen, varlık kümesini benzersiz tanımlamak için kullanılan anahtardır.</p>
@@ -2356,7 +2390,7 @@
 </div>
 <hr />
 <h2 id="10-guclu-ve-zayf-varlk-kumeleri">10. Güçlü ve Zayıf Varlık Kümeleri</h2>
-<p><img alt="Zayıf Varlık Gösterimi" src="../../../images/er_zayif_varlik.png" /></p>
+<p><img alt="Zayıf Varlık Gösterimi" src="../../../images/er_zayif_varlik.png" />   </p>
 <h3 id="guclu-varlk-kumesi-kendi-anahtar-olan">Güçlü Varlık Kümesi (Kendi anahtarı olan)</h3>
 <p>Kendi Birincil Anahtarını (Primary Key) <strong>benzersiz bir şekilde tanımlayabilen</strong> varlık kümesidir. Varlığı, başka bir varlığa bağımlı değildir. E-R diyagramında tek dikdörtgenle gösterilir.</p>
 <h3 id="zayf-varlk-kumesi-weak-entity-kendi-anahtar-olmayan">Zayıf Varlık Kümesi (Weak Entity - Kendi anahtarı olmayan)</h3>
