@@ -6,7 +6,7 @@ __pycache__/
 
 # --- İsteğe Bağlı (Göndermek İstemiyorsan Başındaki # işaretini kaldır) ---
 grafik_ciz.py
-vtys_gorseller.py
+#vtys_gorseller.py
 CONTEXT.TXT
 debug_log.txt
 .cursorrules
