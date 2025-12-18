@@ -284,9 +284,11 @@ Karmaşık filtreleme işlemleri için kullanılır.
 **IN ve BETWEEN:**
 
 **Örnek:** Bölümü 1, 2 veya 3 olanlar
+
     SELECT * FROM Personel WHERE BolumID IN (1, 2, 3);
 
-    -- Maaşı 10.000 ile 20.000 arasında olanlar (Sınırlar dahil)
+**Örnek:** Maaşı 10.000 ile 20.000 arasında olanlar (Sınırlar dahil)
+
     SELECT * FROM Personel WHERE Maas BETWEEN 10000 AND 20000;
 
 ---
