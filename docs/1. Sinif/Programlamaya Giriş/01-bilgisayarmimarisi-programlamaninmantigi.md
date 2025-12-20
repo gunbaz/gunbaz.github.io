@@ -1,6 +1,6 @@
-# 1. Bilgisayar Mimarisi ve Programlamanın Mantığı
+# Bilgisayar Mimarisi ve Programlamanın Mantığı
 
-*Bu bölüm; "Veri Defteri" projesi kapsamında, programlama dünyasına girişin temellerini oluşturmaktadır. Bir kodun donanım katmanında (CPU, RAM) nasıl işlendiğini, kaynak kodun derlenme (compilation) sürecini, algoritmik düşünme yapısını ve C programlama dilinin bellek odaklı temel veri yapılarını kapsamlı bir şekilde ele almaktadır. Amaç, sadece kod yazmak değil, kodun arka planda nasıl çalıştığını mühendislik perspektifiyle anlamaktır.*
+*Bir kodun donanım katmanında (CPU, RAM) nasıl işlendiğini, kaynak kodun derlenme (compilation) sürecini, algoritmik düşünme yapısını ve C programlama dilinin bellek odaklı temel veri yapılarını kapsamlı bir şekilde ele almaktadır. Amaç, sadece kod yazmak değil, kodun arka planda nasıl çalıştığını mühendislik perspektifiyle anlamaktır.*
 
 ## 1.1. Donanım Katmanları: CPU, RAM ve ALU İlişkisi
 
