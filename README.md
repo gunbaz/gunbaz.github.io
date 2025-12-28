@@ -1,6 +1,6 @@
 # Veri Defteri
 
-Bilgisayar Mühendisliği öğrencileri için hazırlanmış teknik ders notları ve dokümantasyon sitesi.
+Yapay Zeka ve Veri Mühendisliği öğrencileri için hazırlanmış teknik ders notları ve dokümantasyon sitesi.
 
 🔗 **[gunbaz.github.io](https://gunbaz.github.io)**
 
@@ -8,12 +8,6 @@ Bilgisayar Mühendisliği öğrencileri için hazırlanmış teknik ders notlar�
 
 Bu proje, üniversite müfredatındaki dersleri sadece syntax seviyesinde değil, bilgisayar mimarisi ve sistem tasarımı perspektifinden ele alan bir kaynak oluşturmayı hedefler.
 
-### Ne Bulacaksın?
-
-- **Programlamaya Giriş:** Pointer arithmetic, activation records, bellek yönetimi
-- **Sayısal İşaret İşleme:** Ayrık zamanlı sistemler, Fourier analizi, örnekleme teorisi
-- **Veritabanı Yönetim Sistemleri:** Fonksiyonel bağımlılıklar, normalizasyon, B-Tree indeksleme
-- **İleri Yapay Zeka:** Arama algoritmaları, optimizasyon, pekiştirmeli öğrenme
 
 ## Teknik Altyapı
 
